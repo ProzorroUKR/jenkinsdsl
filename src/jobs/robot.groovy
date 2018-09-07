@@ -502,15 +502,6 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             concurrentBuild(false)
             scm defaultScm
             publishers defaultPublishers
-//            publishers {
-//                archiveArtifacts {
-//                    pattern("test_output/output.xml, op_robot_tests/tests_files/data/artifact.yaml")
-//                    allowEmpty(false)
-//                    onlyIfSuccessful(false)
-//                    fingerprint(false)
-//                    defaultExcludes(true)
-//                }
-//            }
             wrappers defaultWrappers(scenario != 'negotiation.quick', 10800)
             configure defaultConfigure
 
