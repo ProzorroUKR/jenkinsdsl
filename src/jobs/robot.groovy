@@ -18,7 +18,7 @@ def defaultScm = {
         remote {
             github("openprocurement/robot_tests", "https")
         }
-        branch("*/master")ds
+        branch("*/master")
     }
 }
 
