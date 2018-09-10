@@ -64,6 +64,9 @@ def defaultPublishers = {
     }
 }
 
+def defaultTriggers = {
+    cron('H 0-5/2 * * *')
+}
 
 String shellBuildout = "python2 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f"
 String shellPhantom  = "sed -r -i 's/browser: *(chrome|firefox)/browser:  PhantomJS/gi' op_robot_tests/tests_files/data/users.yaml"
@@ -87,16 +90,18 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-sandbox)?\\.openprocurerement\\.org\\/get\\/([0-9A-Fa-f]{32})'"
                 ]
         ],
-//        [
-//                environment: 'dsl_new',
-//                params: [
-//                        "API_HOST_URL": "https://lb-api-sandbox.prozorro.gov.ua",
-//                        "DS_HOST_URL": "https://upload-docs-sandbox.prozorro.gov.ua",
-//                        "EDR_HOST_URL": "https://lb-edr-sandbox.prozorro.gov.ua",
-//                        "API_VERSION": "2.4",
-//                        "EDR_VERSION": "0",
-//                ]
-//        ],
+        // [
+        //         environment: 'sandbox_prozorro',
+        //         params: [
+        //             "API_HOST_URL": "https://lb-api-sandbox.prozorro.gov.ua",
+        //             "DS_HOST_URL": "https://upload-docs-sandbox.prozorro.gov.ua",
+        //             "EDR_HOST_URL": "https://lb-edr-sandbox.prozorro.gov.ua",
+        //             "API_VERSION": "2.4",
+        //             "EDR_VERSION": "0",
+        //             "AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
+        //             "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
+        //         ]
+        // ],
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k=$v" }.join('')
 
@@ -109,6 +114,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        triggers defaultTriggers
 
         String defaultArgs = "-A robot_tests_arguments/openeu.txt -e add_doc_to_contract"
 
