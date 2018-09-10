@@ -76,13 +76,15 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
 
 [
         [
-                environment: 'dsl_old',
+                environment: 'sandbox_openprocurement',
                 params: [
                     "API_HOST_URL": "https://lb.api-sandbox.openprocurement.org",
                     "DS_HOST_URL": "https://upload.docs-sandbox.openprocurement.org",
                     "EDR_HOST_URL": "https://lb.edr-sandbox.openprocurement.org",
                     "API_VERSION": "2.4",
                     "EDR_VERSION": "0",
+                    "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-sandbox)?\\.openprocurerement\\.org\\/tenders\\/([0-9A-Fa-f]{32})",
+                    "DS_REGEXP": "^https?:\\/\\/public-docs(?:-sandbox)?\\.openprocurerement\\.org\\/get\\/([0-9A-Fa-f]{32})"
                 ]
         ],
 //        [
