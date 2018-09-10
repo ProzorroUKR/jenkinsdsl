@@ -83,8 +83,8 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "EDR_HOST_URL": "https://lb.edr-sandbox.openprocurement.org",
                     "API_VERSION": "2.4",
                     "EDR_VERSION": "0",
-                    "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-sandbox)?\\.openprocurerement\\.org\\/tenders\\/([0-9A-Fa-f]{32})",
-                    "DS_REGEXP": "^https?:\\/\\/public-docs(?:-sandbox)?\\.openprocurerement\\.org\\/get\\/([0-9A-Fa-f]{32})"
+                    "AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-sandbox)?\\.openprocurerement\\.org\\/tenders\\/([0-9A-Fa-f]{32})'",
+                    "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-sandbox)?\\.openprocurerement\\.org\\/get\\/([0-9A-Fa-f]{32})'"
                 ]
         ],
 //        [
