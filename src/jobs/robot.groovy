@@ -109,7 +109,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                 cron: "H 0-5/2 * * *"
         ],
 ].each { Map config ->
-    String params = config.params.collect { k,v -> " -v $k=$v" }.join('')
+    String params = config.params.collect { k,v -> " -v $k:$v" }.join('')
 
     job("${config.environment}_aboveThresholdEU") {
         description("Сценарій: Надпорогова закупівля з публікацією англійською мовою.")
