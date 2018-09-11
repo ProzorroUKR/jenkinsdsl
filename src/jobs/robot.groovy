@@ -106,7 +106,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
                     "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
                 ],
-                cron: null
+                cron: "H 0-5/2 * * *"
         ],
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k=$v" }.join('')
@@ -163,6 +163,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         String defaultArgs = "-A robot_tests_arguments/openeu_simple.txt"
 
@@ -186,6 +187,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         String defaultArgs = "-A robot_tests_arguments/openua.txt"
 
@@ -209,6 +211,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         steps {
             shell(shellBuildout)
@@ -227,6 +230,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         String defaultArgs = "-A robot_tests_arguments/openua_simple.txt"
 
@@ -250,6 +254,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         String defaultArgs = "-A robot_tests_arguments/below_funders_full.txt -e answer_tender_claim -e answer_lot_claim -e answer_award_claim -e add_doc_to_contract"
 
@@ -273,6 +278,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         String defaultArgs = "-A robot_tests_arguments/below.txt -e answer_tender_claim -e answer_lot_claim -e answer_award_claim -e add_doc_to_contract"
 
@@ -296,6 +302,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         steps {
             shell(shellBuildout)
@@ -313,6 +320,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         steps {
             shell(shellBuildout)
@@ -330,6 +338,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         steps {
             shell(shellBuildout)
@@ -348,6 +357,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         steps {
             shell(shellBuildout)
@@ -366,6 +376,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         String defaultArgs = "-A robot_tests_arguments/below.txt -e answer_tender_claim -e answer_lot_claim -e answer_award_claim -e add_doc_to_contract"
 
@@ -389,6 +400,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         String defaultArgs = "-A robot_tests_arguments/below_simple.txt"
 
@@ -411,8 +423,8 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         scm defaultScm
         publishers defaultPublishers
         wrappers defaultWrappers(true, 10800)
-
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
 
@@ -436,6 +448,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false, 10800)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt -e resolve_tender_claim -e resolve_lot_claim"
 
@@ -456,6 +469,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false, 10800)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_UA.txt"
 
@@ -479,7 +493,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
-
+        triggers defaultTriggers(config.cron)
 
         steps {
             shell(shellBuildout)
@@ -499,6 +513,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             publishers defaultPublishers
             wrappers defaultWrappers(true)
             configure defaultConfigure
+            triggers defaultTriggers(config.cron)
 
             steps {
                 shell(shellBuildout)
@@ -519,6 +534,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             publishers defaultPublishers
             wrappers defaultWrappers(scenario != 'negotiation.quick', 10800)
             configure defaultConfigure
+            triggers defaultTriggers(config.cron)
 
             steps {
                 shell(shellBuildout)
@@ -537,6 +553,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             publishers defaultPublishers
             wrappers defaultWrappers(false)
             configure defaultConfigure
+            triggers defaultTriggers(config.cron)
 
             steps {
                 shell(shellBuildout)
@@ -556,6 +573,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         steps {
             shell(shellBuildout)
@@ -574,6 +592,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         publishers defaultPublishers
         wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
+        triggers defaultTriggers(config.cron)
 
         String defaultArgs = "-A robot_tests_arguments/single_item_tender.txt"
 
