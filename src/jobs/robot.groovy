@@ -8,7 +8,7 @@ def defaultConfigure = {
         }
     }
     it / 'properties' / 'com.coravy.hudson.plugins.github.GithubProjectProperty' {
-        'projectUrl'('https://github.com/openprocurement/robot_tests/')
+        'projectUrl'('https://github.com/ProzorroUKR/robot_tests/')
         displayName()
     }
 }
@@ -16,7 +16,7 @@ def defaultConfigure = {
 def defaultScm = {
     git {
         remote {
-            github("openprocurement/robot_tests", "https")
+            github("ProzorroUKR/robot_tests", "https")
         }
         branch("*/master")
     }
@@ -107,6 +107,19 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
                 ],
                 cron: "H 0-5/2 * * *"
+        ],
+        [
+                environment: 'dev_prozorro',
+                params: [
+                    "API_HOST_URL": "https://api-dev.prozorro.gov.ua",
+                    "DS_HOST_URL": "https://upload-docs-dev.prozorro.gov.ua",
+                    "EDR_HOST_URL": "https://edr-dev.prozorro.gov.ua",
+                    "API_VERSION": "2.4",
+                    "EDR_VERSION": "0",
+                    "AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-dev)?\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
+                    "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-dev)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
+                ],
+                cron: null
         ],
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k:$v" }.join('')
