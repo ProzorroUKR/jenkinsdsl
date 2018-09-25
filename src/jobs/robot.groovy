@@ -148,6 +148,29 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         }
     }
 
+    job("${config.environment}_aboveThresholdEU_no_auction") {
+        description("Сценарій: Надпорогова закупівля з публікацією англійською мовою.(пропуск аукціона)")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(false)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        triggers defaultTriggers(config.cron)
+
+        String defaultArgs = "-A robot_tests_arguments/openeu.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:quick(mode:no-auction) $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
     job("${config.environment}_aboveThresholdEU_cancellation") {
         description("Сценарій: Надпорогова закупівля з публікацією англійською мовою. Скасування закупівлі.")
         keepDependencies(false)
