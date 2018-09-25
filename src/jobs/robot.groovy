@@ -164,7 +164,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:quick(mode:no-auction) $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
