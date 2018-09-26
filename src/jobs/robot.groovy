@@ -253,6 +253,30 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         }
     }
 
+    job("${config.environment}_frameworkagreement") {
+        description("Сценарій: Рамкова угода.")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(false)
+        scm defaultScm(config.branch)
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        triggers defaultTriggers(config.cron)
+
+        String defaultArgs = "-A robot_tests_arguments/framework_agreement.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 -e add_doc_to_contract -e resolve_tender_claim -e resolve_lot_claim $params")
+            shell("$robotWrapper $auction $defaultArgs -e add_doc_to_contract -i auction $params")
+            shell("$robotWrapper $qualification $defaultArgs -e add_doc_to_contract $params")
+            shell("$robotWrapper $contractsign $defaultArgs -e add_doc_to_contract $params")
+            shell(shellRebot)
+        }
+    }
+
     job("${config.environment}_aboveThresholdUA_cancellation") {
         description("Сценарій: Скасування закупівлі (openUA)")
         keepDependencies(false)
