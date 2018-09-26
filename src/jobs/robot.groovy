@@ -1,8 +1,8 @@
 def defaultConfigure = {
     it / 'properties' / 'jenkins.model.BuildDiscarderProperty' {
         strategy {
-            'daysToKeep'('14')
-            'numToKeep'('48')
+            'daysToKeep'('5')
+            'numToKeep'('15')
             'artifactDaysToKeep'('-1')
             'artifactNumToKeep'('-1')
         }
@@ -134,7 +134,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                 environment: 'custom_branch',
                 params: [],
                 cron: null,
-                branch: System.getenv("CUSTOM_BRANCH")
+                branch: "openprocurement_client_upstream"
         ],
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k:$v" }.join('')
