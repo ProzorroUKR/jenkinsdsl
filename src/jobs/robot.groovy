@@ -13,12 +13,18 @@ def defaultConfigure = {
     }
 }
 
-def defaultScm = {
-    git {
-        remote {
-            github("ProzorroUKR/robot_tests", "https")
+def defaultScm(String entry = null) {
+    return {
+        git {
+            remote {
+                github("ProzorroUKR/robot_tests", "https")
+            }
+            if (entry) {
+                branch("*/$entry")
+            } else {
+                branch("*/master")
+            }
         }
-        branch("*/master")
     }
 }
 
@@ -93,7 +99,8 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "AUCTION_REGEXP": "'^https?:\\/\\/auction-sandbox\\.openprocurement\\.org\\/tenders\\/([0-9A-Fa-f]{32})'",
                     "DS_REGEXP": "'^https?:\\/\\/public\\.docs-sandbox\\.openprocurement\\.org\\/get\\/([0-9A-Fa-f]{32})'"
                 ],
-                cron: "H 0-5/2 * * *"
+                cron: "H 0-5/2 * * *",
+                branch: "master"
         ],
         [
                 environment: 'sandbox_prozorro',
@@ -106,7 +113,8 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
                     "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
                 ],
-                cron: "H 0-5/2 * * *"
+                cron: "H 0-5/2 * * *",
+                branch: "master"
         ],
         [
                 environment: 'dev_prozorro',
@@ -119,7 +127,14 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-dev)?\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
                     "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-dev)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
                 ],
-                cron: null
+                cron: null,
+                branch: "master",
+        ],
+        [
+                environment: 'custom_branch',
+                params: [],
+                cron: null,
+                branch: System.getenv("CUSTOM_BRANCH")
         ],
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k:$v" }.join('')
@@ -129,7 +144,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -153,7 +168,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -176,7 +191,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -195,7 +210,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -219,7 +234,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
@@ -243,7 +258,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -262,7 +277,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -286,7 +301,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
@@ -310,7 +325,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
@@ -334,7 +349,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -352,7 +367,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -370,7 +385,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -389,7 +404,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -408,7 +423,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
@@ -432,7 +447,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -456,7 +471,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
@@ -480,7 +495,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false, 10800)
         configure defaultConfigure
@@ -501,7 +516,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false, 10800)
         configure defaultConfigure
@@ -525,7 +540,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
@@ -545,7 +560,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             keepDependencies(false)
             disabled(false)
             concurrentBuild(false)
-            scm defaultScm
+            scm defaultScm(config.branch)
             publishers defaultPublishers
             wrappers defaultWrappers(true)
             configure defaultConfigure
@@ -566,7 +581,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             keepDependencies(false)
             disabled(false)
             concurrentBuild(false)
-            scm defaultScm
+            scm defaultScm(config.branch)
             publishers defaultPublishers
             wrappers defaultWrappers(scenario != 'negotiation.quick', 10800)
             configure defaultConfigure
@@ -585,7 +600,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             keepDependencies(false)
             disabled(false)
             concurrentBuild(false)
-            scm defaultScm
+            scm defaultScm(config.branch)
             publishers defaultPublishers
             wrappers defaultWrappers(false)
             configure defaultConfigure
@@ -605,7 +620,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
@@ -624,7 +639,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
-        scm defaultScm
+        scm defaultScm(config.branch)
         publishers defaultPublishers
         wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
