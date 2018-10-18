@@ -103,7 +103,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                 branch: "master"
         ],
         [
-                environment: 'sandbox_prozorro_old',
+                environment: 'sandbox_old_prozorro',
                 params: [
                     "API_HOST_URL": "https://lb.api-sandbox.prozorro.gov.ua",
                     "DS_HOST_URL": "https://upload.docs-sandbox.prozorro.gov.ua",
