@@ -165,7 +165,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                 environment: 'custom_branch',
                 params: [],
                 cron: null,
-                branch: "openprocurement_client_upstream"
+                branch: "improvement/tenders-feed"
         ],
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k:$v" }.join('')
