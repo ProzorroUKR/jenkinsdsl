@@ -689,6 +689,28 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         }
     }
 
+    job("${config.environment}_feed_reading") {
+        description("Сценарій: Вичітування довільного набіру даних с ЦБД")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(false)
+        scm defaultScm(config.branch)
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        triggers defaultTriggers(config.cron)
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o feed_plans_output.xml -s feed_plans -v FEED_ITEMS_NUMBER:150 $params")
+            shell("$robotWrapper -o feed_tenders_output.xml -s feed_tenders -v FEED_ITEMS_NUMBER:150 $params")
+            shell("$robotWrapper -o feed_contracts_output.xml -s feed_contracts -v FEED_ITEMS_NUMBER:150 $params")
+            shell(shellRebot)
+        }
+    }
+
+
     job("${config.environment}_single_item_tender") {
         description("Сценарій: Допорогова закупівля з однією номенклатурою до аукціону")
         keepDependencies(false)
