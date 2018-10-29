@@ -705,7 +705,6 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell(shellPhantom)
             shell("$robotWrapper -o feed_plans_output.xml -s feed_plans -v FEED_ITEMS_NUMBER:150 $params")
             shell("$robotWrapper -o feed_tenders_output.xml -s feed_tenders -v FEED_ITEMS_NUMBER:150 $params")
-            shell("$robotWrapper -o feed_contracts_output.xml -s feed_contracts -v FEED_ITEMS_NUMBER:150 $params")
             shell(shellRebot)
         }
     }
