@@ -99,7 +99,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "AUCTION_REGEXP": "'^https?:\\/\\/auction-sandbox\\.openprocurement\\.org\\/tenders\\/([0-9A-Fa-f]{32})'",
                     "DS_REGEXP": "'^https?:\\/\\/public\\.docs-sandbox\\.openprocurement\\.org\\/get\\/([0-9A-Fa-f]{32})'"
                 ],
-                cron: "H 0-4/2 * * *",
+                cron: null,
                 branch: "master"
         ],
         [
@@ -113,7 +113,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "AUCTION_REGEXP": "'^https?:\\/\\/auction-sb\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
                     "DS_REGEXP": "'^https?:\\/\\/public\\.docs-sandbox\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
                 ],
-                cron: "H 0-4/2 * * *",
+                cron: null,
                 branch: "master"
         ],
 	[
@@ -128,7 +128,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
                     "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
                 ],
-                cron: "H 0-4/2 * * *",
+                cron: "H 0 * * *",
                 branch: "master"
         ],
         [
@@ -143,7 +143,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-dev)?\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
                     "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-dev)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
                 ],
-                cron: "H 4-6/2 * * *",
+                cron: "H 2 * * *",
                 branch: "master",
         ],
         [
