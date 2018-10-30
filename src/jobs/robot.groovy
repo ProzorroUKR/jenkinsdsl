@@ -38,6 +38,7 @@ def defaultWrappers(boolean xvfb_enable = false, Integer timeoutSeconds = null) 
         if (xvfb_enable) {
             xvfb('default') {
                 parallelBuild()
+                autoDisplayName(true)
             }
         }
         if (timeoutSeconds) {
