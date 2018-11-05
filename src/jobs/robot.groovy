@@ -671,8 +671,8 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         }
     }
 
-    job("${config.environment}_planning") {
-        description("Сценарій: Планування")
+    job("${config.environment}_planning_belowThreshold") {
+        description("Сценарій: Планування допорогова процедура")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(false)
@@ -685,7 +685,26 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_planning_framework_agreement") {
+        description("Сценарій: Планування рамкової угоди")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(false)
+        scm defaultScm(config.branch)
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        triggers defaultTriggers(config.cron)
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -v MODE:closeFrameworkAgreementUA -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
             shell(shellRebot)
         }
     }
