@@ -678,7 +678,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         concurrentBuild(false)
         scm defaultScm(config.branch)
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(false)
         configure defaultConfigure
         triggers defaultTriggers(config.cron)
 
@@ -697,7 +697,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
         concurrentBuild(false)
         scm defaultScm(config.branch)
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(false)
         configure defaultConfigure
         triggers defaultTriggers(config.cron)
 
