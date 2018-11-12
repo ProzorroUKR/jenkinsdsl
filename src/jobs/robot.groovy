@@ -777,6 +777,30 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
          }
     }
 
+    job("${config.environment}_esco") {
+        description("Сценарій: Відкриті торги для закупівлі енергосервісу")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(false)
+        scm defaultScm(config.branch)
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        triggers defaultTriggers(config.cron)
+
+        String defaultArgs = "-A robot_tests_arguments/esco_testing.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
     listView("${config.environment}") {
         jobs {
             regex("^${config.environment}.*")
