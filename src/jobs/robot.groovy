@@ -149,6 +149,21 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                 branch: "master",
         ],
         [
+                environment: 'gc_dev_prozorro',
+                params: [
+                    "API_HOST_URL": "https://api-dev-gc.prozorro.gov.ua",
+                    "DS_HOST_URL": "https://upload-docs-dev-gc.prozorro.gov.ua",
+                    "EDR_HOST_URL": "https://edr-dev-gc.prozorro.gov.ua",
+                    "DASU_API_HOST_URL": "https://audit-api-dev-gc.prozorro.gov.ua",
+                    "API_VERSION": "2.4",
+                    "EDR_VERSION": "0",
+                    "AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-dev-gc)?\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
+                    "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-dev-gc)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
+                ],
+                cron: null,
+                branch: "master",
+        ],
+        [
                 environment: 'staging_prozorro',
                 params: [
                     "API_HOST_URL": "https://lb-api-staging.prozorro.gov.ua",
