@@ -149,7 +149,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                 branch: "master",
         ],
         [
-                environment: 'dev_prozorro_gc',
+                environment: 'gc_dev_prozorro',
                 params: [
                     "API_HOST_URL": "https://api-dev-gc.prozorro.gov.ua",
                     "DS_HOST_URL": "https://upload-docs-dev-gc.prozorro.gov.ua",
