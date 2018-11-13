@@ -109,6 +109,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "API_HOST_URL": "https://lb.api-sandbox.prozorro.gov.ua",
                     "DS_HOST_URL": "https://upload.docs-sandbox.prozorro.gov.ua",
                     "EDR_HOST_URL": "https://lb.edr-sandbox.prozorro.gov.ua",
+                    "DASU_API_HOST_URL": "https://audit-api-sb.prozorro.gov.ua",
                     "API_VERSION": "2.4",
                     "EDR_VERSION": "0",
                     "AUCTION_REGEXP": "'^https?:\\/\\/auction-sb\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
