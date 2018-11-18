@@ -116,7 +116,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "DS_REGEXP": "'^https?:\\/\\/public\\.docs-sandbox\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
                 ],
                 cron: null,
-                branch: "dev_prozorro"
+                branch: "master"
         ],
 	[
                 environment: 'sandbox_prozorro',
