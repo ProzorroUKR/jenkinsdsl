@@ -128,7 +128,8 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "API_VERSION": "2.4",
                     "EDR_VERSION": "0",
                     "AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
-                    "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
+                    "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'",
+                    "ESCO_AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/esco-tenders\\/([0-9A-Fa-f]{32})'"
                 ],
                 cron: "H 0 * * *",
                 branch: "master"
@@ -143,7 +144,8 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
                     "API_VERSION": "2.4",
                     "EDR_VERSION": "0",
                     "AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-dev)?\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
-                    "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-dev)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
+                    "DS_REGEXP": "'^https?:\\/\\/public-docs(?:-dev)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'",
+                    "ESCO_AUCTION_REGEXP": "'^https?:\\/\\/auction(?:-dev)?\\.prozorro\\.gov\\.ua\\/esco-tenders\\/([0-9A-Fa-f]{32})'"
                 ],
                 cron: "H 2 * * *",
                 branch: "dev_prozorro",
