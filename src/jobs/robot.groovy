@@ -87,6 +87,7 @@ String openProcedure = "-o base_output.xml -s openProcedure"
 String auction       = "-o auction_output.xml -s auction"
 String qualification = "-o qualification_output.xml -s qualification"
 String contractsign  = "-o contract_output.xml -s contract_signing"
+String contractmanagement  = "-o contract_management_output.xml -s contract_management"
 
 [
         [
@@ -222,6 +223,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -245,6 +247,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -288,6 +291,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -312,6 +316,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs -e add_doc_to_contract$params")
             shell("$robotWrapper $qualification $defaultArgs -e add_doc_to_contract$params")
             shell("$robotWrapper $contractsign $defaultArgs -e add_doc_to_contract$params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -336,6 +341,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs -e add_doc_to_contract -i auction $params")
             shell("$robotWrapper $qualification $defaultArgs -e add_doc_to_contract $params")
             shell("$robotWrapper $contractsign $defaultArgs -e add_doc_to_contract $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -379,6 +385,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -403,6 +410,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -427,6 +435,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -525,6 +534,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -549,6 +559,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -573,6 +584,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -618,6 +630,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -781,6 +794,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $auction $defaultArgs -e add_doc_to_contract $params")
             shell("$robotWrapper $qualification $defaultArgs -e add_doc_to_contract $params")
             shell("$robotWrapper $contractsign $defaultArgs -e add_doc_to_contract $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -804,6 +818,7 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
             shell("$robotWrapper $openProcedure $defaultArgs -e answer_question_after_clarifications_period -e modify_tender_in_tendering_period -e open_confirm_first_bid -i answer_question_to_tender $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
          }
     }
