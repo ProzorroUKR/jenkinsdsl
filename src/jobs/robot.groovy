@@ -630,7 +630,6 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -818,7 +817,6 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
             shell("$robotWrapper $openProcedure $defaultArgs -e answer_question_after_clarifications_period -e modify_tender_in_tendering_period -e open_confirm_first_bid -i answer_question_to_tender $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
          }
     }
