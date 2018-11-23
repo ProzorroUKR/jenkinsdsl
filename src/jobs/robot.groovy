@@ -201,13 +201,6 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
                 branch: "master",
                 concurrentBuild: false,
         ],
-        [
-                environment: 'custom_branch',
-                params: [],
-                cron: null,
-                branch: "improvement/tenders-feed",
-                concurrentBuild: false,
-        ],
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k:\${$k}" }.join('')
 
