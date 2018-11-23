@@ -201,6 +201,13 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
                 branch: "master",
                 concurrentBuild: false,
         ],
+        [
+                environment: 'custom_branch',
+                params: [],
+                cron: null,
+                branch: "improvement/tenders-feed",
+                concurrentBuild: false,
+        ],
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k:\${$k}" }.join('')
 
@@ -853,8 +860,6 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
         steps {
             phase("Test") {
                 [
-                    "${config.environment}_aboveThresholdEU",
-                    "${config.environment}_aboveThresholdEU_no_auction",
                     "${config.environment}_aboveThresholdEU",
                     "${config.environment}_aboveThresholdEU_no_auction",
                     "${config.environment}_aboveThresholdEU_cancellation",
