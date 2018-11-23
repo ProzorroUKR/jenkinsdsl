@@ -180,19 +180,6 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
                 branch: "master",
         ],
         [
-                environment: 'k8s',
-                params: [
-                    "API_HOST_URL": "http://api.main.k8s.prozorro.gov.ua",
-                    "DS_HOST_URL": "http://ds.main.k8s.prozorro.gov.ua",
-                    "API_VERSION": "2.4",
-                    "EDR_VERSION": "0",
-                    "AUCTION_REGEXP": "'^http?:\\/\\/auctions\\.main\\.k8s\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})'",
-                    "DS_REGEXP": "'^http?:\\/\\/ds\\.main\\.k8s\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})'"
-                ],
-                cron: null,
-                branch: "master",
-        ],
-        [
                 environment: 'custom_branch',
                 params: [],
                 cron: null,
