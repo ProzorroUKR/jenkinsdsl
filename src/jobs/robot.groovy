@@ -85,7 +85,7 @@ String shellPhantom  = "sed -r -i 's/browser: *(chrome|firefox)/browser:  Phanto
 String shellRebot    = "robot_wrapper bin/rebot -o test_output/output.xml -l test_output/log.html -r test_output/report.html -R test_output/*.xml"
 String robotWrapper  = "robot_wrapper bin/op_tests --consolecolors on "
 String openProcedure = "-o base_output.xml -s openProcedure"
-String auction       = "-o auction_output.xml -s auction"
+String auction       = "-o auction_output.xml -s auction_full"
 String qualification = "-o qualification_output.xml -s qualification"
 String contractsign  = "-o contract_output.xml -s contract_signing"
 String contractmanagement  = "-o contract_management_output.xml -s contract_management"
@@ -212,7 +212,7 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true)
         configure defaultConfigure
         
         String defaultArgs = "-A robot_tests_arguments/openeu.txt -e add_doc_to_contract"
@@ -280,7 +280,7 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true)
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/openeu_simple.txt"
@@ -374,7 +374,7 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true)
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/openua_simple.txt"
@@ -548,7 +548,7 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true)
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/below_simple.txt"
@@ -619,7 +619,7 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false, 10800)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_UA.txt"
@@ -830,7 +830,7 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
+        wrappers defaultWrappers(true)
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/esco_testing.txt"
