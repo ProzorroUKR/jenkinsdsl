@@ -345,7 +345,7 @@ String selection = "-o selection_output.xml -s selection"
             shell("$robotWrapper $qualification $defaultArgs -e add_doc_to_contract $params")
             shell("$robotWrapper $contractsign $defaultArgs -e add_doc_to_contract $params")
             shell("$robotWrapper $agreement $defaultArgs $params")
-            shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection.txt $params)
+            shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection.txt $params")
             shell(shellRebot)
         }
     }
