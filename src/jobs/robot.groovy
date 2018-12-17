@@ -85,7 +85,8 @@ String shellPhantom  = "sed -r -i 's/browser: *(chrome|firefox)/browser:  Phanto
 String shellRebot    = "robot_wrapper bin/rebot -o test_output/output.xml -l test_output/log.html -r test_output/report.html -R test_output/*.xml"
 String robotWrapper  = "robot_wrapper bin/op_tests --consolecolors on "
 String openProcedure = "-o base_output.xml -s openProcedure"
-String auction       = "-o auction_output.xml -s auction"
+String auction       = "-o auction_output.xml -s auction_full"
+String auction_short = "-o auction_short_output.xml -s auction"
 String qualification = "-o qualification_output.xml -s qualification"
 String contractsign  = "-o contract_output.xml -s contract_signing"
 String contractmanagement  = "-o contract_management_output.xml -s contract_management"
@@ -341,12 +342,12 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
-            shell("$robotWrapper $auction $defaultArgs -i auction $params")
+            shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $agreement $defaultArgs $params")
             shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper $auction -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $auction_short -A robot_tests_arguments/framework_selection.txt $params")
             shell("$robotWrapper $qualification -A robot_tests_arguments/framework_selection.txt $params")
             shell("$robotWrapper $contractsign -A robot_tests_arguments/framework_selection.txt $params")
             shell("$robotWrapper $contractmanagement -A robot_tests_arguments/framework_selection.txt $params")
@@ -846,7 +847,7 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $auction_short $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
