@@ -341,7 +341,7 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $auction $defaultArgs -i auction $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $agreement $defaultArgs $params")
