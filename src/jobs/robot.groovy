@@ -346,10 +346,10 @@ String selection = "-o selection_output.xml -s selection"
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $agreement $defaultArgs $params")
             shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell("$robotWrapper $auction -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $qualification -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $contractsign -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $contractmanagement -A robot_tests_arguments/framework_selection.txt $params")
             shell(shellRebot)
         }
     }
