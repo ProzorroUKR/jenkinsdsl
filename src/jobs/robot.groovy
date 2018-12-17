@@ -217,7 +217,7 @@ String selection = "-o selection_output.xml -s selection"
         wrappers defaultWrappers(true)
         configure defaultConfigure
         
-        String defaultArgs = "-A robot_tests_arguments/openeu.txt -e add_doc_to_contract"
+        String defaultArgs = "-A robot_tests_arguments/openeu.txt"
 
         steps {
             shell(shellBuildout)
@@ -315,7 +315,7 @@ String selection = "-o selection_output.xml -s selection"
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -e resolve_tender_claim -e resolve_tender_claim -e resolve_lot_claim -e add_doc_to_contract$params")
+            shell("$robotWrapper $openProcedure $defaultArgs -e resolve_tender_claim -e resolve_tender_claim -e resolve_lot_claim $params")
             shell("$robotWrapper $auction $defaultArgs -e add_doc_to_contract$params")
             shell("$robotWrapper $qualification $defaultArgs -e add_doc_to_contract$params")
             shell("$robotWrapper $contractsign $defaultArgs -e add_doc_to_contract$params")
@@ -430,7 +430,7 @@ String selection = "-o selection_output.xml -s selection"
         wrappers defaultWrappers(true)
         configure defaultConfigure
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt -e answer_tender_claim -e answer_lot_claim -e answer_award_claim -e add_doc_to_contract"
+        String defaultArgs = "-A robot_tests_arguments/below.txt -e answer_tender_claim -e answer_lot_claim -e answer_award_claim"
 
         steps {
             shell(shellBuildout)
@@ -529,7 +529,7 @@ String selection = "-o selection_output.xml -s selection"
         wrappers defaultWrappers(true)
         configure defaultConfigure
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt -e answer_tender_claim -e answer_lot_claim -e answer_award_claim -e add_doc_to_contract"
+        String defaultArgs = "-A robot_tests_arguments/below.txt -e answer_tender_claim -e answer_lot_claim -e answer_award_claim"
 
         steps {
             shell(shellBuildout)
