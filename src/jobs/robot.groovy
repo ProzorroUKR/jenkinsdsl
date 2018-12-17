@@ -340,12 +340,16 @@ String selection = "-o selection_output.xml -s selection"
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 -e add_doc_to_contract -e resolve_tender_claim -e resolve_lot_claim $params")
-            shell("$robotWrapper $auction $defaultArgs -e add_doc_to_contract -i auction $params")
-            shell("$robotWrapper $qualification $defaultArgs -e add_doc_to_contract $params")
-            shell("$robotWrapper $contractsign $defaultArgs -e add_doc_to_contract $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
+            shell("$robotWrapper $auction $defaultArgs -i auction $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $agreement $defaultArgs $params")
             shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $auction -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $qualification -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $contractsign -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $contractmanagement -A robot_tests_arguments/framework_selection.txt $params")
             shell(shellRebot)
         }
     }
