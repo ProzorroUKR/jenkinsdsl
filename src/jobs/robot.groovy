@@ -860,7 +860,7 @@ String selection = "-o selection_output.xml -s selection"
         triggers defaultTriggers(config.cron)
         steps {
             phase("Test") {
-                [
+                def innerJobs = [
                     "${config.environment}_aboveThresholdEU",
                     "${config.environment}_aboveThresholdEU_no_auction",
                     "${config.environment}_aboveThresholdEU_cancellation",
@@ -881,10 +881,6 @@ String selection = "-o selection_output.xml -s selection"
                     "${config.environment}_competitiveDialogueEU_stage1",
                     "${config.environment}_competitiveDialogueUA",
                     "${config.environment}_competitiveDialogueUA_cancellation",
-                    "${config.environment}_dasu_cancelled",
-                    "${config.environment}_dasu_closed",
-                    "${config.environment}_dasu_completed",
-                    "${config.environment}_dasu_stopped",
                     "${config.environment}_sb_negotiation",
                     "${config.environment}_sb_negotiation.quick",
                     "${config.environment}_sb_reporting",
@@ -897,7 +893,16 @@ String selection = "-o selection_output.xml -s selection"
                     "${config.environment}_single_item_tender",
                     "${config.environment}_aboveThresholdUA_defence_one_bid",
                     "${config.environment}_esco",
-                ].each { String scenario -> phaseJob(scenario) {
+                ]
+                if (config.environment != 'k8s') {
+                    innerJobs.addAll([
+                        "${config.environment}_dasu_cancelled",
+                        "${config.environment}_dasu_closed",
+                        "${config.environment}_dasu_completed",
+                        "${config.environment}_dasu_stopped",
+                    ])
+                }
+                innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
                     abortAllJobs(false)
                 }}
