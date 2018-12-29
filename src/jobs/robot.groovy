@@ -92,6 +92,10 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
 String contractmanagement  = "-o contract_management_output.xml -s contract_management"
 String agreement = "-o agreement_output.xml -s agreement"
 String selection = "-o selection_output.xml -s selection"
+String auction_short_framework = "-o auction_short_framework_output.xml -s auction"
+String qualification_framework = "-o qualification_framework_output.xml -s qualification"
+String contractsign_framework  = "-o contract_framework_output.xml -s contract_signing"
+String contractmanagement_framework  = "-o contract_management_framework_output.xml -s contract_management"
 
 [
         [
@@ -347,10 +351,10 @@ String selection = "-o selection_output.xml -s selection"
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $agreement $defaultArgs $params")
             shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper $auction_short -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper $qualification -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper $contractsign -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper $contractmanagement -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $auction_short_framework -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $qualification_framework -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $contractsign_framework -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $contractmanagement_framework -A robot_tests_arguments/framework_selection.txt $params")
             shell(shellRebot)
         }
     }
