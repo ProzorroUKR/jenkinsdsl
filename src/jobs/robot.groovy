@@ -185,7 +185,7 @@ String selection = "-o selection_output.xml -s selection"
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-dev-gc)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
                 cron: null,
-                branch: "master",
+                branch: "dev_prozorro",
                 concurrentBuild: false,
         ],
         [
