@@ -333,7 +333,7 @@ String selection = "-o selection_output.xml -s selection"
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 18000)
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/framework_agreement.txt"
@@ -347,10 +347,10 @@ String selection = "-o selection_output.xml -s selection"
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $agreement $defaultArgs $params")
             shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper $auction_short -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper $qualification -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper $contractsign -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper $contractmanagement -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper -o auction_short_framework_output.xml -s auction -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper -o qualification_framework_output.xml -s qualification -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper -o contract_framework_output.xml -s contract_signing -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper -o contract_management_framework_output.xml -s contract_management -A robot_tests_arguments/framework_selection.txt $params")
             shell(shellRebot)
         }
     }
