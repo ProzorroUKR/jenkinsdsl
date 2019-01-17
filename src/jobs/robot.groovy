@@ -157,22 +157,6 @@ String selection = "-o selection_output.xml -s selection"
                 concurrentBuild: false,
         ],
         [
-                environment: 'dev_prozorro',
-                params: [
-                    "API_HOST_URL": "https://api-dev.prozorro.gov.ua",
-                    "DS_HOST_URL": "https://upload-docs-dev.prozorro.gov.ua",
-                    "EDR_HOST_URL": "https://edr-dev.prozorro.gov.ua",
-                    "DASU_API_HOST_URL": "https://audit-api-dev.prozorro.gov.ua",
-                    "API_VERSION": "2.4",
-                    "EDR_VERSION": "0",
-                    "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-dev)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
-                    "DS_REGEXP": "^https?:\\/\\/public-docs(?:-dev)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
-                ],
-                cron: null,
-                branch: "dev_prozorro",
-                concurrentBuild: false,
-        ],
-        [
                 environment: 'gc_dev_prozorro',
                 params: [
                     "API_HOST_URL": "https://api-dev-gc.prozorro.gov.ua",
