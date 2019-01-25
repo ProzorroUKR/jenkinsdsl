@@ -207,7 +207,7 @@ String selection = "-o selection_output.xml -s selection"
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -e resolve_tender_claim -e resolve_lot_claim$params")
+            shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -300,7 +300,7 @@ String selection = "-o selection_output.xml -s selection"
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -e resolve_tender_claim -e resolve_tender_claim -e resolve_lot_claim $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -394,7 +394,7 @@ String selection = "-o selection_output.xml -s selection"
         wrappers defaultWrappers(true)
         configure defaultConfigure
 
-        String defaultArgs = "-A robot_tests_arguments/below_funders_full.txt -e answer_tender_claim -e answer_lot_claim -e answer_award_claim -e add_doc_to_contract"
+        String defaultArgs = "-A robot_tests_arguments/below_funders_full.txt"
 
         steps {
             shell(shellBuildout)
@@ -419,7 +419,7 @@ String selection = "-o selection_output.xml -s selection"
         wrappers defaultWrappers(true)
         configure defaultConfigure
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt -e answer_tender_claim -e answer_lot_claim -e answer_award_claim"
+        String defaultArgs = "-A robot_tests_arguments/below.txt"
 
         steps {
             shell(shellBuildout)
@@ -518,7 +518,7 @@ String selection = "-o selection_output.xml -s selection"
         wrappers defaultWrappers(true)
         configure defaultConfigure
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt -e answer_tender_claim -e answer_lot_claim -e answer_award_claim"
+        String defaultArgs = "-A robot_tests_arguments/below.txt"
 
         steps {
             shell(shellBuildout)
@@ -593,7 +593,7 @@ String selection = "-o selection_output.xml -s selection"
         wrappers defaultWrappers(false, 10800)
         configure defaultConfigure
 
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt -e resolve_tender_claim -e resolve_lot_claim"
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt"
 
         steps {
             shell(shellBuildout)
@@ -783,9 +783,9 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs $params")
-            shell("$robotWrapper $auction $defaultArgs -e add_doc_to_contract $params")
-            shell("$robotWrapper $qualification $defaultArgs -e add_doc_to_contract $params")
-            shell("$robotWrapper $contractsign $defaultArgs -e add_doc_to_contract $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
@@ -807,7 +807,7 @@ String selection = "-o selection_output.xml -s selection"
          steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -e answer_question_after_clarifications_period -e modify_tender_in_tendering_period -e open_confirm_first_bid -i answer_question_to_tender $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -i answer_question_to_tender $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
