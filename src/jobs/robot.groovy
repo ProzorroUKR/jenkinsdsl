@@ -507,9 +507,9 @@ String selection = "-o selection_output.xml -s selection"
         }
     }
 
-    job("${config.environment}_belowThreshold_moz") {
+    job("${config.environment}_belowThreshold_moz_1") {
         parameters defaultParameters(config.params, config.branch)
-        description("Сценарій: Допорогова закупівля.")
+        description("Сценарій: Допорогова закупівля фармацевтичної продукції")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -518,16 +518,87 @@ String selection = "-o selection_output.xml -s selection"
         wrappers defaultWrappers(true)
         configure defaultConfigure
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt"
+        String defaultArgs = "-A robot_tests_arguments/mnn_1.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_belowThreshold_moz_2") {
+        parameters defaultParameters(config.params, config.branch)
+        description("Сценарій: Допорогова закупівля лікарських засобів")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+
+        String defaultArgs = "-A robot_tests_arguments/mnn_2.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_belowThreshold_moz_3") {
+        parameters defaultParameters(config.params, config.branch)
+        description("Сценарій: Допорогова закупівля лікарських засобів без додаткового класифікатора")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+
+        String defaultArgs = "-A robot_tests_arguments/mnn_3.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_belowThreshold_moz_validation") {
+        parameters defaultParameters(config.params, config.branch)
+        description("Сценарій: Допорогова закупівля - валідації МНН")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+
+        String defaultArgs = "-A robot_tests_arguments/mnn_validation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell(shellRebot)
         }
     }
