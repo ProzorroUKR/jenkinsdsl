@@ -948,6 +948,11 @@ String selection = "-o selection_output.xml -s selection"
                     "${config.environment}_single_item_tender",
                     "${config.environment}_aboveThresholdUA_defence_one_bid",
                     "${config.environment}_esco",
+                    "${config.environment}_belowThreshold_moz_1",
+                    "${config.environment}_belowThreshold_moz_2",
+                    "${config.environment}_belowThreshold_moz_3",
+                    "${config.environment}_belowThreshold_moz_validation",
+
                 ]
                 if (config.environment != 'k8s') {
                     innerJobs.addAll([
