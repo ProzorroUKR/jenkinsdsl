@@ -63,9 +63,7 @@ def defaultPublishers = {
         fingerprint(false)
         defaultExcludes(true)
     }
-    postBuildPublishers {
-        chucknorris()
-    }
+    chucknorris()
 }
 
 def defaultTriggers(cronTime = null) {
