@@ -63,6 +63,7 @@ def defaultPublishers = {
         fingerprint(false)
         defaultExcludes(true)
     }
+    chucknorris()
 }
 
 def defaultTriggers(cronTime = null) {

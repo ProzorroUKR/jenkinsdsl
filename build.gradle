@@ -62,6 +62,7 @@ dependencies {
     // plugin dependencies
     testPlugins 'org.jenkins-ci.plugins:token-macro:2.5'
     testPlugins 'org.jenkins-ci.plugins:jenkins-multijob-plugin:1.28'
+    testPlugins 'org.jvnet.hudson.plugins:chucknorris:0.4'
 }
 
 task resolveTestPlugins(type: Copy) {
