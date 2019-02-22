@@ -74,9 +74,10 @@ def defaultTriggers(cronTime = null) {
     }
 }
 
-def defaultParameters(params = [], branch = "master") {
+def defaultParameters(params = [], branch = "master", edr = false) {
     return {
         stringParam("BRANCH", branch, "")
+        booleanParam("EDR", edr)
         params.collect { k,v -> stringParam(k, v, "") }
     }
 }
@@ -202,15 +203,18 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables {
+            groovy("if (EDR.toBoolean()) {return [EDR_PRE_QUALIFICATION: '-i pre-qualifications_check_by_edrpou', EDR_QUALIFICATION: '-i qualifications_check_by_edrpou']}")
+        }
         
         String defaultArgs = "-A robot_tests_arguments/openeu.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -i pre-qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs -i qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
