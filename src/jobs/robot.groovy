@@ -74,11 +74,17 @@ def defaultTriggers(cronTime = null) {
     }
 }
 
-def defaultParameters(params = [], branch = "master", edr = false) {
+def defaultParameters(config) {
     return {
-        stringParam("BRANCH", branch, "")
-        booleanParam("EDR", edr)
-        params.collect { k,v -> stringParam(k, v, "") }
+        stringParam("BRANCH", config.branch, "")
+        booleanParam("EDR", config.edr)
+        config.params.collect { k,v -> stringParam(k, v, "") }
+    }
+}
+
+def defaultEnv() {
+    return {
+        groovy("if (EDR.toBoolean()) {return [EDR_PRE_QUALIFICATION: '-i pre-qualifications_check_by_edrpou', EDR_QUALIFICATION: '-i qualifications_check_by_edrpou']}")
     }
 }
 
@@ -110,6 +116,7 @@ String selection = "-o selection_output.xml -s selection"
                 cron: null,
                 branch: "master",
                 concurrentBuild: true,
+                edr: false,
         ],
         [
                 environment: 'sandbox_openprocurement',
@@ -125,6 +132,7 @@ String selection = "-o selection_output.xml -s selection"
                 cron: null,
                 branch: "master",
                 concurrentBuild: false,
+                edr: false
         ],
         [
                 environment: 'sandbox_old_prozorro',
@@ -141,6 +149,7 @@ String selection = "-o selection_output.xml -s selection"
                 cron: null,
                 branch: "master",
                 concurrentBuild: false,
+                edr: false
         ],
 	[
                 environment: 'sandbox_prozorro',
@@ -157,6 +166,7 @@ String selection = "-o selection_output.xml -s selection"
                 cron: "H 0 * * *",
                 branch: "master",
                 concurrentBuild: false,
+                edr: false
         ],
         [
                 environment: 'gc_dev_prozorro',
@@ -173,6 +183,7 @@ String selection = "-o selection_output.xml -s selection"
                 cron: "H 2 * * *",
                 branch: "dev_prozorro",
                 concurrentBuild: false,
+                edr: true
         ],
         [
                 environment: 'staging_prozorro',
@@ -189,12 +200,13 @@ String selection = "-o selection_output.xml -s selection"
                 cron: null,
                 branch: "master",
                 concurrentBuild: false,
+                edr: false
         ],
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k:\${$k}" }.join('')
 
     job("${config.environment}_aboveThresholdEU") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Надпорогова закупівля з публікацією англійською мовою.")
         keepDependencies(false)
         disabled(false)
@@ -203,9 +215,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
-        environmentVariables {
-            groovy("if (EDR.toBoolean()) {return [EDR_PRE_QUALIFICATION: '-i pre-qualifications_check_by_edrpou', EDR_QUALIFICATION: '-i qualifications_check_by_edrpou']}")
-        }
+        environmentVariables defaultEnv()
         
         String defaultArgs = "-A robot_tests_arguments/openeu.txt"
 
@@ -222,7 +232,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_aboveThresholdEU_no_auction") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Надпорогова закупівля з публікацією англійською мовою.(пропуск аукціона)")
         keepDependencies(false)
         disabled(false)
@@ -231,14 +241,15 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/openeu.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -i pre-qualifications_check_by_edrpou -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
-            shell("$robotWrapper $qualification $defaultArgs -i qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
@@ -246,7 +257,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_aboveThresholdEU_cancellation") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Надпорогова закупівля з публікацією англійською мовою. Скасування закупівлі.")
         keepDependencies(false)
         disabled(false)
@@ -255,6 +266,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         steps {
             shell(shellBuildout)
@@ -265,7 +277,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_aboveThresholdEU_simple") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Відкрита процедура (короткий сценарій)")
         keepDependencies(false)
         disabled(false)
@@ -274,15 +286,16 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/openeu_simple.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -i pre-qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs -i qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
@@ -290,7 +303,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_aboveThresholdUA") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Надпорогова закупівля.")
         keepDependencies(false)
         disabled(false)
@@ -299,6 +312,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/openua.txt"
 
@@ -307,7 +321,7 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs -i qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
@@ -315,7 +329,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_frameworkagreement") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Рамкова угода.")
         keepDependencies(false)
         disabled(false)
@@ -324,20 +338,21 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true, 18000)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/framework_agreement.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -i pre-qualifications_check_by_edrpou -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
             shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
-            shell("$robotWrapper $qualification $defaultArgs -i qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $agreement $defaultArgs $params")
             shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection.txt $params")
             shell("$robotWrapper -o auction_short_framework_output.xml -s auction -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper -o qualification_framework_output.xml -s qualification -A robot_tests_arguments/framework_selection.txt -i qualifications_check_by_edrpou $params")
+            shell("$robotWrapper -o qualification_framework_output.xml -s qualification -A robot_tests_arguments/framework_selection.txt \$EDR_QUALIFICATION $params")
             shell("$robotWrapper -o contract_framework_output.xml -s contract_signing -A robot_tests_arguments/framework_selection.txt $params")
             shell("$robotWrapper -o contract_management_framework_output.xml -s contract_management -A robot_tests_arguments/framework_selection.txt $params")
             shell(shellRebot)
@@ -345,7 +360,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_aboveThresholdUA_cancellation") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Скасування закупівлі (openUA)")
         keepDependencies(false)
         disabled(false)
@@ -354,6 +369,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         steps {
             shell(shellBuildout)
@@ -364,7 +380,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_aboveThresholdUA_simple") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Відкрита процедура (короткий)")
         keepDependencies(false)
         disabled(false)
@@ -373,6 +389,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/openua_simple.txt"
 
@@ -381,7 +398,7 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs -i qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
@@ -389,7 +406,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_below_funders_full") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Допорогова закупівля.")
         keepDependencies(false)
         disabled(false)
@@ -398,6 +415,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/below_funders_full.txt"
 
@@ -414,7 +432,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_belowThreshold") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Допорогова закупівля.")
         keepDependencies(false)
         disabled(false)
@@ -423,6 +441,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/below.txt"
 
@@ -439,7 +458,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_belowThreshold_below_after_resolved_award_complaint") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Скарги на авард для допорогових закупівель.")
         keepDependencies(false)
         disabled(false)
@@ -448,6 +467,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         steps {
             shell(shellBuildout)
@@ -457,7 +477,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_belowThreshold_below_before_resolved_award_complaint") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Скарги на авард для допорогових закупівель.")
         keepDependencies(false)
         disabled(false)
@@ -466,6 +486,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         steps {
             shell(shellBuildout)
@@ -475,7 +496,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_belowThreshold_cancellation") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Скасування закупівлі (belowThreshold/ Допорогова закупівля)")
         keepDependencies(false)
         disabled(false)
@@ -484,6 +505,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         steps {
             shell(shellBuildout)
@@ -494,7 +516,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_belowThreshold_complaints_tender_lot") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Скарги на умови закупівлі та лоту для допорогових закупівель.")
         keepDependencies(false)
         disabled(false)
@@ -503,6 +525,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         steps {
             shell(shellBuildout)
@@ -513,7 +536,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_belowThreshold_moz_1") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Допорогова закупівля фармацевтичної продукції")
         keepDependencies(false)
         disabled(false)
@@ -522,6 +545,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/mnn_1.txt"
 
@@ -538,7 +562,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_belowThreshold_moz_2") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Допорогова закупівля лікарських засобів")
         keepDependencies(false)
         disabled(false)
@@ -547,6 +571,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/mnn_2.txt"
 
@@ -563,7 +588,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_belowThreshold_moz_3") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Допорогова закупівля лікарських засобів без додаткового класифікатора")
         keepDependencies(false)
         disabled(false)
@@ -572,6 +597,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/mnn_3.txt"
 
@@ -588,7 +614,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_belowThreshold_moz_validation") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Допорогова закупівля - валідації МНН")
         keepDependencies(false)
         disabled(false)
@@ -597,6 +623,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/mnn_validation.txt"
 
@@ -609,7 +636,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_belowThreshold_simple") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Допорогова закупівля (мінімальний набір тест кейсів)")
         keepDependencies(false)
         disabled(false)
@@ -618,6 +645,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/below_simple.txt"
 
@@ -634,7 +662,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_competitiveDialogueEU") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
         keepDependencies(false)
         disabled(false)
@@ -643,15 +671,16 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -i pre-qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs -i qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
@@ -659,7 +688,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_competitiveDialogueEU_stage1") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
         keepDependencies(false)
         disabled(false)
@@ -668,19 +697,20 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false, 10800)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -i pre-qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
             shell(shellRebot)
         }
     }
 
     job("${config.environment}_competitiveDialogueUA") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
         keepDependencies(false)
         disabled(false)
@@ -689,22 +719,23 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_UA.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -i pre-qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs -i qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
         }
     }
 
     job("${config.environment}_competitiveDialogueUA_cancellation") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Скасування закупівлі (competitive dialogue)")
         keepDependencies(false)
         disabled(false)
@@ -713,6 +744,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         steps {
             shell(shellBuildout)
@@ -724,7 +756,7 @@ String selection = "-o selection_output.xml -s selection"
 
     ["cancelled", "closed", "completed", "stopped"].each { String scenario ->
         job("${config.environment}_dasu_$scenario") {
-            parameters defaultParameters(config.params, config.branch)
+            parameters defaultParameters(config)
             description("Сценарій: ДАСУ")
             keepDependencies(false)
             disabled(false)
@@ -733,6 +765,7 @@ String selection = "-o selection_output.xml -s selection"
             publishers defaultPublishers
             wrappers defaultWrappers(true)
             configure defaultConfigure
+            environmentVariables defaultEnv()
 
             steps {
                 shell(shellBuildout)
@@ -745,7 +778,7 @@ String selection = "-o selection_output.xml -s selection"
 
     ["negotiation", "negotiation.quick", "reporting"].each { String scenario ->
         job("${config.environment}_sb_$scenario") {
-            parameters defaultParameters(config.params, config.branch)
+            parameters defaultParameters(config)
             description("Сценарій: Переговорна процедура")
             keepDependencies(false)
             disabled(false)
@@ -754,6 +787,7 @@ String selection = "-o selection_output.xml -s selection"
             publishers defaultPublishers
             wrappers defaultWrappers(scenario != 'negotiation.quick', 10800)
             configure defaultConfigure
+            environmentVariables defaultEnv()
 
             steps {
                 shell(shellBuildout)
@@ -764,7 +798,7 @@ String selection = "-o selection_output.xml -s selection"
         }
 
         job("${config.environment}_${scenario}_cancellation") {
-            parameters defaultParameters(config.params, config.branch)
+            parameters defaultParameters(config)
             description("Сценарій: Скасування закупівлі ($scenario)")
             keepDependencies(false)
             disabled(false)
@@ -773,6 +807,7 @@ String selection = "-o selection_output.xml -s selection"
             publishers defaultPublishers
             wrappers defaultWrappers(false)
             configure defaultConfigure
+            environmentVariables defaultEnv()
 
             steps {
                 shell(shellBuildout)
@@ -784,7 +819,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_planning_belowThreshold") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Планування допорогова процедура")
         keepDependencies(false)
         disabled(false)
@@ -793,6 +828,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         steps {
             shell(shellBuildout)
@@ -803,7 +839,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_planning_framework_agreement") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Планування рамкової угоди")
         keepDependencies(false)
         disabled(false)
@@ -812,6 +848,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         steps {
             shell(shellBuildout)
@@ -822,7 +859,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_feed_reading") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Вичітування довільного набіру даних с ЦБД")
         keepDependencies(false)
         disabled(false)
@@ -831,6 +868,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(false)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         steps {
             shell(shellBuildout)
@@ -843,7 +881,7 @@ String selection = "-o selection_output.xml -s selection"
 
 
     job("${config.environment}_single_item_tender") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Допорогова закупівля з однією номенклатурою до аукціону")
         keepDependencies(false)
         disabled(false)
@@ -852,6 +890,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/single_item_tender.txt"
 
@@ -868,7 +907,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     job("${config.environment}_aboveThresholdUA_defence_one_bid") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Надпорогова закупівля. Переговорна процедура для потреб оборони (з одним учасником).")
         keepDependencies(false)
         disabled(false)
@@ -877,6 +916,7 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/openUAdefense_one_bid.txt"
 
@@ -884,14 +924,14 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs -i answer_question_to_tender $params")
-            shell("$robotWrapper $qualification $defaultArgs -i qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
          }
     }
 
     job("${config.environment}_esco") {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         description("Сценарій: Відкриті торги для закупівлі енергосервісу")
         keepDependencies(false)
         disabled(false)
@@ -900,22 +940,23 @@ String selection = "-o selection_output.xml -s selection"
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
+        environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/esco_testing.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -i pre-qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction_short $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs -i qualifications_check_by_edrpou $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
         }
     }
 
     multiJob(config.environment) {
-        parameters defaultParameters(config.params, config.branch)
+        parameters defaultParameters(config)
         concurrentBuild(config.concurrentBuild)
         triggers defaultTriggers(config.cron)
         steps {
