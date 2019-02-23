@@ -77,7 +77,7 @@ def defaultTriggers(cronTime = null) {
 def defaultParameters(config) {
     return {
         stringParam("BRANCH", config.branch, "")
-        booleanParam("EDR", config.edr)
+        booleanParam("EDR", config.edr, "")
         config.params.collect { k,v -> stringParam(k, v, "") }
     }
 }
