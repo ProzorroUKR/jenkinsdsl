@@ -166,7 +166,7 @@ String selection = "-o selection_output.xml -s selection"
                 cron: "H 0 * * *",
                 branch: "master",
                 concurrentBuild: false,
-                edr: false
+                edr: true
         ],
         [
                 environment: 'gc_dev_prozorro',
