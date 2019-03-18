@@ -457,6 +457,32 @@ String selection = "-o selection_output.xml -s selection"
         }
     }
 
+    job("${config.environment}_belowThreshold_VAT_False") {
+        parameters defaultParameters(config)
+        description("Сценарій: Допорогова закупівля без ПДВ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/below_vat_not_included.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
     job("${config.environment}_belowThreshold_below_after_resolved_award_complaint") {
         parameters defaultParameters(config)
         description("Сценарій: Скарги на авард для допорогових закупівель.")
@@ -972,6 +998,7 @@ String selection = "-o selection_output.xml -s selection"
                     "${config.environment}_aboveThresholdUA_simple",
                     "${config.environment}_below_funders_full",
                     "${config.environment}_belowThreshold",
+                    "${config.environment}_belowThreshold_VAT_False",
                     "${config.environment}_belowThreshold_below_after_resolved_award_complaint",
                     "${config.environment}_belowThreshold_below_before_resolved_award_complaint",
                     "${config.environment}_belowThreshold_cancellation",
