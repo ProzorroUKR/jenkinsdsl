@@ -276,9 +276,9 @@ String selection = "-o selection_output.xml -s selection"
         }
     }
 
-    job("${config.environment}_aboveThresholdEU_simple") {
+    job("${config.environment}_aboveThresholdEU_vat_true_false") {
         parameters defaultParameters(config)
-        description("Сценарій: Відкрита процедура (короткий сценарій)")
+        description("Сценарій: Відкрита процедура (короткий сценарій) оголошена з ПДВ, контракт укладено без ПДВ")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -293,11 +293,60 @@ String selection = "-o selection_output.xml -s selection"
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_false -i modify_contract_amount_and_amountNet $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_aboveThresholdEU_vat_false_false") {
+        parameters defaultParameters(config)
+        description("Сценарій: Відкрита процедура (короткий сценарій) оголошена без ПДВ, контракт укладено без ПДВ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/openeu_simple.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_amount_and_amountNet -i contract_view_new_amount_and_amountNet $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_aboveThresholdEU_vat_false_true") {
+        parameters defaultParameters(config)
+        description("Сценарій: Відкрита процедура (короткий сценарій) оголошена без ПДВ, контракт укладено з ПДВ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/openeu_simple.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
     }
@@ -374,14 +423,64 @@ String selection = "-o selection_output.xml -s selection"
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:openua$params")
+            shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:openua $params")
             shell(shellRebot)
         }
     }
 
-    job("${config.environment}_aboveThresholdUA_simple") {
+    job("${config.environment}_aboveThresholdUA_vat_true_false") {
         parameters defaultParameters(config)
-        description("Сценарій: Відкрита процедура (короткий)")
+        description("Сценарій: Відкрита процедура (короткий сценарій) оголошена з ПДВ, контракт укладено без ПДВ ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/openua_simple.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_false -i modify_contract_amount_and_amountNet $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_aboveThresholdUA_vat_false_false") {
+        parameters defaultParameters(config)
+        description("Сценарій: Відкрита процедура (короткий сценарій) оголошена без ПДВ, контракт укладено без ПДВ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/openua_simple.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_amount_and_amountNet -i contract_view_new_amount_and_amountNet $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_aboveThresholdUA_vat_false_true") {
+        parameters defaultParameters(config)
+        description("Сценарій: Відкрита процедура (короткий сценарій) оголошена без ПДВ, контракт укладено з ПДВ")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -397,10 +496,9 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
     }
@@ -444,32 +542,6 @@ String selection = "-o selection_output.xml -s selection"
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/below.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_belowThreshold_VAT_False") {
-        parameters defaultParameters(config)
-        description("Сценарій: Допорогова закупівля без ПДВ")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/below_vat_not_included.txt"
 
         steps {
             shell(shellBuildout)
@@ -661,9 +733,9 @@ String selection = "-o selection_output.xml -s selection"
         }
     }
 
-    job("${config.environment}_belowThreshold_simple") {
+    job("${config.environment}_belowThreshold_vat_true_false") {
         parameters defaultParameters(config)
-        description("Допорогова закупівля (мінімальний набір тест кейсів)")
+        description("Допорогова закупівля (мінімальний набір тест кейсів) оголошена з ПДВ, контракт укладено без ПДВ")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -678,11 +750,60 @@ String selection = "-o selection_output.xml -s selection"
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_false -i modify_contract_amount_and_amountNet $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_belowThreshold_vat_false_false") {
+        parameters defaultParameters(config)
+        description("Допорогова закупівля (мінімальний набір тест кейсів) оголошена без ПДВ, контракт укладено без ПДВ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/below_simple.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_amount_and_amountNet -i contract_view_new_amount_and_amountNet $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_belowThreshold_vat_false_true") {
+        parameters defaultParameters(config)
+        description("Допорогова закупівля (мінімальний набір тест кейсів) оголошено без ПДВ, контракт укладено з ПДВ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/below_simple.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
     }
@@ -707,8 +828,8 @@ String selection = "-o selection_output.xml -s selection"
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_amount_net -i modify_contract_value $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
     }
@@ -731,6 +852,81 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_competitiveDialogueEU_vat_true_false") {
+        parameters defaultParameters(config)
+        description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_false -i modify_contract_amount_and_amountNet $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_competitiveDialogueEU_vat_false_false") {
+        parameters defaultParameters(config)
+        description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_amount_and_amountNet -i contract_view_new_amount_and_amountNet $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_competitiveDialogueEU_vat_false_true") {
+        parameters defaultParameters(config)
+        description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
     }
@@ -776,6 +972,81 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:open_competitive_dialogue $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_competitiveDialogueUA_vat_true_false") {
+        parameters defaultParameters(config)
+        description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_UA.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_false -i modify_contract_amount_and_amountNet $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_competitiveDialogueUA_vat_false_false") {
+        parameters defaultParameters(config)
+        description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_UA.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_amount_and_amountNet -i contract_view_new_amount_and_amountNet $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_competitiveDialogueUA_vat_false_true") {
+        parameters defaultParameters(config)
+        description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_UA.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
     }
@@ -991,11 +1262,15 @@ String selection = "-o selection_output.xml -s selection"
                     "${config.environment}_aboveThresholdEU",
                     "${config.environment}_aboveThresholdEU_no_auction",
                     "${config.environment}_aboveThresholdEU_cancellation",
-                    "${config.environment}_aboveThresholdEU_simple",
+                    "${config.environment}_aboveThresholdEU_vat_ture_false",
+                    "${config.environment}_aboveThresholdEU_vat_false_false",
+                    "${config.environment}_aboveThresholdEU_vat_false_true",
                     "${config.environment}_aboveThresholdUA",
                     "${config.environment}_frameworkagreement",
                     "${config.environment}_aboveThresholdUA_cancellation",
-                    "${config.environment}_aboveThresholdUA_simple",
+                    "${config.environment}_aboveThresholdUA_vat_true_false",
+                    "${config.environment}_aboveThresholdUA_vat_false_false",
+                    "${config.environment}_aboveThresholdUA_vat_false_true",
                     "${config.environment}_below_funders_full",
                     "${config.environment}_belowThreshold",
                     "${config.environment}_belowThreshold_VAT_False",
@@ -1004,11 +1279,19 @@ String selection = "-o selection_output.xml -s selection"
                     "${config.environment}_belowThreshold_cancellation",
                     "${config.environment}_belowThreshold_complaints_tender_lot",
                     "${config.environment}_belowThreshold_moz",
-                    "${config.environment}_belowThreshold_simple",
+                    "${config.environment}_belowThreshold_vat_true_false",
+                    "${config.environment}_belowThreshold_vat_false_false",
+                    "${config.environment}_belowThreshold_vat_false_true",
                     "${config.environment}_competitiveDialogueEU",
                     "${config.environment}_competitiveDialogueEU_stage1",
+                    "${config.environment}_competitiveDialogueEU_vat_true_false",
+                    "${config.environment}_competitiveDialogueEU_vat_false_false",
+                    "${config.environment}_competitiveDialogueEU_vat_false_true",
                     "${config.environment}_competitiveDialogueUA",
                     "${config.environment}_competitiveDialogueUA_cancellation",
+                    "${config.environment}_competitiveDialogueUA_vat_true_false",
+                    "${config.environment}_competitiveDialogueUA_vat_false_false",
+                    "${config.environment}_competitiveDialogueUA_vat_false_true",
                     "${config.environment}_sb_negotiation",
                     "${config.environment}_sb_negotiation.quick",
                     "${config.environment}_sb_reporting",
