@@ -345,7 +345,7 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v VAT_INCLUDED:False -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet_tender_vat_true $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
@@ -497,7 +497,7 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs -v VAT_INCLUDED:False -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet_tender_vat_true $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
@@ -802,7 +802,7 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" -v VAT_INCLUDED:False $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet_tender_vat_true $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
@@ -925,7 +925,7 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" -v VAT_INCLUDED:False $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet_tender_vat_true $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
@@ -1045,7 +1045,7 @@ String selection = "-o selection_output.xml -s selection"
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" -v VAT_INCLUDED:False $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet_tender_vat_true $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
