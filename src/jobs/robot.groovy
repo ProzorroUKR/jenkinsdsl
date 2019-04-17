@@ -1262,7 +1262,7 @@ String selection = "-o selection_output.xml -s selection"
                     "${config.environment}_aboveThresholdEU",
                     "${config.environment}_aboveThresholdEU_no_auction",
                     "${config.environment}_aboveThresholdEU_cancellation",
-                    "${config.environment}_aboveThresholdEU_vat_ture_false",
+                    "${config.environment}_aboveThresholdEU_vat_true_false",
                     "${config.environment}_aboveThresholdEU_vat_false_false",
                     "${config.environment}_aboveThresholdEU_vat_false_true",
                     "${config.environment}_aboveThresholdUA",
