@@ -1,3 +1,5 @@
+import hudson.model.*
+
 def defaultConfigure = {
     it / 'properties' / 'jenkins.model.BuildDiscarderProperty' {
         strategy {
@@ -100,6 +102,11 @@ String contractsign  = "-o contract_output.xml -s contract_signing"
 String contractmanagement  = "-o contract_management_output.xml -s contract_management"
 String agreement = "-o agreement_output.xml -s agreement"
 String selection = "-o selection_output.xml -s selection"
+ 
+def remoteToken = null
+try {
+    remoteToken = Thread.currentThread().executable.buildVariableResolver.resolve("TOKEN")
+} catch(Exception e) {}
 
 [
         [
@@ -1253,6 +1260,7 @@ String selection = "-o selection_output.xml -s selection"
     }
 
     multiJob(config.environment) {
+        authenticationToken(remoteToken)
         parameters defaultParameters(config)
         concurrentBuild(config.concurrentBuild)
         triggers defaultTriggers(config.cron)
