@@ -121,7 +121,7 @@ try {
                     "DS_REGEXP": "^http?:\\/\\/ds\\.k8s\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
                 cron: null,
-                branch: "master",
+                branch: "dev_prozorro",
                 concurrentBuild: true,
                 edr: false,
         ],
