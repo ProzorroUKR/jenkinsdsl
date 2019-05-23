@@ -408,7 +408,7 @@ try {
             shell("$robotWrapper $agreement $defaultArgs $params")
             shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection.txt $params")
             shell("$robotWrapper -o auction_short_framework_output.xml -s auction -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper -o qualification_framework_output.xml -s qualification -A robot_tests_arguments/framework_selection.txt \$EDR_QUALIFICATION $params")
+            shell("$robotWrapper -o qualification_framework_output.xml -s qualification -A robot_tests_arguments/framework_selection.txt $params")
             shell("$robotWrapper -o contract_framework_output.xml -s contract_signing -A robot_tests_arguments/framework_selection.txt $params")
             shell("$robotWrapper -o contract_management_framework_output.xml -s contract_management -A robot_tests_arguments/framework_selection.txt $params")
             shell(shellRebot)
