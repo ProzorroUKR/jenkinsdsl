@@ -27,7 +27,7 @@ def defaultScm = {
 def defaultWrappers(boolean xvfb_enable = false, Integer timeoutSeconds = null) {
     return {
         preBuildCleanup {
-            includePattern('test_output')
+            includePattern('*')
             deleteDirectories(true)
         }
         colorizeOutput('css')
