@@ -1259,6 +1259,146 @@ try {
         }
     }
 
+    job("${config.environment}_planning_aboveThresholdUA") {
+        parameters defaultParameters(config)
+        description("Сценарій: Планування Надпорогова закупівля")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:aboveThresholdUA $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_planning_aboveThresholdEU") {
+        parameters defaultParameters(config)
+        description("Сценарій: Планування Надпорогова закупівля з публікацією англійською мовою")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:aboveThresholdEU $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_planning_aboveThresholdUA.defense") {
+        parameters defaultParameters(config)
+        description("Сценарій: Планування Надпорогова закупівля. Переговорна процедура для потреб оборони")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:aboveThresholdUA.defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_planning_esco") {
+        parameters defaultParameters(config)
+        description("Сценарій: Планування Відкриті торги для закупівлі енергосервісу")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:esco $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_planning_reporting") {
+        parameters defaultParameters(config)
+        description("Сценарій: Планування Переговорна процедура")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:reporting $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_planning_negotiation") {
+        parameters defaultParameters(config)
+        description("Сценарій: Планування Переговорна процедура")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:negotiation $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_planning_negotiation.quick") {
+        parameters defaultParameters(config)
+        description("Сценарій: Планування Переговорна процедура. Скорочена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:negotiation.quick $params")
+            shell(shellRebot)
+        }
+    }
+
     multiJob(config.environment) {
         authenticationToken(remoteToken)
         parameters defaultParameters(config)
@@ -1316,6 +1456,13 @@ try {
                     "${config.environment}_belowThreshold_moz_2",
                     "${config.environment}_belowThreshold_moz_3",
                     "${config.environment}_belowThreshold_moz_validation",
+                    "${config.environment}_planning_aboveThresholdUA",
+                    "${config.environment}_planning_aboveThresholdEU",
+                    "${config.environment}_planning_aboveThresholdUA.defense",
+                    "${config.environment}_planning_esco",
+                    "${config.environment}_planning_reporting",
+                    "${config.environment}_planning_negotiation",
+                    "${config.environment}_planning_negotiation.quick",
 
                 ]
                 if (config.environment != 'k8s') {
