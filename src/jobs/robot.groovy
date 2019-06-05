@@ -675,6 +675,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan_mnn_1 -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -701,6 +702,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan_mnn_2 -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -727,6 +729,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan_mnn_3 -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -748,12 +751,20 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/mnn_validation.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $planning -i create_plan_mnn_4 -i find_plan $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_2_INN $params")
+            shell("$robotWrapper $planning -i create_plan_mnn_5 -i find_plan $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_add_class $params")
+            shell("$robotWrapper $planning -i create_plan_mnn_6 -i find_plan $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_INN $params")
+            shell("$robotWrapper $planning -i create_plan_mnn_7 -i find_plan $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc $params")
+            shell("$robotWrapper $planning -i create_plan_mnn_8 -i find_plan $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc_2 $params")
             shell(shellRebot)
         }
     }
@@ -1170,7 +1181,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
             shell(shellRebot)
         }
     }
@@ -1190,7 +1201,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -v MODE:closeFrameworkAgreementUA -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v MODE:closeFrameworkAgreementUA -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
             shell(shellRebot)
         }
     }
@@ -1234,6 +1245,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -1309,7 +1321,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:aboveThresholdUA $params")
             shell(shellRebot)
         }
     }
@@ -1329,7 +1341,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:aboveThresholdEU $params")
             shell(shellRebot)
         }
     }
@@ -1349,7 +1361,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:aboveThresholdUA.defense $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:aboveThresholdUA.defense $params")
             shell(shellRebot)
         }
     }
@@ -1369,7 +1381,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:esco $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:esco $params")
             shell(shellRebot)
         }
     }
@@ -1389,7 +1401,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:reporting $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:reporting $params")
             shell(shellRebot)
         }
     }
@@ -1429,7 +1441,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:negotiation.quick $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:negotiation.quick $params")
             shell(shellRebot)
         }
     }
