@@ -540,6 +540,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -632,7 +633,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper -o base_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt $params")
+            shell("$robotWrapper -o base_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:belowThreshold $params")
             shell(shellRebot)
         }
     }
@@ -760,11 +761,11 @@ try {
             shell("$robotWrapper $planning -i create_plan_mnn_5 -i find_plan $params")
             shell("$robotWrapper $openProcedure -i create_tender_invalid_no_add_class $params")
             shell("$robotWrapper $planning -i create_plan_mnn_6 -i find_plan $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_INN $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_INN -v MODE:belowThreshold $params")
             shell("$robotWrapper $planning -i create_plan_mnn_7 -i find_plan $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc -v MODE:belowThreshold $params")
             shell("$robotWrapper $planning -i create_plan_mnn_8 -i find_plan $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc_2 $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc_2 -v MODE:belowThreshold $params")
             shell(shellRebot)
         }
     }
@@ -1116,6 +1117,7 @@ try {
             steps {
                 shell(shellBuildout)
                 shell(shellPhantom)
+                shell("$robotWrapper $planning -i create_plan -i find_plan $params")
                 shell("$robotWrapper -o monitoring_output.xml -s monitoring -A robot_tests_arguments/dasu_${scenario}.txt $params")
                 shell(shellRebot)
             }
