@@ -1448,6 +1448,26 @@ try {
         }
     }
 
+    job("${config.environment}_planning_validation_buyers") {
+        parameters defaultParameters(config)
+        description("Сценарій: Планування валідації buyers")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -i create_plan_two_buyers -i create_plan_no_buyers $params")
+            shell(shellRebot)
+        }
+    }
+
     multiJob(config.environment) {
         authenticationToken(remoteToken)
         parameters defaultParameters(config)
