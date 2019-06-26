@@ -1183,7 +1183,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
             shell(shellRebot)
         }
     }
@@ -1203,7 +1203,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v MODE:closeFrameworkAgreementUA -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -i closeframework_period -v MODE:closeFrameworkAgreementUA -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
             shell(shellRebot)
         }
     }
@@ -1323,7 +1323,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v MODE:aboveThresholdUA $params")
             shell(shellRebot)
         }
     }
@@ -1343,7 +1343,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v MODE:aboveThresholdEU $params")
             shell(shellRebot)
         }
     }
@@ -1363,7 +1363,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:aboveThresholdUA.defense $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v MODE:aboveThresholdUA.defense $params")
             shell(shellRebot)
         }
     }
@@ -1383,7 +1383,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:esco $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v MODE:esco $params")
             shell(shellRebot)
         }
     }
@@ -1403,7 +1403,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:reporting $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v MODE:reporting $params")
             shell(shellRebot)
         }
     }
@@ -1423,7 +1423,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -e closeframework_period -v MODE:negotiation $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v MODE:negotiation $params")
             shell(shellRebot)
         }
     }
@@ -1443,7 +1443,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -e closeframework_period -v MODE:negotiation.quick $params")
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v MODE:negotiation.quick $params")
             shell(shellRebot)
         }
     }
