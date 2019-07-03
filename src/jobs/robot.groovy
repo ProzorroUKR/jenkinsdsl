@@ -676,7 +676,6 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $planning -i create_plan_mnn_1 -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -703,7 +702,6 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $planning -i create_plan_mnn_2 -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -730,7 +728,6 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $planning -i create_plan_mnn_3 -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -1468,6 +1465,97 @@ try {
         }
     }
 
+    job("${config.environment}_planning_validation_buyers") {
+        parameters defaultParameters(config)
+        description("Сценарій: Планування валідації buyers")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -i create_plan_two_buyers -i create_plan_no_buyers $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_below_cost") {
+        parameters defaultParameters(config)
+        description("Сценарій: Допорогова закупівля з індексом UA-ROAD")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/below.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs -e auction -v submissionMethodDetails:\"quick(mode:no-auction)\" -v ROAD_INDEX:True $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_below_gmdn") {
+        parameters defaultParameters(config)
+        description("Сценарій: Допорогова закупівля з індексом GMDN")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/below.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure $defaultArgs -e auction -v submissionMethodDetails:\"quick(mode:no-auction)\" -v GMDN_INDEX:True $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_cost_gmdn_validations") {
+        parameters defaultParameters(config)
+        description("Сценарій: Валідації cost/gmdn")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $openProcedure -A robot_tests_arguments/cost_validation.txt $params")
+            shell("$robotWrapper $openProcedure -A robot_tests_arguments/gmdn_validation.txt $params")
+            shell(shellRebot)
+        }
+    }
+
     multiJob(config.environment) {
         authenticationToken(remoteToken)
         parameters defaultParameters(config)
@@ -1515,8 +1603,6 @@ try {
                     "${config.environment}_negotiation_cancellation",
                     "${config.environment}_negotiation.quick_cancellation",
                     "${config.environment}_reporting_cancellation",
-                    "${config.environment}_planning_belowThreshold",
-                    "${config.environment}_planning_framework_agreement",
                     "${config.environment}_feed_reading",
                     "${config.environment}_single_item_tender",
                     "${config.environment}_aboveThresholdUA_defence_one_bid",
@@ -1525,14 +1611,9 @@ try {
                     "${config.environment}_belowThreshold_moz_2",
                     "${config.environment}_belowThreshold_moz_3",
                     "${config.environment}_belowThreshold_moz_validation",
-                    "${config.environment}_planning_aboveThresholdUA",
-                    "${config.environment}_planning_aboveThresholdEU",
-                    "${config.environment}_planning_aboveThresholdUA.defense",
-                    "${config.environment}_planning_esco",
-                    "${config.environment}_planning_reporting",
-                    "${config.environment}_planning_negotiation",
-                    "${config.environment}_planning_negotiation.quick",
-
+                    "${config.environment}_below_cost",
+                    "${config.environment}_below_gmdn",
+                    "${config.environment}_cost_gmdn_validations",
                 ]
                 if (config.environment != 'k8s') {
                     innerJobs.addAll([
