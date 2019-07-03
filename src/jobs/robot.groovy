@@ -753,15 +753,10 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $planning -i create_plan_mnn_4 -i find_plan $params")
             shell("$robotWrapper $openProcedure -i create_tender_invalid_2_INN $params")
-            shell("$robotWrapper $planning -i create_plan_mnn_5 -i find_plan $params")
             shell("$robotWrapper $openProcedure -i create_tender_invalid_no_add_class $params")
-            shell("$robotWrapper $planning -i create_plan_mnn_6 -i find_plan $params")
             shell("$robotWrapper $openProcedure -i create_tender_invalid_no_INN -v MODE:belowThreshold $params")
-            shell("$robotWrapper $planning -i create_plan_mnn_7 -i find_plan $params")
             shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc -v MODE:belowThreshold $params")
-            shell("$robotWrapper $planning -i create_plan_mnn_8 -i find_plan $params")
             shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc_2 -v MODE:belowThreshold $params")
             shell(shellRebot)
         }
@@ -1551,7 +1546,9 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $openProcedure -A robot_tests_arguments/cost_validation.txt $params")
+            shell("$robotWrapper $openProcedure -i create_tender_cost_invalid_addclass $params")
             shell("$robotWrapper $openProcedure -A robot_tests_arguments/gmdn_validation.txt $params")
+            shell("$robotWrapper $openProcedure -i create_tender_gmdn_invalid_addclass $params")
             shell(shellRebot)
         }
     }
