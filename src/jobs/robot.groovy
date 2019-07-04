@@ -753,11 +753,11 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_2_INN $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_add_class $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_INN -v MODE:belowThreshold $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc -v MODE:belowThreshold $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc_2 -v MODE:belowThreshold $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_2_INN -v MOZ_INTEGRATION:True -v MODE:belowThreshold $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_add_class -v MOZ_INTEGRATION:True -v MODE:belowThreshold $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_INN -v MOZ_INTEGRATION:True -v MODE:belowThreshold $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc -v MOZ_INTEGRATION:True -v MODE:belowThreshold $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc_2 -v MOZ_INTEGRATION:True -v MODE:belowThreshold $params")
             shell(shellRebot)
         }
     }
