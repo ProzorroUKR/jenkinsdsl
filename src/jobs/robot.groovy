@@ -1492,12 +1492,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt"
+        String defaultArgs = "-A robot_tests_arguments/below.txt -e auction -e add_bid_doc_after_tendering_period_by_provider -e modify_bid_doc_after_tendering_period_by_provider"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -e auction -v submissionMethodDetails:\"quick(mode:no-auction)\" -v ROAD_INDEX:True $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" -v ROAD_INDEX:True $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
@@ -1517,12 +1517,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt"
+        String defaultArgs = "-A robot_tests_arguments/below.txt -e auction -e add_bid_doc_after_tendering_period_by_provider -e modify_bid_doc_after_tendering_period_by_provider"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -e auction -v submissionMethodDetails:\"quick(mode:no-auction)\" -v GMDN_INDEX:True $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" -v GMDN_INDEX:True $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
