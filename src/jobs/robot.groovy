@@ -1460,26 +1460,6 @@ try {
         }
     }
 
-    job("${config.environment}_planning_validation_buyers") {
-        parameters defaultParameters(config)
-        description("Сценарій: Планування валідації buyers")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        steps {
-            shell(shellBuildout)
-            shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -i create_plan_two_buyers -i create_plan_no_buyers $params")
-            shell(shellRebot)
-        }
-    }
-
     job("${config.environment}_below_cost") {
         parameters defaultParameters(config)
         description("Сценарій: Допорогова закупівля з індексом UA-ROAD")
@@ -1611,6 +1591,16 @@ try {
                     "${config.environment}_below_cost",
                     "${config.environment}_below_gmdn",
                     "${config.environment}_cost_gmdn_validations",
+                    "${config.environment}_planning_aboveThresholdUA",
+                    "${config.environment}_planning_aboveThresholdEU",
+                    "${config.environment}_planning_aboveThresholdUA.defense",
+                    "${config.environment}_planning_esco",
+                    "${config.environment}_planning_reporting",
+                    "${config.environment}_planning_negotiation",
+                    "${config.environment}_planning_negotiation.quick",
+                    "${config.environment}_planning_validation_buyers",
+                    "${config.environment}_planning_belowThreshold",
+                    "${config.environment}_planning_framework_agreement",
                 ]
                 if (config.environment != 'k8s') {
                     innerJobs.addAll([
