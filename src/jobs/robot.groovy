@@ -676,6 +676,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -702,6 +703,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -728,6 +730,7 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -753,11 +756,16 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_2_INN -v MOZ_INTEGRATION:True -v MODE:belowThreshold $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_add_class -v MOZ_INTEGRATION:True -v MODE:belowThreshold $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_INN -v MOZ_INTEGRATION:True -v MODE:belowThreshold $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc -v MOZ_INTEGRATION:True -v MODE:belowThreshold $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc_2 -v MOZ_INTEGRATION:True -v MODE:belowThreshold $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_2_INN -v MODE:belowThreshold $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_add_class -v MODE:belowThreshold $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_INN -v MODE:belowThreshold $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc -v MODE:belowThreshold $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc_2 -v MODE:belowThreshold $params")
             shell(shellRebot)
         }
     }
@@ -1477,7 +1485,8 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" -v ROAD_INDEX:True $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v ROAD_INDEX:True $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
@@ -1502,7 +1511,8 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" -v GMDN_INDEX:True $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
@@ -1525,10 +1535,39 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper $openProcedure -A robot_tests_arguments/cost_validation.txt $params")
-            shell("$robotWrapper $openProcedure -i create_tender_cost_invalid_addclass $params")
-            shell("$robotWrapper $openProcedure -A robot_tests_arguments/gmdn_validation.txt $params")
-            shell("$robotWrapper $openProcedure -i create_tender_gmdn_invalid_addclass $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v ROAD_INDEX:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_cost_no_addclass -v MODE:belowThreshold $params")
+
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v ROAD_INDEX:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_cost_2_addclass -v MODE:belowThreshold $params")
+
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v ROAD_INDEX:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_cost_invalid_addclass_id -v MODE:belowThreshold $params")
+
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v ROAD_INDEX:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_cost_invalid_addclass_description -v MODE:belowThreshold $params")
+
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v ROAD_INDEX:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_cost_invalid_addclass -v MODE:belowThreshold $params")
+
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_gmdn_no_addclass -v MODE:belowThreshold $params")
+
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_gmdn_2_addclass -v MODE:belowThreshold $params")
+
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_gmdn_invalid_addclass_id -v MODE:belowThreshold $params")
+
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_gmdn_invalid_addclass_description -v MODE:belowThreshold $params")
+
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_gmdn_inn_addclass -v MODE:belowThreshold $params")
+
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_gmdn_invalid_addclass -v MODE:belowThreshold $params")
+
             shell(shellRebot)
         }
     }
