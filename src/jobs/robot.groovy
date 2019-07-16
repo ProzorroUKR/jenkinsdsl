@@ -1448,9 +1448,9 @@ try {
         }
     }
 
-    job("${config.environment}_planning_validation_buyers") {
+    job("${config.environment}_plan_tender_validations") {
         parameters defaultParameters(config)
-        description("Сценарій: Планування валідації buyers")
+        description("Сценарій: Валідації План-Тендер")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -1463,7 +1463,12 @@ try {
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -i create_plan_two_buyers -i create_plan_no_buyers $params")
+            shell("$robotWrapper $planning -i create_plan_two_buyers -i create_plan_no_buyers $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_edrpou -v MODE:belowThreshold $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_schema -v MODE:belowThreshold $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_cpv -v MODE:belowThreshold $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_procurementMethodType -v MODE:belowThreshold $params")
             shell(shellRebot)
         }
     }
@@ -1547,7 +1552,7 @@ try {
             shell("$robotWrapper $planning -i create_plan -i find_plan -v ROAD_INDEX:True $params")
             shell("$robotWrapper $openProcedure -i create_tender_cost_invalid_addclass_description -v MODE:belowThreshold $params")
 
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v ROAD_INDEX:True $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
             shell("$robotWrapper $openProcedure -i create_tender_cost_invalid_addclass -v MODE:belowThreshold $params")
 
             shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
@@ -1565,7 +1570,7 @@ try {
             shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
             shell("$robotWrapper $openProcedure -i create_tender_gmdn_inn_addclass -v MODE:belowThreshold $params")
 
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
             shell("$robotWrapper $openProcedure -i create_tender_gmdn_invalid_addclass -v MODE:belowThreshold $params")
 
             shell(shellRebot)
@@ -1637,7 +1642,7 @@ try {
                     "${config.environment}_planning_reporting",
                     "${config.environment}_planning_negotiation",
                     "${config.environment}_planning_negotiation.quick",
-                    "${config.environment}_planning_validation_buyers",
+                    "${config.environment}_plan_tender_validations",
                     "${config.environment}_planning_belowThreshold",
                     "${config.environment}_planning_framework_agreement",
                 ]
