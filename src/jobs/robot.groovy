@@ -1552,7 +1552,7 @@ try {
             shell("$robotWrapper $planning -i create_plan -i find_plan -v ROAD_INDEX:True $params")
             shell("$robotWrapper $openProcedure -i create_tender_cost_invalid_addclass_description -v MODE:belowThreshold $params")
 
-            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
             shell("$robotWrapper $openProcedure -i create_tender_cost_invalid_addclass -v MODE:belowThreshold $params")
 
             shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
@@ -1570,7 +1570,7 @@ try {
             shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
             shell("$robotWrapper $openProcedure -i create_tender_gmdn_inn_addclass -v MODE:belowThreshold $params")
 
-            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v ROAD_INDEX:True $params")
             shell("$robotWrapper $openProcedure -i create_tender_gmdn_invalid_addclass -v MODE:belowThreshold $params")
 
             shell(shellRebot)
