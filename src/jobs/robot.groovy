@@ -188,10 +188,10 @@ try {
                     "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-dev-gc)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-dev-gc)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
-                cron: "H 2 * * *",
+                cron: null,
                 branch: "dev_prozorro",
                 concurrentBuild: false,
-                edr: true
+                edr: false
         ],
         [
                 environment: 'staging_prozorro',
@@ -205,10 +205,10 @@ try {
                     "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
-                cron: null,
-                branch: "master",
+                cron: "H 2 * * *",
+                branch: "dev_prozorro",
                 concurrentBuild: false,
-                edr: false
+                edr: true
         ],
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k:\${$k}" }.join('')
@@ -1563,9 +1563,6 @@ try {
 
             shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
             shell("$robotWrapper $openProcedure -i create_tender_gmdn_invalid_addclass_id -v MODE:belowThreshold $params")
-
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
-            shell("$robotWrapper $openProcedure -i create_tender_gmdn_invalid_addclass_description -v MODE:belowThreshold $params")
 
             shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
             shell("$robotWrapper $openProcedure -i create_tender_gmdn_inn_addclass -v MODE:belowThreshold $params")
