@@ -415,11 +415,11 @@ try {
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $agreement $defaultArgs $params")
-            shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper -o auction_short_framework_output.xml -s auction -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper -o qualification_framework_output.xml -s qualification -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper -o contract_framework_output.xml -s contract_signing -A robot_tests_arguments/framework_selection.txt $params")
-            shell("$robotWrapper -o contract_management_framework_output.xml -s contract_management -A robot_tests_arguments/framework_selection.txt $params")
+            shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection_full.txt $params")
+            shell("$robotWrapper -o auction_short_framework_output.xml -s auction -A robot_tests_arguments/framework_selection_full.txt $params")
+            shell("$robotWrapper -o qualification_framework_output.xml -s qualification -A robot_tests_arguments/framework_selection_full.txt $params")
+            shell("$robotWrapper -o contract_framework_output.xml -s contract_signing -A robot_tests_arguments/framework_selection_full.txt $params")
+            shell("$robotWrapper -o contract_management_framework_output.xml -s contract_management -A robot_tests_arguments/framework_selection_full.txt $params")
             shell(shellRebot)
         }
     }
@@ -910,7 +910,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_vat_testing.txt"
 
         steps {
             shell(shellBuildout)
@@ -936,7 +936,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_vat_testing.txt"
 
         steps {
             shell(shellBuildout)
@@ -962,7 +962,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_vat_testing.txt"
 
         steps {
             shell(shellBuildout)
@@ -1035,7 +1035,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_UA.txt"
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_UA_vat_testing.txt"
 
         steps {
             shell(shellBuildout)
@@ -1061,7 +1061,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_UA.txt"
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_UA_vat_testing.txt"
 
         steps {
             shell(shellBuildout)
@@ -1087,7 +1087,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_UA.txt"
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_UA_vat_testing.txt"
 
         steps {
             shell(shellBuildout)
