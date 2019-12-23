@@ -172,7 +172,7 @@ try {
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
                 cron: "H 0 * * *",
-                branch: "master",
+                branch: "dev_prozorro",
                 concurrentBuild: false,
                 edr: true
         ],
@@ -205,11 +205,28 @@ try {
                     "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
+                cron: "H 4 * * *",
+                branch: "master",
+                concurrentBuild: false,
+                edr: true
+        ],
+        [
+                environment: 'sandbox_2_prozorro',
+                params: [
+                    "API_HOST_URL": "https://lb-api-sandbox-2.prozorro.gov.ua",
+                    "DS_HOST_URL": "https://upload-docs-sandbox-2.prozorro.gov.ua",
+                    "EDR_HOST_URL": "https://lb-edr-sandbox-2.prozorro.gov.ua",
+                    "DASU_API_HOST_URL": "https://audit-api-sandbox-2.prozorro.gov.ua",
+                    "API_VERSION": "2.4",
+                    "EDR_VERSION": "0",
+                    "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
+                    "DS_REGEXP": "^https?:\\/\\/public-docs(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
+                ],
                 cron: "H 2 * * *",
                 branch: "dev_prozorro",
                 concurrentBuild: false,
                 edr: true
-        ],
+        ]
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k:\${$k}" }.join('')
 
@@ -613,6 +630,46 @@ try {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
             shell("$robotWrapper -s complaints -A robot_tests_arguments/below_before_resolved_award_complaint.txt -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell(shellRebot)
+        }
+    }
+
+     job("${config.environment}_openua_award_complaint") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарги на авард для наддопорогових закупівель.")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper -s complaints -A robot_tests_arguments/openua_award_complaint.txt -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openua_tender_lot_complaint") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарги на умови закупівлі та лоту для наддопорогових закупівель.")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper -s complaints -A robot_tests_arguments/openua_tender_lot_complaint.txt -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
             shell(shellRebot)
         }
     }
@@ -1601,6 +1658,8 @@ try {
                     "${config.environment}_belowThreshold_below_before_resolved_award_complaint",
                     "${config.environment}_belowThreshold_cancellation",
                     "${config.environment}_belowThreshold_complaints_tender_lot",
+                    "${config.environment}_openua_award_complaint",
+                    "${config.environment}_openua_tender_lot_complaint",
                     "${config.environment}_belowThreshold_moz",
                     "${config.environment}_belowThreshold_vat_true_false",
                     "${config.environment}_belowThreshold_vat_false_false",
