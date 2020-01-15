@@ -129,41 +129,6 @@ try {
                 edr: false,
                 dfs: false
         ],
-        [
-                environment: 'sandbox_openprocurement',
-                params: [
-                    "API_HOST_URL": "https://lb.api-sandbox.openprocurement.org",
-                    "DS_HOST_URL": "https://upload.docs-sandbox.openprocurement.org",
-                    "EDR_HOST_URL": "https://lb.edr-sandbox.openprocurement.org",
-                    "API_VERSION": "2.4",
-                    "EDR_VERSION": "0",
-                    "AUCTION_REGEXP": "^https?:\\/\\/auction-sandbox\\.openprocurement\\.org\\/tenders\\/([0-9A-Fa-f]{32})",
-                    "DS_REGEXP": "^https?:\\/\\/public\\.docs-sandbox\\.openprocurement\\.org\\/get\\/([0-9A-Fa-f]{32})",
-                ],
-                cron: null,
-                branch: "master",
-                concurrentBuild: false,
-                edr: false,
-                dfs: false
-        ],
-        [
-                environment: 'sandbox_old_prozorro',
-                params: [
-                    "API_HOST_URL": "https://lb.api-sandbox.prozorro.gov.ua",
-                    "DS_HOST_URL": "https://upload.docs-sandbox.prozorro.gov.ua",
-                    "EDR_HOST_URL": "https://lb.edr-sandbox.prozorro.gov.ua",
-                    "DASU_API_HOST_URL": "https://audit-api-sb.prozorro.gov.ua",
-                    "API_VERSION": "2.4",
-                    "EDR_VERSION": "0",
-                    "AUCTION_REGEXP": "^https?:\\/\\/auction-sb\\.prozorro\\.gov\\.ua\\/tenders\\/([0-9A-Fa-f]{32})",
-                    "DS_REGEXP": "^https?:\\/\\/public\\.docs-sandbox\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
-                ],
-                cron: null,
-                branch: "master",
-                concurrentBuild: false,
-                edr: false,
-                dfs: false
-        ],
 	    [
                 environment: 'sandbox_prozorro',
                 params: [
@@ -180,24 +145,6 @@ try {
                 branch: "dev_prozorro",
                 concurrentBuild: false,
                 edr: true,
-                dfs: true
-        ],
-        [
-                environment: 'gc_dev_prozorro',
-                params: [
-                    "API_HOST_URL": "https://api-dev-gc.prozorro.gov.ua",
-                    "DS_HOST_URL": "https://upload-docs-dev-gc.prozorro.gov.ua",
-                    "EDR_HOST_URL": "https://edr-dev-gc.prozorro.gov.ua",
-                    "DASU_API_HOST_URL": "https://audit-api-dev-gc.prozorro.gov.ua",
-                    "API_VERSION": "2.4",
-                    "EDR_VERSION": "0",
-                    "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-dev-gc)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
-                    "DS_REGEXP": "^https?:\\/\\/public-docs(?:-dev-gc)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
-                ],
-                cron: null,
-                branch: "dev_prozorro",
-                concurrentBuild: false,
-                edr: false,
                 dfs: false
         ],
         [
@@ -216,7 +163,7 @@ try {
                 branch: "master",
                 concurrentBuild: false,
                 edr: true,
-                dfs: true
+                dfs: false
         ],
         [
                 environment: 'sandbox_2_prozorro',
