@@ -118,7 +118,7 @@ try {
                     "RELEASE_NAME": "main",
                     "API_HOST_URL": "http://api.\${RELEASE_NAME}.k8s.prozorro.gov.ua",
                     "DS_HOST_URL": "http://ds.k8s.prozorro.gov.ua",
-                    "DASU_API_HOST_URL": "https://audit.k8s.prozorro.gov.ua",
+                    "DASU_API_HOST_URL": "http://audit.k8s.prozorro.gov.ua",
                     "DASU_API_VERSION": "2.5",
                     "API_VERSION": "2.5",
                     "EDR_VERSION": "0",
