@@ -87,8 +87,9 @@ def defaultParameters(config) {
 
 def defaultEnv() {
     return {
-        groovy("if (EDR.toBoolean()) {return [EDR_PRE_QUALIFICATION: '-i pre-qualifications_check_by_edrpou', EDR_QUALIFICATION: '-i qualifications_check_by_edrpou']}")
-        groovy("if (DFS.toBoolean()) {return [DFS_QUALIFICATION: '-i awards_check_by_dfs']}")
+    groovy("if (EDR.toBoolean() && DFS.toBoolean()) {return [EDR_PRE_QUALIFICATION: '-i pre-qualifications_check_by_edrpou', EDR_QUALIFICATION: '-i qualifications_check_by_edrpou, DFS_QUALIFICATION: '-i awards_check_by_dfs']}" +
+            "else if (EDR.toBoolean() && !DFS.toBoolean()) {return [EDR_PRE_QUALIFICATION: '-i pre-qualifications_check_by_edrpou', EDR_QUALIFICATION: '-i qualifications_check_by_edrpou]}" +
+            "else if (!EDR.toBoolean() && DFS.toBoolean()) {return [DFS_QUALIFICATION: '-i awards_check_by_dfs']} else {return []}")
     }
 }
 
@@ -184,7 +185,26 @@ try {
                 concurrentBuild: false,
                 edr: false,
                 dfs: false
-        ]
+        ],
+                [
+                environment: 'sandbox_3_prozorro',
+                params: [
+                    "API_HOST_URL": "https://api-kubebox.prozorro.gov.ua",
+                    "DS_HOST_URL": "https://upload-docs-sandbox-2.prozorro.gov.ua",
+                    "EDR_HOST_URL": "lb-edr-sandbox.prozorro.gov.ua",
+                    "DASU_API_HOST_URL": "https://audit-api-kubebox.prozorro.gov.ua",
+                    "API_VERSION": "2.4",
+                    "EDR_VERSION": "0",
+                    "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-kubebox)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
+                    "DS_REGEXP": "^https?:\\/\\/public-docs(?:-kubebox)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
+                ],
+                cron: null,
+                branch: "dev_prozorro",
+                concurrentBuild: false,
+                edr: false,
+                dfs: false
+        ],
+
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k:\${$k}" }.join('')
 
