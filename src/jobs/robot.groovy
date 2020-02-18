@@ -87,7 +87,7 @@ def defaultParameters(config) {
 
 def defaultEnv() {
     return {
-    groovy("if (EDR.toBoolean() {return [EDR_PRE_QUALIFICATION: '-i pre-qualifications_check_by_edrpou', EDR_QUALIFICATION: '-i qualifications_check_by_edrpou]}")
+    groovy("if (EDR.toBoolean()) {return [EDR_PRE_QUALIFICATION: '-i pre-qualifications_check_by_edrpou', EDR_QUALIFICATION: '-i qualifications_check_by_edrpou']}")
     }
 }
 
