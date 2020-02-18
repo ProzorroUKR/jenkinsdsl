@@ -87,9 +87,7 @@ def defaultParameters(config) {
 
 def defaultEnv() {
     return {
-    groovy("if (EDR.toBoolean() && DFS.toBoolean()) {return [EDR_PRE_QUALIFICATION: '-i pre-qualifications_check_by_edrpou', EDR_QUALIFICATION: '-i qualifications_check_by_edrpou, DFS_QUALIFICATION: '-i awards_check_by_dfs']}" +
-            "else if (EDR.toBoolean() && !DFS.toBoolean()) {return [EDR_PRE_QUALIFICATION: '-i pre-qualifications_check_by_edrpou', EDR_QUALIFICATION: '-i qualifications_check_by_edrpou]}" +
-            "else if (!EDR.toBoolean() && DFS.toBoolean()) {return [DFS_QUALIFICATION: '-i awards_check_by_dfs']} else {return []}")
+    groovy("if (EDR.toBoolean() {return [EDR_PRE_QUALIFICATION: '-i pre-qualifications_check_by_edrpou', EDR_QUALIFICATION: '-i qualifications_check_by_edrpou]}")
     }
 }
 
@@ -190,7 +188,7 @@ try {
                 environment: 'sandbox_3_prozorro',
                 params: [
                     "API_HOST_URL": "https://api-kubebox.prozorro.gov.ua",
-                    "DS_HOST_URL": "https://upload-docs-sandbox-2.prozorro.gov.ua",
+                    "DS_HOST_URL": "https://upload-docs-kubebox.prozorro.gov.ua",
                     "EDR_HOST_URL": "lb-edr-sandbox.prozorro.gov.ua",
                     "DASU_API_HOST_URL": "https://audit-api-kubebox.prozorro.gov.ua",
                     "API_VERSION": "2.4",
@@ -895,7 +893,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt"
 
         steps {
             shell(shellBuildout)
