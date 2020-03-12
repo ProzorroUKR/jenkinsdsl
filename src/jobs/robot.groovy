@@ -1627,7 +1627,6 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
@@ -1654,7 +1653,6 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
@@ -1662,6 +1660,82 @@ try {
         }
     }
 
+    job("${config.environment}_competitiveDialogueEU_DFS") {
+        parameters defaultParameters(config)
+        description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet_tender_vat_true -i modify_contract_amount_net -i modify_contract_value $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_competitiveDialogueUA_DFS") {
+        parameters defaultParameters(config)
+        description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_UA.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_esco_DFS") {
+        parameters defaultParameters(config)
+        description("Сценарій: Відкриті торги для закупівлі енергосервісу")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/esco_testing.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
 
     multiJob(config.environment) {
         authenticationToken(remoteToken)
@@ -1733,13 +1807,19 @@ try {
                     "${config.environment}_plan_tender_validations",
                     "${config.environment}_planning_belowThreshold",
                     "${config.environment}_planning_framework_agreement",
+                    "${config.environment}_dasu_cancelled",
+                    "${config.environment}_dasu_closed",
+                    "${config.environment}_dasu_completed",
+                    "${config.environment}_dasu_stopped",
                 ]
-                if (config.environment != 'k8s') {
+                if (config.environment == 'staging_prozorro') {
                     innerJobs.addAll([
-                        "${config.environment}_dasu_cancelled",
-                        "${config.environment}_dasu_closed",
-                        "${config.environment}_dasu_completed",
-                        "${config.environment}_dasu_stopped",
+                            "${config.environment}_aboveThresholdEU_DFS",
+                            "${config.environment}_aboveThresholdUA_DFS",
+                            "${config.environment}_competitiveDialogueEU_DFS",
+                            "${config.environment}_competitiveDialogueUA_DFS",
+                            "${config.environment}_esco_DFS"
+
                     ])
                 }
                 innerJobs.each { String scenario -> phaseJob(scenario) {
