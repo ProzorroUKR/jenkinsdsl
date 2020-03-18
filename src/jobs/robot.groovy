@@ -179,7 +179,7 @@ try {
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
                 cron: "H 2 * * *",
-                branch: "dev_prozorro",
+                branch: "dev_prozorro_2",
                 concurrentBuild: false,
                 edr: false,
                 dfs: false
