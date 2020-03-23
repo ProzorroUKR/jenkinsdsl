@@ -415,7 +415,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -e tender_cancellation_stand_still -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -e tender_cancellation_stand_still -v MODE:open_framework $params")
             shell(shellRebot)
         }
     }
@@ -1366,7 +1366,7 @@ try {
         }
     }
 
-    job("${config.environment}_esco_cancellation") {
+    job("${config.environment}_open_esco_cancellation") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування закупівлі Відкриті торги для закупівлі енергосервісу")
         keepDependencies(false)
@@ -1382,7 +1382,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper -o base_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:esco $params")
+            shell("$robotWrapper -o base_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:open_esco $params")
             shell(shellRebot)
         }
     }
