@@ -415,7 +415,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -e tender_cancellation_stand_still -v MODE:open_framework $params")
+            shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -e tender_cancellation_stand_still -v MODE:open_framework -v NUMBER_OF_LOTS:1 $params")
             shell(shellRebot)
         }
     }
@@ -1382,7 +1382,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper -o base_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:open_esco $params")
+            shell("$robotWrapper -o base_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:open_esco -v FUNDING_KIND:budget $params")
             shell(shellRebot)
         }
     }
