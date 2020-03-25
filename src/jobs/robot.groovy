@@ -105,6 +105,7 @@ String agreement = "-o agreement_output.xml -s agreement"
 String selection = "-o selection_output.xml -s selection"
 String planning = "-o planning_output.xml -s planning"
 String complaints = "-o complaints_output.xml -s complaints_new"
+String no_auction = "-v submissionMethodDetails:\"quick(mode:no-auction)\""
  
 def remoteToken = null
 try {
@@ -1795,10 +1796,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
+
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_tender_resolved.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
             shell(shellRebot)
         }
     }
@@ -1815,10 +1818,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
+
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_tender_mistaken.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
             shell(shellRebot)
         }
     }
@@ -1835,10 +1840,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
+
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_tender_declined.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
             shell(shellRebot)
         }
     }
@@ -1855,10 +1862,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
+
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_tender_stopped.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
             shell(shellRebot)
         }
     }
@@ -1875,10 +1884,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
+
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_tender_invalid.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
             shell(shellRebot)
         }
     }
@@ -1895,10 +1906,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved"
+
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_award_resolved -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
             shell(shellRebot)
         }
     }
@@ -1915,10 +1928,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+         String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
+
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_award_mistaken.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
             shell(shellRebot)
         }
     }
@@ -1935,10 +1950,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
+
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_award_declined.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
             shell(shellRebot)
         }
     }
@@ -1955,10 +1972,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped"
+
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_award_stopped -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
             shell(shellRebot)
         }
     }
@@ -1975,10 +1994,12 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
+
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_award_invalid.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
             shell(shellRebot)
         }
     }
