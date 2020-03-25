@@ -104,6 +104,7 @@ String contractmanagement  = "-o contract_management_output.xml -s contract_mana
 String agreement = "-o agreement_output.xml -s agreement"
 String selection = "-o selection_output.xml -s selection"
 String planning = "-o planning_output.xml -s planning"
+String complaints = "-o complaints_output.xml -s complaints_new"
  
 def remoteToken = null
 try {
@@ -1782,6 +1783,206 @@ try {
         }
     }
 
+    job("${config.environment}_openeu_complaint_tender_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_tender_resolved.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_tender_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_tender_mistaken.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_tender_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_tender_declined.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_tender_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_tender_stopped.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_tender_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_tender_invalid.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openua_complaint_award_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_award_resolved -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openua_complaint_award_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_award_mistaken.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openua_complaint_award_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_award_declined.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openua_complaint_award_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_award_stopped -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openua_complaint_award_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper -s complaints_new -A robot_tests_arguments/complaint_award_invalid.txt -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
     multiJob(config.environment) {
         authenticationToken(remoteToken)
         parameters defaultParameters(config)
@@ -1858,6 +2059,16 @@ try {
                     "${config.environment}_dasu_closed",
                     "${config.environment}_dasu_completed",
                     "${config.environment}_dasu_stopped",
+                    "${config.environment}_openeu_complaint_tender_resolved",
+                    "${config.environment}_openeu_complaint_tender_mistaken",
+                    "${config.environment}_openeu_complaint_tender_declined",
+                    "${config.environment}_openeu_complaint_tender_stopped",
+                    "${config.environment}_openeu_complaint_tender_invalid",
+                    "${config.environment}_openua_complaint_award_resolved",
+                    "${config.environment}_openua_complaint_award_mistaken",
+                    "${config.environment}_openua_complaint_award_declined",
+                    "${config.environment}_openua_complaint_award_stopped",
+                    "${config.environment}_openua_complaint_award_invalid",
                 ]
                 if (config.environment == 'staging_prozorro') {
                     innerJobs.addAll([
