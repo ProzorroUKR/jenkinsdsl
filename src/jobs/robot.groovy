@@ -106,6 +106,7 @@ String selection = "-o selection_output.xml -s selection"
 String planning = "-o planning_output.xml -s planning"
 String complaints = "-o complaints_output.xml -s complaints_new"
 String no_auction = "-v submissionMethodDetails:\"quick(mode:no-auction)\""
+String cancellation = "-o cancellation_output.xml -s cancellation"
  
 def remoteToken = null
 try {
@@ -255,11 +256,13 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper-o base_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:openeu$params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:openeu$params")
             shell(shellRebot)
         }
     }
@@ -413,11 +416,13 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -e tender_cancellation_stand_still -v MODE:open_framework -v NUMBER_OF_LOTS:1 $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation_stand_still -v MODE:open_framework -v NUMBER_OF_LOTS:1 $params")
             shell(shellRebot)
         }
     }
@@ -434,11 +439,13 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:openua $params")
+            shell("$robotWrapper $cancellation $defaultArgs -A robot_tests_arguments/cancellation.txt -v MODE:openua $params")
             shell(shellRebot)
         }
     }
@@ -667,11 +674,13 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper -o base_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -e tender_cancellation_stand_still -v MODE:belowThreshold $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation_stand_still -v MODE:belowThreshold $params")
             shell(shellRebot)
         }
     }
@@ -1026,11 +1035,13 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:open_competitive_dialogue $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue $params")
             shell(shellRebot)
         }
     }
@@ -1074,11 +1085,13 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:open_competitive_dialogue -v DIALOGUE_TYPE:UA $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue -v DIALOGUE_TYPE:UA $params")
             shell(shellRebot)
         }
     }
@@ -1205,26 +1218,74 @@ try {
                 shell(shellRebot)
             }
         }
+    }
 
-        job("${config.environment}_${scenario}_cancellation") {
-            parameters defaultParameters(config)
-            description("Сценарій: Скасування закупівлі ($scenario)")
-            keepDependencies(false)
-            disabled(false)
-            concurrentBuild(config.concurrentBuild)
-            scm defaultScm
-            publishers defaultPublishers
-            wrappers defaultWrappers(false)
-            configure defaultConfigure
-            environmentVariables defaultEnv()
+    job("${config.environment}_reporting_cancellation") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування закупівлі reporting")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
 
-            steps {
-                shell(shellBuildout)
-                shell(shellPhantom)
-                shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:$scenario $params")
-                shell("$robotWrapper -o cancellation_output.xml -s cancellation -A robot_tests_arguments/limited_cancellation.txt -v MODE:$scenario $params")
-                shell(shellRebot)
-            }
+        String defaultArgs = "-A robot_tests_arguments/limited_cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:reporting $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation_stand_still -v MODE:reporting $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_negotiation_cancellation") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування закупівлі negotiation")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/limited_cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:negotiation $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:negotiation $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_negotiation.quick_cancellation") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування закупівлі negotiation.quick")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/limited_cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:negotiation.quick $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:negotiation.quick $params")
+            shell(shellRebot)
         }
     }
 
@@ -1368,7 +1429,7 @@ try {
         }
     }
 
-    job("${config.environment}_open_esco_cancellation") {
+    job("${config.environment}_esco_cancellation") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування закупівлі Відкриті торги для закупівлі енергосервісу")
         keepDependencies(false)
@@ -1380,11 +1441,13 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper -o base_output.xml -s cancellation -A robot_tests_arguments/cancellation.txt -v MODE:open_esco -v FUNDING_KIND:budget $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_esco -v FUNDING_KIND:budget $params")
             shell(shellRebot)
         }
     }
@@ -2039,6 +2102,7 @@ try {
                     "${config.environment}_belowThreshold_vat_false_false",
                     "${config.environment}_belowThreshold_vat_false_true",
                     "${config.environment}_competitiveDialogueEU",
+                    "${config.environment}_competitiveDialogueEU_cancellation",
                     "${config.environment}_competitiveDialogueEU_stage1",
                     "${config.environment}_competitiveDialogueEU_vat_true_false",
                     "${config.environment}_competitiveDialogueEU_vat_false_false",
