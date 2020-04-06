@@ -582,86 +582,6 @@ try {
         }
     }
 
-    job("${config.environment}_belowThreshold_below_after_resolved_award_complaint") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарги на авард для допорогових закупівель.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper -s complaints -A robot_tests_arguments/below_after_resolved_award_complaint.txt -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_belowThreshold_below_before_resolved_award_complaint") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарги на авард для допорогових закупівель.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper -s complaints -A robot_tests_arguments/below_before_resolved_award_complaint.txt -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
-            shell(shellRebot)
-        }
-    }
-
-     job("${config.environment}_openua_award_complaint") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарги на авард для наддопорогових закупівель.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper -s complaints -A robot_tests_arguments/openua_award_complaint.txt -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_openua_tender_lot_complaint") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарги на умови закупівлі та лоту для наддопорогових закупівель.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper -s complaints -A robot_tests_arguments/openua_tender_lot_complaint.txt -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
-            shell(shellRebot)
-        }
-    }
-
     job("${config.environment}_belowThreshold_cancellation") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування закупівлі (belowThreshold/ Допорогова закупівля)")
@@ -681,27 +601,6 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
             shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation_stand_still -v MODE:belowThreshold $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_belowThreshold_complaints_tender_lot") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарги на умови закупівлі та лоту для допорогових закупівель.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        steps {
-            shell(shellBuildout)
-            shell(shellPhantom)
-            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper -s complaints -A robot_tests_arguments/below_tender_lot_complaint.txt $params")
             shell(shellRebot)
         }
     }
@@ -2091,12 +1990,7 @@ try {
                     "${config.environment}_below_funders_full",
                     "${config.environment}_belowThreshold",
                     "${config.environment}_belowThreshold_VAT_False",
-                    "${config.environment}_belowThreshold_below_after_resolved_award_complaint",
-                    "${config.environment}_belowThreshold_below_before_resolved_award_complaint",
                     "${config.environment}_belowThreshold_cancellation",
-                    "${config.environment}_belowThreshold_complaints_tender_lot",
-                    "${config.environment}_openua_award_complaint",
-                    "${config.environment}_openua_tender_lot_complaint",
                     "${config.environment}_belowThreshold_moz",
                     "${config.environment}_belowThreshold_vat_true_false",
                     "${config.environment}_belowThreshold_vat_false_false",
