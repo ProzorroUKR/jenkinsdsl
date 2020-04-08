@@ -1968,7 +1968,7 @@ try {
 
     job("${config.environment}_openeu_complaint_qualification_resolved") {
         parameters defaultParameters(config)
-        description("Сценарій: Скарга на пре-кваліфікацію учасника ")
+        description("Сценарій: Скарга на пре-кваліфікацію учасника задоволена Замовником")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -2012,7 +2012,7 @@ try {
 
     job("${config.environment}_openeu_complaint_qualification_invalid") {
         parameters defaultParameters(config)
-        description("Сценарій: Скарга на ")
+        description("Сценарій: Скарга на пре-кваліфікацію учасника залишена без розгляду")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -2034,7 +2034,7 @@ try {
 
     job("${config.environment}_openeu_complaint_qualification_declined") {
         parameters defaultParameters(config)
-        description("Сценарій: Скарга на ")
+        description("Сценарій: Скарга на пре-кваліфікацію учасника відхилена")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -2056,7 +2056,7 @@ try {
 
     job("${config.environment}_openeu_complaint_qualification_stopped") {
         parameters defaultParameters(config)
-        description("Сценарій: Скарга на ")
+        description("Сценарій: Скарга на пре-кваліфікацію учасника розгляд зупинено")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -2067,6 +2067,116 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_stopped.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_lot_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота виконана Замовником")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_resolved.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_lot_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота створена помилково")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_mistaken.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_lot_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота залишена без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_invalid.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_lot_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота відхилена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_declined.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_lot_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота розгляд зупинено")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_stopped.txt"
 
         steps {
             shell(shellBuildout)
@@ -2165,6 +2275,11 @@ try {
                     "${config.environment}_openeu_complaint_qualification_invalid",
                     "${config.environment}_openeu_complaint_qualification_declined",
                     "${config.environment}_openeu_complaint_qualification_stopped",
+                    "${config.environment}_openeu_complaint_lot_resolved",
+                    "${config.environment}_openeu_complaint_lot_mistaken",
+                    "${config.environment}_openeu_complaint_lot_invalid",
+                    "${config.environment}_openeu_complaint_lot_declined",
+                    "${config.environment}_openeu_complaint_lot_stopped",
 
                 ]
                 if (config.environment == 'staging_prozorro') {
