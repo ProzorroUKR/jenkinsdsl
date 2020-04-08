@@ -1961,10 +1961,122 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
             shell(shellRebot)
         }
     }
+
+    job("${config.environment}_openeu_complaint_qualification_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на пре-кваліфікацію учасника ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_qualification_resolved.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_qualification_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на пре-кваліфікацію учасника створена помилково")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_qualification_mistaken.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_qualification_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_qualification_invalid.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_qualification_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_qualification_declined.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_openeu_complaint_qualification_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_qualification_stopped.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell(shellRebot)
+        }
+    }
+
+
 
     multiJob(config.environment) {
         authenticationToken(remoteToken)
@@ -2048,6 +2160,12 @@ try {
                     "${config.environment}_openua_complaint_award_declined",
                     "${config.environment}_openua_complaint_award_stopped",
                     "${config.environment}_openua_complaint_award_invalid",
+                    "${config.environment}_openeu_complaint_qualification_resolved",
+                    "${config.environment}_openeu_complaint_qualification_mistaken",
+                    "${config.environment}_openeu_complaint_qualification_invalid",
+                    "${config.environment}_openeu_complaint_qualification_declined",
+                    "${config.environment}_openeu_complaint_qualification_stopped",
+
                 ]
                 if (config.environment == 'staging_prozorro') {
                     innerJobs.addAll([
