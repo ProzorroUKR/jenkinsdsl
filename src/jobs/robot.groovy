@@ -160,6 +160,8 @@ try {
                     "DASU_API_HOST_URL": "https://audit-api-staging.prozorro.gov.ua",
                     "API_VERSION": "2.4",
                     "EDR_VERSION": "0",
+                    "PAYMENT_API": "https://integration-staging.prozorro.gov.ua/liqpay",
+                    "PAYMENT_API_VERSION": "v1",
                     "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
@@ -178,6 +180,8 @@ try {
                     "DASU_API_HOST_URL": "https://audit-api-sandbox-2.prozorro.gov.ua",
                     "API_VERSION": "2.4",
                     "EDR_VERSION": "0",
+                    "PAYMENT_API": "https://integration-sandbox-2.prozorro.gov.ua/liqpay",
+                    "PAYMENT_API_VERSION": "v1",
                     "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
@@ -1868,7 +1872,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved"
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
 
         steps {
             shell(shellBuildout)
@@ -1934,7 +1938,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped"
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
 
         steps {
             shell(shellBuildout)
