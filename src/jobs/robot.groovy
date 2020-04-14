@@ -1791,7 +1791,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -1813,7 +1813,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -1835,7 +1835,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints  $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -1857,7 +1857,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints  $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -1901,7 +1901,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -1923,7 +1923,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -1945,7 +1945,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -1967,7 +1967,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -2011,7 +2011,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -2033,7 +2033,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -2055,7 +2055,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -2077,7 +2077,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -2099,7 +2099,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -2121,7 +2121,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -2143,7 +2143,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -2165,7 +2165,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -2187,7 +2187,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
