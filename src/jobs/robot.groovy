@@ -107,9 +107,8 @@ String planning = "-o planning_output.xml -s planning"
 String complaints = "-o complaints_output.xml -s complaints_new"
 String no_auction = "-v submissionMethodDetails:\"quick(mode:no-auction)\""
 String cancellation = "-o cancellation_output.xml -s cancellation"
-String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}'"
-String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}'"
-String accelerating = "-v accelerator:14400"
+String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5]}}}}, \"accelerator\":14400'"
+String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}, \"accelerator\":14400'"
  
 def remoteToken = null
 try {
@@ -1770,7 +1769,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $accelerating $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -1880,7 +1879,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $accelerating $params")
+            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -1990,7 +1989,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $accelerating $params")
+            shell("$robotWrapper $complaints $defaultArgs $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
