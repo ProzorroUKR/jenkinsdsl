@@ -107,6 +107,7 @@ String planning = "-o planning_output.xml -s planning"
 String complaints = "-o complaints_output.xml -s complaints_new"
 String no_auction = "-v submissionMethodDetails:\"quick(mode:no-auction)\""
 String cancellation = "-o cancellation_output.xml -s cancellation"
+String accelerate_openeu = "-v BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5], \"accelerator\":14400}}}}"
  
 def remoteToken = null
 try {
@@ -1877,7 +1878,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction -v 'BROKERS_PARAMS:{\"Default\":{\"intervals\":{\"openua\":{\"tender\":[1,5]}}}}' -v accelerator:14400 $params")
+            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
