@@ -426,7 +426,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation_stand_still -v MODE:open_framework -v NUMBER_OF_LOTS:1 $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_framework -v NUMBER_OF_LOTS:1 $params")
             shell(shellRebot)
         }
     }
