@@ -273,7 +273,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $cancellation $defaultArgs -v MODE:openeu$params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:openeu $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -456,7 +456,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $cancellation $defaultArgs -A robot_tests_arguments/cancellation.txt -v MODE:openua $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:openua $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -611,7 +611,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation_stand_still -v MODE:belowThreshold $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation_stand_still -v MODE:belowThreshold $no_auction $accelerate_belowThreshold $params")
             shell(shellRebot)
         }
     }
@@ -951,7 +951,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue $no_auction $accelerate_open_competitive_dialogue $params")
             shell(shellRebot)
         }
     }
@@ -1001,7 +1001,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue -v DIALOGUE_TYPE:UA $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue -v DIALOGUE_TYPE:UA $no_auction $accelerate_open_competitive_dialogue $params")
             shell(shellRebot)
         }
     }
@@ -1357,7 +1357,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_esco -v FUNDING_KIND:budget $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_esco -v FUNDING_KIND:budget $no_auction $accelerate_open_esco $params")
             shell(shellRebot)
         }
     }
