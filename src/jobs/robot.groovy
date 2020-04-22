@@ -111,7 +111,7 @@ String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"ope
 String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
 String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
 String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"enquiry\":[0,1],\"tender\":[1,5],\"accelerator\":14400}}}}'"
-String accelerate_belowThreshold = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"enquiry\":[0,1],\"tender\":[0,5],\"accelerator\": 14400}}}}'"
+String accelerate_belowThreshold = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"enquiry\":[0,1],\"tender\":[0,5],\"accelerator\":14400}}}}'"
 String accelerate_openua_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua_defense\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
 String accelerate_open_framework = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_framework\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
 
@@ -433,7 +433,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation -e tender_cancellation_stand_still -e tender_cancellation_view-v MODE:open_framework -v NUMBER_OF_LOTS:1 $no_auction $accelerate_open_framework $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation -e tender_cancellation_stand_still -e tender_cancellation_view -v MODE:open_framework -v NUMBER_OF_LOTS:1 $no_auction $accelerate_open_framework $params")
             shell(shellRebot)
         }
     }
@@ -1348,7 +1348,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/openUAdefense_one_bid.txt"
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
 
          steps {
             shell(shellBuildout)
