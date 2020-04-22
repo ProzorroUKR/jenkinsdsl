@@ -109,7 +109,12 @@ String no_auction = "-v submissionMethodDetails:\"quick(mode:no-auction)\""
 String cancellation = "-o cancellation_output.xml -s cancellation"
 String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
 String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
- 
+String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
+String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"enquiry\":[0,1],\"tender\":[1,5],\"accelerator\":14400}}}}'"
+String accelerate_belowThreshold = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"enquiry\":[0,1],\"tender\":[0,5],\"accelerator\": 14400}}}}'"
+String accelerate_openua_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua_defense\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
+String accelerate_open_framework = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_framework\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
+
 def remoteToken = null
 try {
     remoteToken = Thread.currentThread().executable.buildVariableResolver.resolve("TOKEN")
@@ -268,7 +273,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $cancellation $defaultArgs -v MODE:openeu$params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:openeu $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -410,9 +415,9 @@ try {
         }
     }
 
-    job("${config.environment}_frameworkagreement_cancellation") {
+    job("${config.environment}_frameworkagreement_lot_cancellation") {
         parameters defaultParameters(config)
-        description("Сценарій: Скасування закупівлі Рамкова угода")
+        description("Сценарій: Скасування лоту Рамкова угода 1-й етап")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -428,7 +433,30 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_framework -v NUMBER_OF_LOTS:1 $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation -e tender_cancellation_stand_still -e tender_cancellation_view-v MODE:open_framework -v NUMBER_OF_LOTS:1 $no_auction $accelerate_open_framework $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_frameworkagreement_tender_cancellation") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування тендера Рамкова угода 1-й етап")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e lot_cancellation -e lot_cancellation_stand_still -e lot_cancellation_view -v MODE:open_framework -v NUMBER_OF_LOTS:1 $no_auction $accelerate_open_framework $params")
             shell(shellRebot)
         }
     }
@@ -451,7 +479,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $cancellation $defaultArgs -A robot_tests_arguments/cancellation.txt -v MODE:openua $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:openua $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -606,7 +634,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation_stand_still -v MODE:belowThreshold $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation_stand_still -v MODE:belowThreshold $no_auction $accelerate_belowThreshold $params")
             shell(shellRebot)
         }
     }
@@ -946,7 +974,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue $no_auction $accelerate_open_competitive_dialogue $params")
             shell(shellRebot)
         }
     }
@@ -996,7 +1024,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue -v DIALOGUE_TYPE:UA $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue -v DIALOGUE_TYPE:UA $no_auction $accelerate_open_competitive_dialogue $params")
             shell(shellRebot)
         }
     }
@@ -1308,6 +1336,29 @@ try {
          }
     }
 
+    job("${config.environment}_aboveThresholdUA_defence_cancellation") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування процедури для потреб оборони.")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/openUAdefense_one_bid.txt"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA.defense $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:openua_defense $no_auction $accelerate_openua_defense $params")
+            shell(shellRebot)
+         }
+    }
+
     job("${config.environment}_esco") {
         parameters defaultParameters(config)
         description("Сценарій: Відкриті торги для закупівлі енергосервісу")
@@ -1352,7 +1403,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_esco -v FUNDING_KIND:budget $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_esco -v FUNDING_KIND:budget $no_auction $accelerate_open_esco $params")
             shell(shellRebot)
         }
     }
@@ -2424,47 +2475,37 @@ try {
                 def innerJobs = [
                     "${config.environment}_aboveThresholdEU",
                     "${config.environment}_aboveThresholdEU_no_auction",
-                    "${config.environment}_aboveThresholdEU_cancellation",
                     "${config.environment}_aboveThresholdEU_vat_true_false",
                     "${config.environment}_aboveThresholdEU_vat_false_false",
                     "${config.environment}_aboveThresholdEU_vat_false_true",
                     "${config.environment}_aboveThresholdUA",
                     "${config.environment}_frameworkagreement",
-                    "${config.environment}_frameworkagreement_cancellation",
-                    "${config.environment}_aboveThresholdUA_cancellation",
                     "${config.environment}_aboveThresholdUA_vat_true_false",
                     "${config.environment}_aboveThresholdUA_vat_false_false",
                     "${config.environment}_aboveThresholdUA_vat_false_true",
                     "${config.environment}_below_funders_full",
                     "${config.environment}_belowThreshold",
                     "${config.environment}_belowThreshold_VAT_False",
-                    "${config.environment}_belowThreshold_cancellation",
                     "${config.environment}_belowThreshold_moz",
                     "${config.environment}_belowThreshold_vat_true_false",
                     "${config.environment}_belowThreshold_vat_false_false",
                     "${config.environment}_belowThreshold_vat_false_true",
                     "${config.environment}_competitiveDialogueEU",
-                    "${config.environment}_competitiveDialogueEU_cancellation",
                     "${config.environment}_competitiveDialogueEU_stage1",
                     "${config.environment}_competitiveDialogueEU_vat_true_false",
                     "${config.environment}_competitiveDialogueEU_vat_false_false",
                     "${config.environment}_competitiveDialogueEU_vat_false_true",
                     "${config.environment}_competitiveDialogueUA",
-                    "${config.environment}_competitiveDialogueUA_cancellation",
                     "${config.environment}_competitiveDialogueUA_vat_true_false",
                     "${config.environment}_competitiveDialogueUA_vat_false_false",
                     "${config.environment}_competitiveDialogueUA_vat_false_true",
                     "${config.environment}_sb_negotiation",
                     "${config.environment}_sb_negotiation.quick",
                     "${config.environment}_sb_reporting",
-                    "${config.environment}_negotiation_cancellation",
-                    "${config.environment}_negotiation.quick_cancellation",
-                    "${config.environment}_reporting_cancellation",
                     "${config.environment}_feed_reading",
                     "${config.environment}_single_item_tender",
                     "${config.environment}_aboveThresholdUA_defence_one_bid",
                     "${config.environment}_esco",
-                    "${config.environment}_esco_cancellation",
                     "${config.environment}_belowThreshold_moz_1",
                     "${config.environment}_belowThreshold_moz_2",
                     "${config.environment}_belowThreshold_moz_3",
@@ -2516,7 +2557,18 @@ try {
                     "${config.environment}_openeu_complaint_cancel_lot_invalid",
                     "${config.environment}_openeu_complaint_cancel_lot_declined",
                     "${config.environment}_openeu_complaint_cancel_lot_stopped",
-
+                    "${config.environment}_frameworkagreement_tender_cancellation",
+                    "${config.environment}_frameworkagreement_lot_cancellation",
+                    "${config.environment}_aboveThresholdUA_defence_cancellation",
+                    "${config.environment}_negotiation_cancellation",
+                    "${config.environment}_negotiation.quick_cancellation",
+                    "${config.environment}_reporting_cancellation",
+                    "${config.environment}_aboveThresholdEU_cancellation",
+                    "${config.environment}_aboveThresholdUA_cancellation",
+                    "${config.environment}_competitiveDialogueUA_cancellation",
+                    "${config.environment}_competitiveDialogueEU_cancellation",
+                    "${config.environment}_belowThreshold_cancellation",
+                    "${config.environment}_esco_cancellation",
                 ]
                 if (config.environment == 'staging_prozorro') {
                     innerJobs.addAll([
