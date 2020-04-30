@@ -186,7 +186,7 @@ try {
                     "EDR_HOST_URL": "https://lb-edr-sandbox-2.prozorro.gov.ua",
                     "DASU_API_HOST_URL": "https://audit-api-sandbox-2.prozorro.gov.ua",
                     "API_VERSION": "2.4",
-                    "EDR_VERSION": "0",
+                    "EDR_VERSION": "1.0",
                     "PAYMENT_API": "https://integration-sandbox-2.prozorro.gov.ua/liqpay",
                     "PAYMENT_API_VERSION": "v1",
                     "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
