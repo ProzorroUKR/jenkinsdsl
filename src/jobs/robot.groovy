@@ -107,8 +107,8 @@ String planning = "-o planning_output.xml -s planning"
 String complaints = "-o complaints_output.xml -s complaints_new"
 String no_auction = "-v submissionMethodDetails:\"quick(mode:no-auction)\""
 String cancellation = "-o cancellation_output.xml -s cancellation"
-String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
-String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
+String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
 String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":14400}}}}'"
 String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"enquiry\":[0,1],\"tender\":[1,5],\"accelerator\":14400}}}}'"
 String accelerate_belowThreshold = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"enquiry\":[0,1],\"tender\":[0,5],\"accelerator\":14400}}}}'"
@@ -2463,6 +2463,51 @@ try {
         }
     }
 
+    job("${config.environment}_aboveThresholdUA_24_hours_award") {
+        parameters defaultParameters(config)
+        description("Сценарій: Повідомлення про невідповідність пропозиції на єтапі кваліфікації")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/24_hours_award.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $openProcedure  $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $qualification $defaultArgs")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_aboveThresholdEU_24_hours_qualification") {
+        parameters defaultParameters(config)
+        description("Сценарій: Повідомлення про невідповідність пропозиції на єтапі пре-кваліфікації")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/24_hours_qual.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $accelerate_openeu $params")
+            shell(shellRebot)
+        }
+    }
+
 
 
     multiJob(config.environment) {
@@ -2569,6 +2614,8 @@ try {
                     "${config.environment}_competitiveDialogueEU_cancellation",
                     "${config.environment}_belowThreshold_cancellation",
                     "${config.environment}_esco_cancellation",
+                    "${config.environment}_aboveThresholdUA_24_hours_award",
+                    "${config.environment}_aboveThresholdEU_24_hours_qualification",
                 ]
                 if (config.environment == 'staging_prozorro') {
                     innerJobs.addAll([
