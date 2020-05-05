@@ -2614,6 +2614,8 @@ try {
                     "${config.environment}_competitiveDialogueEU_cancellation",
                     "${config.environment}_belowThreshold_cancellation",
                     "${config.environment}_esco_cancellation",
+                    "${config.environment}_aboveThresholdUA_24_hours_award",
+                    "${config.environment}_aboveThresholdEU_24_hours_qualification",
                 ]
                 if (config.environment == 'staging_prozorro') {
                     innerJobs.addAll([
