@@ -2463,6 +2463,51 @@ try {
         }
     }
 
+    job("${config.environment}_aboveThresholdUA_24_hours_award") {
+        parameters defaultParameters(config)
+        description("Сценарій: Повідомлення про невідповідність пропозиції на єтапі кваліфікації")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/24_hours_award.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $openProcedure  $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $qualification $defaultArgs")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_aboveThresholdEU_24_hours_qualification") {
+        parameters defaultParameters(config)
+        description("Сценарій: Повідомлення про невідповідність пропозиції на єтапі пре-кваліфікації")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/24_hours_qual.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $accelerate_openeu $params")
+            shell(shellRebot)
+        }
+    }
+
 
 
     multiJob(config.environment) {
