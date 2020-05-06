@@ -634,7 +634,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation_stand_still -v MODE:belowThreshold $no_auction $accelerate_belowThreshold $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_complaintPeriond_stand_still -e tender_cancellation_stand_still -v MODE:belowThreshold $no_auction $accelerate_belowThreshold $params")
             shell(shellRebot)
         }
     }
