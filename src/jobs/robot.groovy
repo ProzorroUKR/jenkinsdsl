@@ -162,7 +162,7 @@ try {
                 environment: 'staging_prozorro',
                 params: [
                     "API_HOST_URL": "http://lb-api-staging.prozorro.gov.ua",
-                    "DS_HOST_URL": "http://upload-docs-staging.prozorro.gov.ua",
+                    "DS_HOST_URL": "https://upload-docs-staging.prozorro.gov.ua",
                     "EDR_HOST_URL": "http://lb-edr-staging.prozorro.gov.ua",
                     "DASU_API_HOST_URL": "http://audit-api-staging.prozorro.gov.ua",
                     "API_VERSION": "2.5",
@@ -170,7 +170,7 @@ try {
                     "PAYMENT_API": "http://integration-staging.prozorro.gov.ua/liqpay",
                     "PAYMENT_API_VERSION": "v1",
                     "AUCTION_REGEXP": "^http?:\\/\\/auction(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
-                    "DS_REGEXP": "^http?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
+                    "DS_REGEXP": "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
                 cron: "H 4 * * *",
                 branch: "master",
