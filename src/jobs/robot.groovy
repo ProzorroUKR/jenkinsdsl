@@ -1793,7 +1793,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/esco_testing.txt"
+        String defaultArgs = "-A robot_tests_arguments/esco_dfs.txt"
 
         steps {
             shell(shellBuildout)
