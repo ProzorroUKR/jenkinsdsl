@@ -232,32 +232,6 @@ try {
         }
     }
 
-    job("${config.environment}_aboveThresholdEU_no_auction") {
-        parameters defaultParameters(config)
-        description("Сценарій: Надпорогова закупівля з публікацією англійською мовою.(пропуск аукціона)")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/openeu.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell(shellPhantom)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v submissionMethodDetails:\"quick(mode:no-auction)\" $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
     job("${config.environment}_aboveThresholdEU_cancellation") {
         parameters defaultParameters(config)
         description("Сценарій: Надпорогова закупівля з публікацією англійською мовою. Скасування закупівлі.")
@@ -2522,7 +2496,6 @@ try {
             phase("Test") {
                 def innerJobs = [
                     "${config.environment}_aboveThresholdEU",
-                    "${config.environment}_aboveThresholdEU_no_auction",
                     "${config.environment}_aboveThresholdEU_vat_true_false",
                     "${config.environment}_aboveThresholdEU_vat_false_false",
                     "${config.environment}_aboveThresholdEU_vat_false_true",
