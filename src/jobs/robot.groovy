@@ -2485,6 +2485,29 @@ try {
         }
     }
 
+    job("${config.environment}_aboveThresholdUA_alp") {
+        parameters defaultParameters(config)
+        description("Сценарій: Обгрунтування аномально низької ціни")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/alp.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $qualification $defaultArgs")
+            shell(shellRebot)
+        }
+    }
+
 
 
     multiJob(config.environment) {
@@ -2592,6 +2615,7 @@ try {
                     "${config.environment}_esco_cancellation",
                     "${config.environment}_aboveThresholdUA_24_hours_award",
                     "${config.environment}_aboveThresholdEU_24_hours_qualification",
+                    "${config.environment}_aboveThresholdUA_alp",
                 ]
                 if (config.environment == 'staging_prozorro') {
                     innerJobs.addAll([
