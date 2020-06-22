@@ -2508,6 +2508,97 @@ try {
         }
     }
 
+    job("aboveThresholdEU_cancellation_tendering") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування надпорогової закупівлі з публікацією англійською мовою. Етап active.tendering")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:openeu $no_auction $accelerate_openeu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitiveDialogueEU_cancellation_tendering") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування закупівлі конкурентний діалог з публікацією англійською мовою. Етап active.tendering")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue $no_auction $accelerate_open_competitive_dialogue $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("aboveThresholdUA_cancellation_tendering") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування надпорогової закупівлі. Етап active.tendering")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:openua $no_auction $accelerate_openua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitiveDialogueUA_cancellation_tendering") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування закупівлі конкурентний діалог. Етап active.tendering")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_competitive_dialogue -v DIALOGUE_TYPE:UA $no_auction $accelerate_open_competitive_dialogue $params")
+            shell(shellRebot)
+        }
+    }
 
 
     multiJob(config.environment) {
@@ -2650,3 +2741,22 @@ try {
         }
     }
 }
+
+    listView("test_view") {
+        description('Cancellation for all procedure types in all tender statuses')
+        jobs {
+            names("aboveThresholdEU_cancellation_tendering",
+                  "aboveThresholdUA_cancellation_tendering",
+                  "competitiveDialogueEU_cancellation_tendering",
+                  "competitiveDialogueUA_cancellation_tendering")
+        }
+        columns {
+            status()
+            weather()
+            name()
+            lastSuccess()
+            lastFailure()
+            lastDuration()
+            buildButton()
+        }
+    }
