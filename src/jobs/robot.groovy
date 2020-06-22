@@ -2760,3 +2760,64 @@ try {
             buildButton()
         }
     }
+
+multiJob("cancellation_multiJob") {
+    description('my description')
+    parameters {
+        choiceParam('BRANCH', ['master (default)', 'dev_prozorro_2', 'dev_prozorro'], 'my description')
+        stringParam('RELEASE_NAME', 'main', 'my description')
+        activeChoiceParam('API_HOST_URL'){
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["choice1", "choice2"]')
+            }
+        }
+        choiceParam('API_VERSION', ['2.5 (default)', '2.4',], 'my description')
+        activeChoiceParam('EDR_HOST_URL'){
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["choice1", "choice2"]')
+            }
+        }
+        choiceParam('EDR_VERSION', ['1.0 (default)', '0'], 'my description')
+        activeChoiceParam('DS_HOST_URL'){
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["choice1", "choice2"]')
+        }
+        activeChoiceParam('DS_REGEXP'){
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["choice1", "choice2"]')
+            }
+        }
+        activeChoiceParam('PAYMENT_API'){
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["choice1", "choice2"]')
+            }
+        }
+        choiceParam('PAYMENT_API_VERSION', ['v1 (default)'], 'my description')
+        activeChoiceParam('AUCTION_REGEXP'){
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["choice1", "choice2"]')
+            }
+        }
+    }
+        steps {
+            phase("Test") {
+                def innerJobs = [
+                  "aboveThresholdEU_cancellation_tendering",
+                  "aboveThresholdUA_cancellation_tendering",
+                  "competitiveDialogueEU_cancellation_tendering",
+                  "competitiveDialogueUA_cancellation_tendering",
+                ]
+                innerJobs.each { String scenario -> phaseJob(scenario) {
+                    currentJobParameters(true)
+                    abortAllJobs(false)
+                }}
+            }
+        }
+    }
+}
