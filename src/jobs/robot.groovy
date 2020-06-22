@@ -2760,3 +2760,33 @@ try {
             buildButton()
         }
     }
+
+multiJob("test_view") {
+    description('my description')
+    parameters {
+        choiceParam('BRANCH', ['master (default)', 'dev_prozorro_2', 'dev_prozorro'], 'my description')
+        choiceParam('API_VERSION', ['2.5 (default)', '2.4',], 'my description')
+        choiceParam('EDR_VERSION', ['1.0 (default)', '0'], 'my description')
+        stringParam('myParameterName', 'my default stringParam value', 'my description')
+        activeChoiceParam('DS_HOST_URL'){
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["choice1", "choice2"]')
+        }
+    }
+        steps {
+            phase("Test") {
+                def innerJobs = [
+                  "aboveThresholdEU_cancellation_tendering",
+                  "aboveThresholdUA_cancellation_tendering",
+                  "competitiveDialogueEU_cancellation_tendering",
+                  "competitiveDialogueUA_cancellation_tendering",
+                ]
+                innerJobs.each { String scenario -> phaseJob(scenario) {
+                    currentJobParameters(true)
+                    abortAllJobs(false)
+                }}
+            }
+        }
+    }
+}
