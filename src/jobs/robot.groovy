@@ -2600,6 +2600,167 @@ try {
         }
     }
 
+    job("frameworkagreement_cancellation_tendering") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування тендера Рамкова угода 1-й етап. Етап active.tendering")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e lot_cancellation -e lot_cancellation_stand_still -e lot_cancellation_view -v MODE:open_framework -v NUMBER_OF_LOTS:1 $no_auction $accelerate_open_framework $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("reporting_cancellation") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування закупівлі reporting")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/limited_cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:reporting $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation_stand_still -v MODE:reporting $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("negotiation_cancellation") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування закупівлі negotiation")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/limited_cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:negotiation $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:negotiation $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("negotiation.quick_cancellation") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування закупівлі negotiation.quick")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/limited_cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:negotiation.quick $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:negotiation.quick $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("aboveThresholdUA_defence_cancellation_tendering") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування процедури для потреб оборони. Етап active.tendering")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA.defense $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:openua_defense $no_auction $accelerate_openua_defense $params")
+            shell(shellRebot)
+         }
+    }
+
+     job("esco_cancellation_tendering") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування ESCO закупівлі. Етап active.tendering")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
+            shell("$robotWrapper $cancellation $defaultArgs -v MODE:open_esco -v FUNDING_KIND:budget $no_auction $accelerate_open_esco $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("belowThreshold_cancellation_tendering") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування допорогової закупівлі. Етап active.tendering")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_complaintPeriond_stand_still -e tender_cancellation_stand_still -v MODE:belowThreshold $no_auction $accelerate_belowThreshold $params")
+            shell(shellRebot)
+        }
+    }
+
 
     multiJob(config.environment) {
         authenticationToken(remoteToken)
@@ -2745,10 +2906,18 @@ try {
     listView("test_view") {
         description('Cancellation for all procedure types in all tender statuses')
         jobs {
-            names("aboveThresholdEU_cancellation_tendering",
+            names("cancellation_multiJob",
+                  "aboveThresholdEU_cancellation_tendering",
                   "aboveThresholdUA_cancellation_tendering",
                   "competitiveDialogueEU_cancellation_tendering",
-                  "competitiveDialogueUA_cancellation_tendering")
+                  "competitiveDialogueUA_cancellation_tendering",
+                  "reporting_cancellation",
+                  "negotiation_cancellation",
+                  "negotiation.quick_cancellation",
+                  "frameworkagreement_cancellation_tendering",
+                  "esco_cancellation_tendering",
+                  "aboveThresholdUA_defence_cancellation_tendering",
+                  "belowThreshold_cancellation_tendering",)
         }
         columns {
             status()
@@ -2785,11 +2954,17 @@ multiJob("cancellation_multiJob") {
         steps {
             phase("Test") {
                 def innerJobs = [
-                  "cancellation_multiJob",
                   "aboveThresholdEU_cancellation_tendering",
                   "aboveThresholdUA_cancellation_tendering",
                   "competitiveDialogueEU_cancellation_tendering",
                   "competitiveDialogueUA_cancellation_tendering",
+                  "reporting_cancellation",
+                  "negotiation_cancellation",
+                  "negotiation.quick_cancellation",
+                  "frameworkagreement_cancellation_tendering",
+                  "esco_cancellation_tendering",
+                  "aboveThresholdUA_defence_cancellation_tendering",
+                  "belowThreshold_cancellation_tendering",
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
