@@ -2508,7 +2508,7 @@ try {
         }
     }
 
-    job("aboveThresholdEU_cancellation_tendering") {
+    job("cancellation_tendering_aboveThresholdEU") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування надпорогової закупівлі з публікацією англійською мовою. Етап active.tendering")
         keepDependencies(false)
@@ -2531,7 +2531,7 @@ try {
         }
     }
 
-    job("competitiveDialogueEU_cancellation_tendering") {
+    job("cancellation_tendering_competitiveDialogueEU") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування закупівлі конкурентний діалог з публікацією англійською мовою. Етап active.tendering")
         keepDependencies(false)
@@ -2554,7 +2554,7 @@ try {
         }
     }
 
-    job("aboveThresholdUA_cancellation_tendering") {
+    job("cancellation_tendering_aboveThresholdUA") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування надпорогової закупівлі. Етап active.tendering")
         keepDependencies(false)
@@ -2577,7 +2577,7 @@ try {
         }
     }
 
-    job("competitiveDialogueUA_cancellation_tendering") {
+    job("cancellation_tendering_competitiveDialogueUA") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування закупівлі конкурентний діалог. Етап active.tendering")
         keepDependencies(false)
@@ -2600,7 +2600,7 @@ try {
         }
     }
 
-    job("frameworkagreement_cancellation_tendering") {
+    job("cancellation_tendering_closeFrameworkAgreementUA") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування тендера Рамкова угода 1-й етап. Етап active.tendering")
         keepDependencies(false)
@@ -2623,7 +2623,7 @@ try {
         }
     }
 
-    job("reporting_cancellation") {
+    job("cancellation_reporting") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування закупівлі reporting")
         keepDependencies(false)
@@ -2646,7 +2646,7 @@ try {
         }
     }
 
-    job("negotiation_cancellation") {
+    job("cancellation_negotiation") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування закупівлі negotiation")
         keepDependencies(false)
@@ -2669,7 +2669,7 @@ try {
         }
     }
 
-    job("negotiation.quick_cancellation") {
+    job("cancellation_negotiation.quick") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування закупівлі negotiation.quick")
         keepDependencies(false)
@@ -2692,7 +2692,7 @@ try {
         }
     }
 
-    job("aboveThresholdUA_defence_cancellation_tendering") {
+    job("cancellation_tendering_aboveThresholdUA_defence") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування процедури для потреб оборони. Етап active.tendering")
         keepDependencies(false)
@@ -2715,7 +2715,7 @@ try {
          }
     }
 
-     job("esco_cancellation_tendering") {
+     job("cancellation_tendering_esco") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування ESCO закупівлі. Етап active.tendering")
         keepDependencies(false)
@@ -2738,7 +2738,7 @@ try {
         }
     }
 
-    job("belowThreshold_cancellation_tendering") {
+    job("cancellation_tendering_belowThreshold") {
         parameters defaultParameters(config)
         description("Сценарій: Скасування допорогової закупівлі. Етап active.tendering")
         keepDependencies(false)
@@ -2906,18 +2906,18 @@ try {
     listView("test_view") {
         description('Cancellation for all procedure types in all tender statuses')
         jobs {
-            names("cancellation_multiJob",
-                  "aboveThresholdEU_cancellation_tendering",
-                  "aboveThresholdUA_cancellation_tendering",
-                  "competitiveDialogueEU_cancellation_tendering",
-                  "competitiveDialogueUA_cancellation_tendering",
-                  "reporting_cancellation",
-                  "negotiation_cancellation",
-                  "negotiation.quick_cancellation",
-                  "frameworkagreement_cancellation_tendering",
-                  "esco_cancellation_tendering",
-                  "aboveThresholdUA_defence_cancellation_tendering",
-                  "belowThreshold_cancellation_tendering",)
+            names("cancellation",
+                    "cancellation_tendering_esco",
+                    "cancellation_tendering_aboveThresholdUA_defence",
+                    "cancellation_tendering_belowThreshold",
+                    "cancellation_tendering_closeFrameworkAgreementUA",
+                    "cancellation_tendering_competitiveDialogueUA",
+                    "cancellation_tendering_aboveThresholdUA",
+                    "cancellation_tendering_competitiveDialogueEU",
+                    "cancellation_tendering_aboveThresholdEU",
+                    "cancellation_negotiation.quick",
+                    "cancellation_negotiation",
+                    "cancellation_reporting",)
         }
         columns {
             status()
@@ -2930,7 +2930,7 @@ try {
         }
     }
 
-multiJob("cancellation_multiJob") {
+multiJob("cancellation") {
     description('my description')
     parameters {
         choiceParam('BRANCH', ['master', 'dev_prozorro_2', 'dev_prozorro'], 'my description')
@@ -2954,17 +2954,17 @@ multiJob("cancellation_multiJob") {
         steps {
             phase("Test") {
                 def innerJobs = [
-                  "aboveThresholdEU_cancellation_tendering",
-                  "aboveThresholdUA_cancellation_tendering",
-                  "competitiveDialogueEU_cancellation_tendering",
-                  "competitiveDialogueUA_cancellation_tendering",
-                  "reporting_cancellation",
-                  "negotiation_cancellation",
-                  "negotiation.quick_cancellation",
-                  "frameworkagreement_cancellation_tendering",
-                  "esco_cancellation_tendering",
-                  "aboveThresholdUA_defence_cancellation_tendering",
-                  "belowThreshold_cancellation_tendering",
+                            "cancellation_tendering_esco",
+                            "cancellation_tendering_aboveThresholdUA_defence",
+                            "cancellation_tendering_belowThreshold",
+                            "cancellation_tendering_closeFrameworkAgreementUA",
+                            "cancellation_tendering_competitiveDialogueUA",
+                            "cancellation_tendering_aboveThresholdUA",
+                            "cancellation_tendering_competitiveDialogueEU",
+                            "cancellation_tendering_aboveThresholdEU",
+                            "cancellation_negotiation.quick",
+                            "cancellation_negotiation",
+                            "cancellation_reporting",
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
