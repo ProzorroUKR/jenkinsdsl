@@ -3340,6 +3340,58 @@ try {
         }
     }
 
+    job("cancellation_enquiry_belowThreshold") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування допорогової закупівлі. Етап active.enquiry")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/cancellation_enquiry_below.txt"
+        String accelerate_belowThreshold = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"enquiry\":[1,5],\"tender\":[1,5],\"accelerator\":4320}}}}'"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_complaintPeriond_stand_still -e tender_cancellation_stand_still -v MODE:belowThreshold $no_auction $accelerate_belowThreshold $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("cancellation_enquiry_closeFrameworkAgreementSelectionUA") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скасування тендера Рамкова угода 2-й етап. Етап active.enquiry")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/cancellation_enquiry_framework_selection.txt"
+        String accelerate_open_framework = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_framework\":{\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
+        String framework_short_Args = "-A robot_tests_arguments/framework_agreement_short.txt"
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $openProcedure $framework_short_Args $no_auction $accelerate_open_framework $params")
+            shell("$robotWrapper $qualification $framework_short_Args $params")
+            shell("$robotWrapper $contractsign $framework_short_Args $params")
+            shell("$robotWrapper $agreement $framework_short_Args $params")
+            shell("$robotWrapper $cancellation $defaultArgs $no_auction $params")
+            shell(shellRebot)
+        }
+    }
+
     multiJob(config.environment) {
         authenticationToken(remoteToken)
         parameters defaultParameters(config)
@@ -3517,7 +3569,9 @@ try {
                     "cancellation_tendering_closeFrameworkAgreementSelectionUA",
                     "cancellation_tendering_aboveThresholdUA_defence",
                     "cancellation_tendering_competitiveDialogueEU_stage2",
-                    "cancellation_tendering_competitiveDialogueUA_stage2",)
+                    "cancellation_tendering_competitiveDialogueUA_stage2",
+                    "cancellation_enquiry_belowThreshold",
+                    "cancellation_enquiry_closeFrameworkAgreementSelectionUA",)
         }
         columns {
             status()
@@ -3587,6 +3641,8 @@ multiJob("cancellation") {
                             "cancellation_tendering_aboveThresholdUA_defence",
                             "cancellation_tendering_competitiveDialogueEU_stage2",
                             "cancellation_tendering_competitiveDialogueUA_stage2",
+                            "cancellation_enquiry_belowThreshold",
+                            "cancellation_enquiry_closeFrameworkAgreementSelectionUA",
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
