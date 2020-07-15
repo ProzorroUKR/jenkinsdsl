@@ -3349,12 +3349,17 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/cancellation_awarded_framework_selection.txt"
         String accelerate_open_framework = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_framework\":{\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
+        String framework_short_Args = "-A robot_tests_arguments/framework_agreement_short.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $cancellation $defaultArgs -e lot_cancellation -e lot_cancellation_stand_still -e lot_cancellation_view $no_auction $accelerate_open_framework $params")
+            shell("$robotWrapper $openProcedure $framework_short_Args $no_auction $accelerate_open_framework $params")
+            shell("$robotWrapper $qualification $framework_short_Args $params")
+            shell("$robotWrapper $contractsign $framework_short_Args $params")
+            shell("$robotWrapper $agreement $framework_short_Args $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e lot_cancellation -e lot_cancellation_stand_still -e lot_cancellation_view $no_auction $params")
             shell(shellRebot)
         }
     }
@@ -3373,11 +3378,16 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/cancellation_awarded_framework_selection.txt"
         String accelerate_open_framework = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_framework\":{\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
+        String framework_short_Args = "-A robot_tests_arguments/framework_agreement_short.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $openProcedure $framework_short_Args $no_auction $accelerate_open_framework $params")
+            shell("$robotWrapper $qualification $framework_short_Args $params")
+            shell("$robotWrapper $contractsign $framework_short_Args $params")
+            shell("$robotWrapper $agreement $framework_short_Args $params")
             shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation -e tender_cancellation_stand_still -e tender_cancellation_view $no_auction $accelerate_open_framework $params")
             shell(shellRebot)
         }
