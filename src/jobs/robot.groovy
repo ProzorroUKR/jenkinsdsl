@@ -3006,7 +3006,7 @@ try {
             shell("$robotWrapper $qualification $framework_short_Args $params")
             shell("$robotWrapper $contractsign $framework_short_Args $params")
             shell("$robotWrapper $agreement $framework_short_Args $params")
-            shell("$robotWrapper $cancellation $defaultArgs $no_auction $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e lot_cancellation -e lot_cancellation_stand_still -e lot_cancellation_view $no_auction $params")
             shell(shellRebot)
         }
     }
@@ -3034,7 +3034,7 @@ try {
             shell("$robotWrapper $qualification $framework_short_Args $params")
             shell("$robotWrapper $contractsign $framework_short_Args $params")
             shell("$robotWrapper $agreement $framework_short_Args $params")
-            shell("$robotWrapper $cancellation $defaultArgs $no_auction $params")
+            shell("$robotWrapper $cancellation $defaultArgs -e tender_cancellation -e tender_cancellation_stand_still -e tender_cancellation_view $no_auction $params")
             shell(shellRebot)
         }
     }
