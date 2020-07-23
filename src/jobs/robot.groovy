@@ -107,6 +107,7 @@ String planning = "-o planning_output.xml -s planning"
 String complaints = "-o complaints_output.xml -s complaints_new"
 String no_auction = "-v submissionMethodDetails:\"quick(mode:no-auction)\""
 String cancellation = "-o cancellation_output.xml -s cancellation"
+String fast_auction = "-v submissionMethodDetails:\"quick(mode:fast-auction)\""
 
 def remoteToken = null
 try {
@@ -216,7 +217,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -321,7 +322,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -348,12 +349,12 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction \$EDR_PRE_QUALIFICATION -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
             shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $agreement $defaultArgs $params")
-            shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection_full.txt $params")
+            shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection_full.txt $fast_auction $params")
             shell("$robotWrapper -o auction_short_framework_output.xml -s auction -A robot_tests_arguments/framework_selection_full.txt $params")
             shell("$robotWrapper -o qualification_framework_output.xml -s qualification -A robot_tests_arguments/framework_selection_full.txt $params")
             shell("$robotWrapper -o contract_framework_output.xml -s contract_signing -A robot_tests_arguments/framework_selection_full.txt $params")
@@ -458,7 +459,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -485,7 +486,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -512,7 +513,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -539,7 +540,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -566,7 +567,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -701,7 +702,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet_tender_vat_true -i modify_contract_amount_net -i modify_contract_value $params")
@@ -829,7 +830,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -1042,7 +1043,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -1094,7 +1095,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction_short $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -3460,8 +3461,6 @@ try {
                     "${config.environment}_aboveThresholdUA_vat_false_true",
                     "${config.environment}_below_funders_full",
                     "${config.environment}_belowThreshold",
-                    "${config.environment}_belowThreshold_VAT_False",
-                    "${config.environment}_belowThreshold_moz",
                     "${config.environment}_belowThreshold_vat_true_false",
                     "${config.environment}_belowThreshold_vat_false_false",
                     "${config.environment}_belowThreshold_vat_false_true",
