@@ -3440,6 +3440,282 @@ try {
         }
     }
 
+    job("${config.environment}_priceQuotation_full") {
+        parameters defaultParameters(config)
+        description("Сценарій: Процедура PQ від початку до кінця")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_priceQuotation_cancellation_tendering") {
+        parameters defaultParameters(config)
+        description("Сценарій: Процедура PQ скасування під час етапу подачі пропозицій")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation_cancellation_after_active_tendering.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_priceQuotation_cancellation_qualification") {
+        parameters defaultParameters(config)
+        description("Сценарій: Процедура PQ скасування під час етапу визначення переможця")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation_cancellation_after_active_qualification.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_priceQuotation_cancellation_awarded") {
+        parameters defaultParameters(config)
+        description("Сценарій: Процедура PQ скасування під час етапу укладання контракту")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation_cancellation_after_active_award.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_priceQuotation_cancelled_without_bids") {
+        parameters defaultParameters(config)
+        description("Сценарій: Процедура PQ скасування через відсутність пропозицій")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation_cancelled_without_bids.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_priceQuotation_unsuccessful") {
+        parameters defaultParameters(config)
+        description("Сценарій: Процедура PQ скасовано.дискваліфіковано всіх учасників")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation_unsuccessful.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_priceQuotation_shortlistedfirms_empty") {
+        parameters defaultParameters(config)
+        description("Сценарій: Створити роцедуру PQ - shortlistedfirms порожній")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation_bot_unsuccessful_shortlistedfirms_empty.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_priceQuotation_hidden_profile") {
+        parameters defaultParameters(config)
+        description("Сценарій: Створити роцедуру PQ - статус профіля hidden")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation_bot_unsuccessful_hidden_profile.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_priceQuotation_unknown_profile") {
+        parameters defaultParameters(config)
+        description("Сценарій: Створити роцедуру PQ - неіснуючий профіль")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation_bot_unsuccessful_unknown_profile.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_priceQuotation_bot_unsuccessful") {
+        parameters defaultParameters(config)
+        description("Сценарій: Створити роцедуру PQ - невірний профіль")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation_bot_unsuccessful.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_priceQuotation_negative") {
+        parameters defaultParameters(config)
+        description("Сценарій: Створити роцедуру PQ - негативні тести")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation_negative.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_priceQuotation_negative_draft") {
+        parameters defaultParameters(config)
+        description("Сценарій: Змінити роцедуру PQ - негативні тести")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/priceQuotation_negative_draft.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
+            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
     multiJob(config.environment) {
         authenticationToken(remoteToken)
         parameters defaultParameters(config)
@@ -3532,6 +3808,18 @@ try {
                     "${config.environment}_aboveThresholdUA_24_hours_award",
                     "${config.environment}_aboveThresholdEU_24_hours_qualification",
                     "${config.environment}_aboveThresholdUA_alp",
+                    "${config.environment}_priceQuotation_full",
+                    "${config.environment}_priceQuotation_cancellation_tendering",
+                    "${config.environment}_priceQuotation_cancellation_qualification",
+                    "${config.environment}_priceQuotation_cancellation_awarded",
+                    "${config.environment}_priceQuotation_cancelled_without_bids",
+                    "${config.environment}_priceQuotation_unsuccessful",
+                    "${config.environment}_priceQuotation_shortlistedfirms_empty",
+                    "${config.environment}_priceQuotation_hidden_profile",
+                    "${config.environment}_priceQuotation_unknown_profile",
+                    "${config.environment}_priceQuotation_bot_unsuccessful",
+                    "${config.environment}_priceQuotation_negative",
+                    "${config.environment}_priceQuotation_negative_draft",
                 ]
                 if (config.environment == 'staging_prozorro') {
                     innerJobs.addAll([
