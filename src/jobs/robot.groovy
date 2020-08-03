@@ -108,6 +108,7 @@ String complaints = "-o complaints_output.xml -s complaints_new"
 String no_auction = "-v submissionMethodDetails:\"quick(mode:no-auction)\""
 String cancellation = "-o cancellation_output.xml -s cancellation"
 String fast_auction = "-v submissionMethodDetails:\"quick(mode:fast-auction)\""
+String priceQuotation = "-o priceQuotation_output.xml -s priceQuotationProcedure"
 
 def remoteToken = null
 try {
@@ -3458,7 +3459,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -3481,7 +3482,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -3504,7 +3505,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -3527,7 +3528,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -3550,7 +3551,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -3573,7 +3574,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -3596,7 +3597,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -3619,7 +3620,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -3642,7 +3643,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -3665,7 +3666,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -3688,7 +3689,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -3711,7 +3712,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
-            shell("$robotWrapper $cancellation $defaultArgs $params")
+            shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
         }
     }
