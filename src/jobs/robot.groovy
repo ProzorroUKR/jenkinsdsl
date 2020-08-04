@@ -2206,7 +2206,7 @@ try {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
             shell("$robotWrapper $openProcedure  $defaultArgs $no_auction $accelerate_openua $params")
-            shell("$robotWrapper $qualification $defaultArgs")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -2253,7 +2253,7 @@ try {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs $no_auction $accelerate_openua $params")
-            shell("$robotWrapper $qualification $defaultArgs")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell(shellRebot)
         }
     }
