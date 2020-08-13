@@ -107,7 +107,7 @@ String planning = "-o planning_output.xml -s planning"
 String complaints = "-o complaints_output.xml -s complaints_new"
 String no_auction = "-v submissionMethodDetails:\"quick(mode:no-auction)\""
 String cancellation = "-o cancellation_output.xml -s cancellation"
-String fast_auction = "-v submissionMethodDetails:\"quick(mode:fast-auction)\""
+String fast_auction = "-v submissionMethodDetails:\"new-auction;quick(mode:fast-auction)\""
 String priceQuotation = "-o priceQuotation_output.xml -s priceQuotationProcedure"
 
 def remoteToken = null
