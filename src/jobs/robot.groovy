@@ -91,7 +91,7 @@ def defaultEnv() {
     }
 }
 
-String shellBuildout = "ping -c 1 8.8.8.8\n ping -c 1 github.com\n python2 python2 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f"
+String shellBuildout = "ping -c 1 8.8.8.8\nping -c 1 github.com\npython2 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f"
 String shellPhantom  = "sed -r -i 's/browser: *(chrome|firefox)/browser:  PhantomJS/gi' op_robot_tests/tests_files/data/users.yaml"
 String shellRebot    = "robot_wrapper bin/rebot -o test_output/output.xml -l test_output/log.html -r test_output/report.html -R test_output/*.xml"
 String robotWrapper  = "robot_wrapper bin/op_tests --consolecolors on "
