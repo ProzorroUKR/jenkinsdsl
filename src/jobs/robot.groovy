@@ -1969,7 +1969,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_resolved.txt"
         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
@@ -1992,7 +1992,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_mistaken.txt"
         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
@@ -2015,7 +2015,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_invalid.txt"
         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
@@ -2038,7 +2038,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_declined.txt"
         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
@@ -2061,7 +2061,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_stopped.txt"
         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
@@ -2084,7 +2084,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_lot_resolved.txt"
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_resolved.txt"
         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
@@ -2107,7 +2107,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_lot_mistaken.txt"
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_mistaken.txt"
         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
@@ -2130,7 +2130,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_lot_invalid.txt"
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_invalid.txt"
         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
@@ -2153,7 +2153,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_lot_declined.txt"
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_declined.txt"
         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
@@ -2176,7 +2176,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/complaint_lot_stopped.txt"
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_stopped.txt"
         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
