@@ -91,7 +91,7 @@ def defaultEnv() {
     }
 }
 
-String shellBuildout = "ping -c 10 8.8.8.8\nping -c 10 github.com\npython2 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f"
+String shellBuildout = "sleep \$((RANDOM % 600))/nping -c 10 8.8.8.8\nping -c 10 github.com\npython2 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f"
 String shellPhantom  = "sed -r -i 's/browser: *(chrome|firefox)/browser:  PhantomJS/gi' op_robot_tests/tests_files/data/users.yaml"
 String shellRebot    = "robot_wrapper bin/rebot -o test_output/output.xml -l test_output/log.html -r test_output/report.html -R test_output/*.xml"
 String robotWrapper  = "robot_wrapper bin/op_tests --consolecolors on "
@@ -155,10 +155,10 @@ try {
         [
                 environment: 'staging_prozorro',
                 params: [
-                    "API_HOST_URL": "http://lb-api-staging.prozorro.gov.ua",
+                    "API_HOST_URL": "https://lb-api-staging.prozorro.gov.ua",
                     "DS_HOST_URL": "https://upload-docs-staging.prozorro.gov.ua",
-                    "EDR_HOST_URL": "http://lb-edr-staging.prozorro.gov.ua",
-                    "DASU_API_HOST_URL": "http://audit-api-staging.prozorro.gov.ua",
+                    "EDR_HOST_URL": "https://lb-edr-staging.prozorro.gov.ua",
+                    "DASU_API_HOST_URL": "https://audit-api-staging.prozorro.gov.ua",
                     "DASU_API_VERSION": "2.5",
                     "API_VERSION": "2.5",
                     "EDR_VERSION": "0",
