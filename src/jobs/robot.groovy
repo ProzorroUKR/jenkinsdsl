@@ -128,28 +128,9 @@ try {
                     "DS_REGEXP": "^http?:\\/\\/ds\\.k8s\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
                 cron: null,
-                branch: "dev_prozorro",
+                branch: "dev_prozorro_2",
                 concurrentBuild: true,
                 edr: false,
-                dfs: false
-        ],
-	    [
-                environment: 'sandbox_prozorro',
-                params: [
-                    "API_HOST_URL": "https://lb-api-sandbox.prozorro.gov.ua",
-                    "DS_HOST_URL": "https://upload-docs-sandbox.prozorro.gov.ua",
-                    "EDR_HOST_URL": "https://lb-edr-sandbox.prozorro.gov.ua",
-                    "DASU_API_HOST_URL": "https://audit-api-sandbox.prozorro.gov.ua",
-                    "DASU_API_VERSION": "2.5",
-                    "API_VERSION": "2.5",
-                    "EDR_VERSION": "0",
-                    "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
-                    "DS_REGEXP": "^https?:\\/\\/public-docs(?:-sandbox)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
-                ],
-                cron: "30 2 * * *",
-                branch: "dev_prozorro",
-                concurrentBuild: false,
-                edr: true,
                 dfs: false
         ],
         [
