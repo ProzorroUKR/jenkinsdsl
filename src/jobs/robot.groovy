@@ -145,7 +145,7 @@ try {
                     "EDR_VERSION": "0",
                     "PAYMENT_API": "https://integration-staging.prozorro.gov.ua/liqpay",
                     "PAYMENT_API_VERSION": "v1",
-                    "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-new)?(?:-staging)?\.prozorro\.gov\.ua\/(esco-)?tenders\/([0-9A-Fa-f]{32})",
+                    "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-new)?(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
                 cron: "0 4 * * *",
