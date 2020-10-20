@@ -195,8 +195,7 @@ try {
         publishers defaultPublishers
         wrappers defaultWrappers(true)
         configure defaultConfigure
-        environmentVariables defaultEnv()
-        environmentVariables defaultEnv_dfs()
+        environmentVariables {defaultEnv() defaultEnv_dfs()}
         
         String defaultArgs = "-A robot_tests_arguments/openeu.txt"
 
