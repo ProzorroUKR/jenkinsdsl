@@ -91,6 +91,12 @@ def defaultEnv() {
     }
 }
 
+def defaultEnv_dfs() {
+    return {
+    groovy("if (DFS.toBoolean()) {return [DFS_QUALIFICATION: '-i awards_check_by_dfs']}")
+    }
+}
+
 String shellBuildout = "sleep \$((RANDOM % 600))\nping -c 10 8.8.8.8\nping -c 10 github.com\npython2 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f"
 String shellPhantom  = "sed -r -i 's/browser: *(chrome|firefox)/browser:  PhantomJS/gi' op_robot_tests/tests_files/data/users.yaml"
 String shellRebot    = "robot_wrapper bin/rebot -o test_output/output.xml -l test_output/log.html -r test_output/report.html -R test_output/*.xml"
@@ -149,10 +155,10 @@ try {
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
                 cron: "0 4 * * *",
-                branch: "env_var",
+                branch: "master",
                 concurrentBuild: false,
                 edr: true,
-                dfs: false
+                dfs: true
         ],
         [
                 environment: 'sandbox_2_prozorro',
@@ -172,8 +178,8 @@ try {
                 cron: "0 1 * * *",
                 branch: "dev_prozorro_2",
                 concurrentBuild: false,
-                edr: false,
-                dfs: false
+                edr: true,
+                dfs: true
         ],
 
 ].each { Map config ->
@@ -190,6 +196,7 @@ try {
         wrappers defaultWrappers(true)
         configure defaultConfigure
         environmentVariables defaultEnv()
+        environmentVariables defaultEnv_dfs()
         
         String defaultArgs = "-A robot_tests_arguments/openeu.txt"
 
