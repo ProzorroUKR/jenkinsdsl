@@ -115,6 +115,7 @@ String no_auction = "-v submissionMethodDetails:\"quick(mode:no-auction)\""
 String cancellation = "-o cancellation_output.xml -s cancellation"
 String fast_auction = "-v submissionMethodDetails:\"new-auction;quick(mode:fast-auction)\""
 String priceQuotation = "-o priceQuotation_output.xml -s priceQuotationProcedure"
+String old_auction = "-o old_auction_output.xml -s auction_long"
 
 def remoteToken = null
 try {
@@ -3706,7 +3707,7 @@ try {
 
     job("old_auction_belowThreshold") {
         parameters defaultParameters(config)
-        description("Сценарій: Допорогова закупівля.")
+        description("Сценарій: Допорогова закупівля. Старий модуль аукціона.")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -3723,17 +3724,14 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell("$robotWrapper $old_auction $defaultArgs $params")
             shell(shellRebot)
         }
     }
 
     job("old_auction_aboveThresholdEU") {
         parameters defaultParameters(config)
-        description("Сценарій: Надпорогова закупівля з публікацією англійською мовою.")
+        description("Сценарій: Надпорогова закупівля з публікацією англійською мовою. Старий модуль аукціона.")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -3750,17 +3748,14 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell("$robotWrapper $old_auction $defaultArgs $params")
             shell(shellRebot)
         }
     }
 
     job("old_auction_aboveThresholdUA") {
         parameters defaultParameters(config)
-        description("Сценарій: Надпорогова закупівля.")
+        description("Сценарій: Надпорогова закупівля. Старий модуль аукціона.")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -3777,17 +3772,14 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell("$robotWrapper $old_auction $defaultArgs $params")
             shell(shellRebot)
         }
     }
 
     job("old_auction_esco") {
         parameters defaultParameters(config)
-        description("Сценарій: Відкриті торги для закупівлі енергосервісу")
+        description("Сценарій: Відкриті торги для закупівлі енергосервісу. Старий модуль аукціона.")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -3805,15 +3797,13 @@ try {
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction_short $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
         }
     }
 
     job("old_auction_competitiveDialogueUA") {
         parameters defaultParameters(config)
-        description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
+        description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою. Старий модуль аукціона.")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -3830,17 +3820,14 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell("$robotWrapper $old_auction $defaultArgs $params")
             shell(shellRebot)
         }
     }
 
     job("old_auction_competitiveDialogueEU") {
         parameters defaultParameters(config)
-        description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
+        description("Сценарій: Конкурентний діалог з публікацією англійською мовою. Старий модуль аукціона.")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -3857,17 +3844,14 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet_tender_vat_true -i modify_contract_amount_net -i modify_contract_value $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
+            shell("$robotWrapper $old_auction $defaultArgs $params")
             shell(shellRebot)
         }
     }
 
     job("old_auction_frameworkagreement") {
         parameters defaultParameters(config)
-        description("Сценарій: Рамкова угода.")
+        description("Сценарій: Рамкова угода. Старий модуль аукціона.")
         keepDependencies(false)
         disabled(false)
         concurrentBuild(config.concurrentBuild)
@@ -3890,9 +3874,6 @@ try {
             shell("$robotWrapper $agreement $defaultArgs $params")
             shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection_full.txt $params")
             shell("$robotWrapper -o auction_short_framework_output.xml -s auction -A robot_tests_arguments/framework_selection_full.txt $params")
-            shell("$robotWrapper -o qualification_framework_output.xml -s qualification -A robot_tests_arguments/framework_selection_full.txt $params")
-            shell("$robotWrapper -o contract_framework_output.xml -s contract_signing -A robot_tests_arguments/framework_selection_full.txt $params")
-            shell("$robotWrapper -o contract_management_framework_output.xml -s contract_management -A robot_tests_arguments/framework_selection_full.txt $params")
             shell(shellRebot)
         }
     }
@@ -4209,7 +4190,7 @@ multiJob("old_auction") {
     description('my description')
     triggers {cron("0 6 * * *")}
     parameters {
-        stringParam('BRANCH', 'master', 'my description')
+        stringParam('BRANCH', 'broker', 'my description')
         stringParam('API_HOST_URL', 'https://lb-api-staging.prozorro.gov.ua', 'my description')
         stringParam('API_VERSION', '2.5', 'my description')
         stringParam('EDR_HOST_URL', 'https://lb-edr-staging.prozorro.gov.ua', 'my description')
