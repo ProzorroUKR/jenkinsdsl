@@ -3717,13 +3717,14 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt"
+        String defaultArgs = "-A robot_tests_arguments/below_simple.txt"
+        String accelerate_belowThreshold = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"enquiry\":[1,5],\"tender\":[1,5],\"accelerator\":4320}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $accelerate_belowThreshold $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
             shell(shellRebot)
         }
@@ -3741,13 +3742,14 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/openeu.txt"
+        String defaultArgs = "-A robot_tests_arguments/openeu_simple.txt"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $accelerate_openeu \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
             shell(shellRebot)
         }
@@ -3765,13 +3767,14 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/openua.txt"
+        String defaultArgs = "-A robot_tests_arguments/openua_simple.txt"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $accelerate_openua $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
             shell(shellRebot)
         }
@@ -3789,13 +3792,14 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/esco_testing.txt"
+        String defaultArgs = "-A robot_tests_arguments/esco_simple.txt"
+        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"enquiry\":[0,1],\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $accelerate_open_esco $params")
             shell("$robotWrapper $auction_short $defaultArgs $params")
             shell(shellRebot)
         }
@@ -3813,13 +3817,14 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_UA.txt"
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_UA.txt"
+        String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,15],\"accelerator\":2880}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $accelerate_open_competitive_dialogue $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
             shell(shellRebot)
         }
@@ -3837,19 +3842,20 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt"
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
+        String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,15],\"accelerator\":2880}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $accelerate_open_competitive_dialogue $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
             shell(shellRebot)
         }
     }
 
-    job("old_auction_frameworkagreement") {
+    job("old_auction_framework") {
         parameters defaultParameters(config)
         description("Сценарій: Рамкова угода. Старий модуль аукціона.")
         keepDependencies(false)
@@ -3861,21 +3867,47 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/framework_agreement.txt"
+        String defaultArgs = "-A robot_tests_arguments/framework_agreement_simple.txt"
+        String accelerate_open_framework = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_framework\":{\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $accelerate_open_framework $params")
             shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $agreement $defaultArgs $params")
-            shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection_full.txt $params")
+            shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection_simple.txt $params")
             shell("$robotWrapper -o auction_short_framework_output.xml -s auction -A robot_tests_arguments/framework_selection_full.txt $params")
             shell(shellRebot)
         }
+    }
+
+    job("old_auction_aboveThresholdUA_defence") {
+        parameters defaultParameters(config)
+        description("Сценарій: Надпорогова закупівля. Переговорна процедура для потреб оборони (з одним учасником). Старий модуль аукціона.")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/openUAdefense_one_bid.txt"
+        String accelerate_openua_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua_defense\":{\"enquiry\":[0,3],\"tender\":[1,5],\"accelerator\":4320}}}}'"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA.defense $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $accelerate_openua_defense $params")
+            shell("$robotWrapper $old_auction $defaultArgs $params")
+            shell(shellRebot)
+         }
     }
 
 
@@ -4173,7 +4205,8 @@ multiJob("cancellation") {
                 "old_auction_esco",
                 "old_auction_competitiveDialogueUA",
                 "old_auction_competitiveDialogueEU",
-                "old_auction_frameworkagreement",)
+                "old_auction_frameworkagreement",
+                "old_auction_aboveThresholdUA_defence",)
         }
         columns {
             status()
@@ -4210,7 +4243,8 @@ multiJob("old_auction") {
                 "old_auction_esco",
                 "old_auction_competitiveDialogueUA",
                 "old_auction_competitiveDialogueEU",
-                "old_auction_frameworkagreement"
+                "old_auction_frameworkagreement",
+                "old_auction_aboveThresholdUA_defence"
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
