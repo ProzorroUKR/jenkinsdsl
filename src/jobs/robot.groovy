@@ -1369,15 +1369,14 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/openeu_dfs.txt"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction $accelerate_openeu $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -1395,15 +1394,14 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/openua_dfs.txt"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $accelerate_openua $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -1421,15 +1419,14 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt"
+        String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,15],\"accelerator\":2880}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction $accelerate_open_competitive_dialogue $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet_tender_vat_true -i modify_contract_amount_net -i modify_contract_value $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
     }
@@ -1447,15 +1444,14 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_UA.txt"
+        String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,15],\"accelerator\":2880}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction $accelerate_open_competitive_dialogue $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -1473,14 +1469,14 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/esco_dfs.txt"
+        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"enquiry\":[0,1],\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction $params")
+            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction $accelerate_open_esco $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
         }
     }
@@ -4015,17 +4011,12 @@ try {
                     "${config.environment}_priceQuotation_bot_unsuccessful",
                     "${config.environment}_priceQuotation_negative",
                     "${config.environment}_priceQuotation_negative_draft",
+                    "${config.environment}_aboveThresholdEU_DFS",
+                    "${config.environment}_aboveThresholdUA_DFS",
+                    "${config.environment}_competitiveDialogueEU_DFS",
+                    "${config.environment}_competitiveDialogueUA_DFS",
+                    "${config.environment}_esco_DFS",
                 ]
-                if (config.environment == 'staging_prozorro') {
-                    innerJobs.addAll([
-                            "${config.environment}_aboveThresholdEU_DFS",
-                            "${config.environment}_aboveThresholdUA_DFS",
-                            "${config.environment}_competitiveDialogueEU_DFS",
-                            "${config.environment}_competitiveDialogueUA_DFS",
-                            "${config.environment}_esco_DFS"
-
-                    ])
-                }
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
                     abortAllJobs(false)
