@@ -156,7 +156,7 @@ try {
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
                 cron: "0 4 * * *",
-                branch: "broker",
+                branch: "master",
                 concurrentBuild: false,
                 edr: true,
                 dfs: true
