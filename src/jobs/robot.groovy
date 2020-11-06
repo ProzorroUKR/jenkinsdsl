@@ -202,7 +202,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
@@ -307,7 +306,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
@@ -334,7 +332,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction \$EDR_PRE_QUALIFICATION -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
             shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
@@ -444,7 +441,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
@@ -471,7 +467,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
@@ -498,7 +493,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
@@ -525,7 +519,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
@@ -552,7 +545,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
@@ -687,7 +679,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction $defaultArgs $params")
@@ -1080,7 +1071,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction_short $defaultArgs $params")
@@ -4209,7 +4199,7 @@ multiJob("old_auction") {
     description('my description')
     triggers {cron("0 6 * * *")}
     parameters {
-        stringParam('BRANCH', 'broker', 'my description')
+        stringParam('BRANCH', 'master', 'my description')
         stringParam('API_HOST_URL', 'https://lb-api-staging.prozorro.gov.ua', 'my description')
         stringParam('API_VERSION', '2.5', 'my description')
         stringParam('EDR_HOST_URL', 'https://lb-edr-staging.prozorro.gov.ua', 'my description')
