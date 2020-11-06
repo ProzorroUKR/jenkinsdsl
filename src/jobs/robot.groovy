@@ -806,7 +806,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $auction $defaultArgs $params")
@@ -1019,7 +1018,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
@@ -3703,7 +3701,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
             shell("$robotWrapper $openProcedure $defaultArgs $accelerate_belowThreshold $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
@@ -3728,7 +3725,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
             shell("$robotWrapper $openProcedure $defaultArgs $accelerate_openeu \$EDR_PRE_QUALIFICATION $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
@@ -3753,7 +3749,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs $accelerate_openua $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
@@ -3778,7 +3773,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $accelerate_open_esco $params")
             shell("$robotWrapper $auction_short $defaultArgs $params")
@@ -3803,7 +3797,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $accelerate_open_competitive_dialogue $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
@@ -3828,7 +3821,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $accelerate_open_competitive_dialogue $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
@@ -3853,7 +3845,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $accelerate_open_framework $params")
             shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
@@ -3883,7 +3874,6 @@ try {
 
          steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA.defense $params")
             shell("$robotWrapper $openProcedure $defaultArgs $accelerate_openua_defense $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
