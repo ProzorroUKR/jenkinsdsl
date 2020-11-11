@@ -97,7 +97,7 @@ def defaultEnv_dfs() {
     }
 }
 
-String shellBuildout = "sleep \$((RANDOM % 600))\nping -c 10 8.8.8.8\nping -c 10 github.com\npython2 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f"
+String shellBuildout = "sleep \$((RANDOM % 600))\npython2 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f"
 String shellPhantom  = "sed -r -i 's/browser: *(chrome|firefox)/browser:  PhantomJS/gi' op_robot_tests/tests_files/data/users.yaml"
 String shellRebot    = "robot_wrapper bin/rebot -o test_output/output.xml -l test_output/log.html -r test_output/report.html -R test_output/*.xml"
 String robotWrapper  = "robot_wrapper bin/op_tests --consolecolors on "
@@ -149,7 +149,7 @@ try {
                     "DASU_API_HOST_URL": "https://audit-api-staging.prozorro.gov.ua",
                     "DASU_API_VERSION": "2.5",
                     "API_VERSION": "2.5",
-                    "EDR_VERSION": "0",
+                    "EDR_VERSION": "1.0",
                     "PAYMENT_API": "https://integration-staging.prozorro.gov.ua/liqpay",
                     "PAYMENT_API_VERSION": "v1",
                     "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-new)?(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
@@ -328,7 +328,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/framework_agreement.txt"
+        String defaultArgs = "-A robot_tests_arguments/framework_agreement_full.txt"
 
         steps {
             shell(shellBuildout)
@@ -689,29 +689,6 @@ try {
         }
     }
 
-    job("${config.environment}_competitiveDialogueEU_stage1") {
-        parameters defaultParameters(config)
-        description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell(shellPhantom)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
-            shell(shellRebot)
-        }
-    }
-
     job("${config.environment}_competitiveDialogueEU_vat_true_false") {
         parameters defaultParameters(config)
         description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
@@ -1065,7 +1042,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/esco_testing.txt"
+        String defaultArgs = "-A robot_tests_arguments/esco.txt"
 
         steps {
             shell(shellBuildout)
@@ -3905,7 +3882,6 @@ try {
                     "${config.environment}_belowThreshold_vat_false_false",
                     "${config.environment}_belowThreshold_vat_false_true",
                     "${config.environment}_competitiveDialogueEU",
-                    "${config.environment}_competitiveDialogueEU_stage1",
                     "${config.environment}_competitiveDialogueEU_vat_true_false",
                     "${config.environment}_competitiveDialogueEU_vat_false_false",
                     "${config.environment}_competitiveDialogueEU_vat_false_true",
