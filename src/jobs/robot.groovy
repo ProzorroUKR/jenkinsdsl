@@ -149,7 +149,7 @@ try {
                     "DASU_API_HOST_URL": "https://audit-api-staging.prozorro.gov.ua",
                     "DASU_API_VERSION": "2.5",
                     "API_VERSION": "2.5",
-                    "EDR_VERSION": "0",
+                    "EDR_VERSION": "1.0",
                     "PAYMENT_API": "https://integration-staging.prozorro.gov.ua/liqpay",
                     "PAYMENT_API_VERSION": "v1",
                     "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-new)?(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
