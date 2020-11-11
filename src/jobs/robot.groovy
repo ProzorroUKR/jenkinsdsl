@@ -689,29 +689,6 @@ try {
         }
     }
 
-    job("${config.environment}_competitiveDialogueEU_stage1") {
-        parameters defaultParameters(config)
-        description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell(shellPhantom)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
-            shell(shellRebot)
-        }
-    }
-
     job("${config.environment}_competitiveDialogueEU_vat_true_false") {
         parameters defaultParameters(config)
         description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
@@ -3905,7 +3882,6 @@ try {
                     "${config.environment}_belowThreshold_vat_false_false",
                     "${config.environment}_belowThreshold_vat_false_true",
                     "${config.environment}_competitiveDialogueEU",
-                    "${config.environment}_competitiveDialogueEU_stage1",
                     "${config.environment}_competitiveDialogueEU_vat_true_false",
                     "${config.environment}_competitiveDialogueEU_vat_false_false",
                     "${config.environment}_competitiveDialogueEU_vat_false_true",
