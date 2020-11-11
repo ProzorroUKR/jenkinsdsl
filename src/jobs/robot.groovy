@@ -328,7 +328,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/framework_agreement.txt"
+        String defaultArgs = "-A robot_tests_arguments/framework_agreement_full.txt"
 
         steps {
             shell(shellBuildout)
@@ -1042,7 +1042,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/esco_testing.txt"
+        String defaultArgs = "-A robot_tests_arguments/esco.txt"
 
         steps {
             shell(shellBuildout)
