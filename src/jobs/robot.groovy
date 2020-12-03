@@ -194,7 +194,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables {defaultEnv() defaultEnv_dfs()}
         
@@ -220,7 +220,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -246,7 +246,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -272,7 +272,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -298,7 +298,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -324,7 +324,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true, 18000)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -355,7 +355,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -381,7 +381,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -407,7 +407,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -433,7 +433,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -459,7 +459,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -485,7 +485,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -511,7 +511,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -537,7 +537,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -563,7 +563,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -593,7 +593,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -619,7 +619,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -645,7 +645,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -880,7 +880,7 @@ try {
             concurrentBuild(config.concurrentBuild)
             scm defaultScm
             publishers defaultPublishers
-            wrappers defaultWrappers(true)
+            wrappers defaultWrappers(true, 10800)
             configure defaultConfigure
             environmentVariables defaultEnv()
 
@@ -965,7 +965,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1013,7 +1013,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1038,7 +1038,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1228,7 +1228,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1254,7 +1254,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1280,7 +1280,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1329,7 +1329,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/openeu_edr_dfs.txt"
@@ -1353,7 +1353,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/openua_edr_dfs.txt"
@@ -1425,7 +1425,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/esco_edr_dfs.txt"
@@ -1449,7 +1449,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1472,7 +1472,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1495,7 +1495,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1518,7 +1518,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1541,7 +1541,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1564,7 +1564,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1587,7 +1587,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1610,7 +1610,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1633,7 +1633,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1656,7 +1656,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1679,7 +1679,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1702,7 +1702,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1725,7 +1725,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1748,7 +1748,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1771,7 +1771,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1794,7 +1794,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1817,7 +1817,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1840,7 +1840,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1863,7 +1863,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1886,7 +1886,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1909,7 +1909,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1932,7 +1932,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1955,7 +1955,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -1978,7 +1978,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2001,7 +2001,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2024,7 +2024,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2047,7 +2047,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2070,7 +2070,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2093,7 +2093,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2116,7 +2116,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2139,7 +2139,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2163,7 +2163,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2186,7 +2186,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2210,7 +2210,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2234,7 +2234,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2258,7 +2258,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2282,7 +2282,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2305,7 +2305,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2328,7 +2328,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2351,7 +2351,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2375,7 +2375,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2399,7 +2399,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2423,7 +2423,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2447,7 +2447,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2471,7 +2471,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2495,7 +2495,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2519,7 +2519,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2543,7 +2543,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2567,7 +2567,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2595,7 +2595,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2623,7 +2623,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2647,7 +2647,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2671,7 +2671,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2695,7 +2695,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2719,7 +2719,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2743,7 +2743,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2767,7 +2767,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2791,7 +2791,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2815,7 +2815,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2839,7 +2839,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2863,7 +2863,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2887,7 +2887,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2911,7 +2911,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2935,7 +2935,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2963,7 +2963,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -2991,7 +2991,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3015,7 +3015,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3039,7 +3039,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3063,7 +3063,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3087,7 +3087,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3115,7 +3115,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3143,7 +3143,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3167,7 +3167,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3191,7 +3191,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3215,7 +3215,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3239,7 +3239,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3263,7 +3263,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3287,7 +3287,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3316,7 +3316,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3345,7 +3345,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3369,7 +3369,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3393,7 +3393,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3416,7 +3416,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3439,7 +3439,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3462,7 +3462,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3485,7 +3485,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3508,7 +3508,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3531,7 +3531,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3554,7 +3554,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3577,7 +3577,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3600,7 +3600,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3623,7 +3623,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(false)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3669,7 +3669,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3693,7 +3693,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3717,7 +3717,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3741,7 +3741,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
@@ -3842,7 +3842,7 @@ try {
         concurrentBuild(config.concurrentBuild)
         scm defaultScm
         publishers defaultPublishers
-        wrappers defaultWrappers(true)
+        wrappers defaultWrappers(true, 10800)
         configure defaultConfigure
         environmentVariables defaultEnv()
 
