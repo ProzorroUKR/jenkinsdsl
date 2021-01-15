@@ -4025,6 +4025,8 @@ try {
                     "${config.environment}_competitiveDialogueEU_EDR_DFS",
                     "${config.environment}_competitiveDialogueUA_EDR_DFS",
                     "${config.environment}_esco_EDR_DFS",
+                    "${config.environment}_simple_defence_one_bid",
+                    "${config.environment}_simple_defence",
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
