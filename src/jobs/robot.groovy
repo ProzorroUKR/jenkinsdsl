@@ -3865,6 +3865,57 @@ try {
          }
     }
 
+    job("${config.environment}_simple_defence") {
+        parameters defaultParameters(config)
+        description("Сценарій: Спрощена процедура для потреб оборони.")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/simple_defense.txt"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -i answer_question_to_tender $fast_auction $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell(shellRebot)
+         }
+    }
+
+    job("${config.environment}_simple_defence_one_bid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Спрощена процедура для потреб оборони (з одним учасником).")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/simple_defense_one_bid.txt"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -i answer_question_to_tender $params")
+            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell(shellRebot)
+         }
+    }
+
 
     multiJob(config.environment) {
         authenticationToken(remoteToken)
