@@ -3916,6 +3916,149 @@ try {
          }
     }
 
+    job("${config.environment}_complaint_simple_defence_first_award_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: Неможливо подати скаргу після першого скасування рішення")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_pending.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $no_auction $accelerate_simple_defense $params")
+            shell(shellRebot)
+         }
+    }
+
+    job("${config.environment}_complaint_simple_defence_first_award_disqualification") {
+        parameters defaultParameters(config)
+        description("Сценарій: Неможливо подати скаргу після дискваліфікації першого учасника")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_unsuc_pending.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $no_auction $accelerate_simple_defense $params")
+            shell(shellRebot)
+         }
+    }
+
+    job("${config.environment}_complaint_simple_defence_second_award_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: Неможливо подати скаргу після другого скасування рішення")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_unsuc_cancel_pending.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $no_auction $accelerate_simple_defense $params")
+            shell(shellRebot)
+         }
+    }
+
+    job("${config.environment}_complaint_simple_defence_second_award_disqualification") {
+        parameters defaultParameters(config)
+        description("Сценарій: Неможливо подати скаргу після дискваліфікації другого учасника")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_unsuc_cancel_unsuc_pending.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $no_auction $accelerate_simple_defense $params")
+            shell(shellRebot)
+         }
+    }
+
+    job("${config.environment}_complaint_simple_defence_third_award_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: Неможливо подати скаргу після третього скасування рішення")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_unsuc_cancel_unsuc_cancel_pending.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $no_auction $accelerate_simple_defense $params")
+            shell(shellRebot)
+         }
+    }
+
+    job("${config.environment}_complaint_simple_defence_third_award_disqualification") {
+        parameters defaultParameters(config)
+        description("Сценарій: Неможливо подати скаргу після дискваліфікації третього учасника")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_unsuc_cancel_unsuc_cancel_unsuc.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $no_auction $accelerate_simple_defense $params")
+            shell(shellRebot)
+         }
+    }
 
     multiJob(config.environment) {
         authenticationToken(remoteToken)
@@ -4027,6 +4170,12 @@ try {
                     "${config.environment}_esco_EDR_DFS",
                     "${config.environment}_simple_defence_one_bid",
                     "${config.environment}_simple_defence",
+                    "${config.environment}_complaint_simple_defence_first_award_cancel",
+                    "${config.environment}_complaint_simple_defence_first_award_disqualification",
+                    "${config.environment}_complaint_simple_defence_second_award_cancel",
+                    "${config.environment}_complaint_simple_defence_second_award_disqualification",
+                    "${config.environment}_complaint_simple_defence_third_award_cancel",
+                    "${config.environment}_complaint_simple_defence_third_award_disqualification",
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
