@@ -1012,31 +1012,6 @@ try {
         }
     }
 
-    job("${config.environment}_aboveThresholdUA_defence_one_bid") {
-        parameters defaultParameters(config)
-        description("Сценарій: Надпорогова закупівля. Переговорна процедура для потреб оборони (з одним учасником).")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/openUAdefense_one_bid.txt"
-
-         steps {
-            shell(shellBuildout)
-            shell(shellPhantom)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA.defense $params")
-            shell("$robotWrapper $openProcedure $defaultArgs -i answer_question_to_tender $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell(shellRebot)
-         }
-    }
-
     job("${config.environment}_esco") {
         parameters defaultParameters(config)
         description("Сценарій: Відкриті торги для закупівлі енергосервісу")
@@ -1098,26 +1073,6 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v MODE:aboveThresholdEU $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_planning_aboveThresholdUA.defense") {
-        parameters defaultParameters(config)
-        description("Сценарій: Планування Надпорогова закупівля. Переговорна процедура для потреб оборони")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        steps {
-            shell(shellBuildout)
-            shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v MODE:aboveThresholdUA.defense $params")
             shell(shellRebot)
         }
     }
@@ -4095,7 +4050,6 @@ try {
                     "${config.environment}_sb_reporting",
                     "${config.environment}_feed_reading",
                     "${config.environment}_single_item_tender",
-                    "${config.environment}_aboveThresholdUA_defence_one_bid",
                     "${config.environment}_esco",
                     "${config.environment}_belowThreshold_moz_1",
                     "${config.environment}_belowThreshold_moz_2",
@@ -4106,7 +4060,6 @@ try {
                     "${config.environment}_cost_gmdn_validations",
                     "${config.environment}_planning_aboveThresholdUA",
                     "${config.environment}_planning_aboveThresholdEU",
-                    "${config.environment}_planning_aboveThresholdUA.defense",
                     "${config.environment}_planning_esco",
                     "${config.environment}_planning_reporting",
                     "${config.environment}_planning_negotiation",
