@@ -3796,30 +3796,6 @@ try {
         }
     }
 
-    job("old_auction_aboveThresholdUA_defence") {
-        parameters defaultParameters(config)
-        description("Сценарій: Надпорогова закупівля. Переговорна процедура для потреб оборони (з одним учасником). Старий модуль аукціона.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/openUAdefense_one_bid.txt"
-        String accelerate_openua_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua_defense\":{\"enquiry\":[0,3],\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-         steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA.defense $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $accelerate_openua_defense $params")
-            shell("$robotWrapper $old_auction $defaultArgs $params")
-            shell(shellRebot)
-         }
-    }
-
     job("${config.environment}_simple_defence") {
         parameters defaultParameters(config)
         description("Сценарій: Спрощена процедура для потреб оборони.")
@@ -4308,9 +4284,7 @@ multiJob("cancellation") {
                 "old_auction_aboveThresholdUA",
                 "old_auction_esco",
                 "old_auction_competitiveDialogueUA",
-                "old_auction_competitiveDialogueEU",
-                "old_auction_frameworkagreement",
-                "old_auction_aboveThresholdUA_defence",)
+                "old_auction_competitiveDialogueEU",)
         }
         columns {
             status()
@@ -4347,8 +4321,6 @@ multiJob("old_auction") {
                 "old_auction_esco",
                 "old_auction_competitiveDialogueUA",
                 "old_auction_competitiveDialogueEU",
-                "old_auction_frameworkagreement",
-                "old_auction_aboveThresholdUA_defence"
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
