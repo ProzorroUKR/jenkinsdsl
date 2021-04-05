@@ -135,7 +135,7 @@ try {
                     "API_HOST_URL": "http://api.\${RELEASE_NAME}.k8s.prozorro.gov.ua",
                     "DS_HOST_URL": "http://ds.k8s.prozorro.gov.ua",
                     "API_VERSION": "2.5",
-                    "EDR_VERSION": "0",
+                    "EDR_VERSION": "1.0",
                     "AUCTION_REGEXP": "^http?:\\/\\/auction\\.\${RELEASE_NAME}\\.k8s\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
                     "DS_REGEXP": "^http?:\\/\\/ds\\.k8s\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
@@ -3695,30 +3695,6 @@ try {
         }
     }
 
-    job("old_auction_esco") {
-        parameters defaultParameters(config)
-        description("Сценарій: Відкриті торги для закупівлі енергосервісу. Старий модуль аукціона.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/esco_simple.txt"
-        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"enquiry\":[0,1],\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $accelerate_open_esco $params")
-            shell("$robotWrapper $auction_short $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
     job("old_auction_competitiveDialogueUA") {
         parameters defaultParameters(config)
         description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою. Старий модуль аукціона.")
@@ -4282,7 +4258,6 @@ multiJob("cancellation") {
                 "old_auction_belowThreshold",
                 "old_auction_aboveThresholdEU",
                 "old_auction_aboveThresholdUA",
-                "old_auction_esco",
                 "old_auction_competitiveDialogueUA",
                 "old_auction_competitiveDialogueEU",)
         }
@@ -4318,7 +4293,6 @@ multiJob("old_auction") {
                 "old_auction_belowThreshold",
                 "old_auction_aboveThresholdEU",
                 "old_auction_aboveThresholdUA",
-                "old_auction_esco",
                 "old_auction_competitiveDialogueUA",
                 "old_auction_competitiveDialogueEU",
                 ]
