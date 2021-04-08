@@ -100,7 +100,6 @@ def defaultEnv_dfs() {
 String shellBuildout = "sleep \$((RANDOM % 600))\npython2 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f"
 String shellPhantom  = "sed -r -i 's/browser: *(chrome|firefox)/browser:  PhantomJS/gi' op_robot_tests/tests_files/data/users.yaml"
 String shellRebot    = "robot_wrapper bin/rebot -o test_output/output.xml -l test_output/log.html -r test_output/report.html -R test_output/*.xml"
-String shellRebot_selection = "robot_wrapper bin/rebot -o test_output/output.xml -l test_output/Selection_log.html -r test_output/report.html -R test_output/*.xml"
 String robotWrapper  = "robot_wrapper bin/op_tests --consolecolors on "
 String openProcedure = "-o base_output.xml -s openProcedure"
 String auction       = "-o auction_output.xml -s auction_full"
@@ -343,14 +342,13 @@ try {
             shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
             shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $agreement $defaultArgs $params")
+            //shell("$robotWrapper $agreement $defaultArgs $params")
+            //shell("$robotWrapper $selection $selectionArgs $fast_auction $params")
+            //shell("$robotWrapper $selection_auction_short $selectionArgs $params")
+            //shell("$robotWrapper $selection_qualification $selectionArgs $params")
+            //shell("$robotWrapper $selection_contractsign $selectionArgs $params")
+            //shell("$robotWrapper $selection_contractmanagement $selectionArgs $params")
             shell(shellRebot)
-            shell("$robotWrapper $selection $selectionArgs $fast_auction $params")
-            shell("$robotWrapper $selection_auction_short $selectionArgs $params")
-            shell("$robotWrapper $selection_qualification $selectionArgs $params")
-            shell("$robotWrapper $selection_contractsign $selectionArgs $params")
-            shell("$robotWrapper $selection_contractmanagement $selectionArgs $params")
-            shell(shellRebot_selection)
         }
     }
 
