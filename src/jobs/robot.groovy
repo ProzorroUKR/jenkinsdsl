@@ -3965,6 +3965,30 @@ try {
          }
     }
 
+    job("${config.environment}_criteria_patch_evidence") {
+        parameters defaultParameters(config)
+        description("Сценарій: Зміна evidence критерія")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/criteria_patch_evidence.txt"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $accelerate_openua $params")
+            shell(shellRebot)
+         }
+    }
+
     multiJob(config.environment) {
         authenticationToken(remoteToken)
         parameters defaultParameters(config)
@@ -4045,6 +4069,7 @@ try {
                     "${config.environment}_complaint_simple_defence_second_award_disqualification",
                     "${config.environment}_complaint_simple_defence_third_award_cancel",
                     "${config.environment}_complaint_simple_defence_third_award_disqualification",
+                    "${config.environment}_criteria_patch_evidence",
                 ]
                 if (config.environment != 'k8s') {
                     innerJobs.addAll([
