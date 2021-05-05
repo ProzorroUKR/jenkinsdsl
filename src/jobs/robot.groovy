@@ -104,7 +104,6 @@ String robotWrapper  = "robot_wrapper bin/op_tests --consolecolors on "
 String openProcedure = "-o base_output.xml -s openProcedure"
 String auction       = "-o auction_output.xml -s auction_full"
 String auction_short = "-o auction_short_output.xml -s auction"
-String auction_long = "-o auction_long_output.xml -s auction_long"
 String qualification = "-o qualification_output.xml -s qualification"
 String contractsign  = "-o contract_output.xml -s contract_signing"
 String contractmanagement  = "-o contract_management_output.xml -s contract_management"
@@ -158,6 +157,7 @@ try {
                     "PAYMENT_API": "https://integration-staging.prozorro.gov.ua/liqpay",
                     "PAYMENT_API_VERSION": "v1",
                     "AUCTION_REGEXP": "^https?:\\/\\/auction(?:-new)?(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
+                    "OLD_SANDBOX_AUCTION_REGEXP": "^https?:\\/\\/auction(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
                 cron: "0 4 * * *",
@@ -236,8 +236,8 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_false -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
             shell(shellRebot)
@@ -262,8 +262,8 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v VAT_INCLUDED:False $no_auction $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -v VAT_INCLUDED:False $no_auction $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet -i contract_view_new_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
             shell(shellRebot)
@@ -288,8 +288,8 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v VAT_INCLUDED:False $no_auction $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -v VAT_INCLUDED:False $no_auction $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
@@ -340,9 +340,9 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
             shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             //shell("$robotWrapper $agreement $defaultArgs $params")
             //shell("$robotWrapper $selection $selectionArgs $fast_auction $params")
@@ -373,7 +373,7 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs $no_auction $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_false -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
             shell(shellRebot)
@@ -399,7 +399,7 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs --i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet -i contract_view_new_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
             shell(shellRebot)
@@ -425,7 +425,7 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
             shell("$robotWrapper $openProcedure $defaultArgs -v VAT_INCLUDED:False $no_auction $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
@@ -714,8 +714,8 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_false -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
             shell(shellRebot)
@@ -740,8 +740,8 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction -v VAT_INCLUDED:False $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet -i contract_view_new_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
             shell(shellRebot)
@@ -766,8 +766,8 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction -v VAT_INCLUDED:False $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION  \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
@@ -791,9 +791,9 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
             shell(shellRebot)
@@ -818,8 +818,8 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_false -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
             shell(shellRebot)
@@ -844,8 +844,8 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction -v VAT_INCLUDED:False $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet -i contract_view_new_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
             shell(shellRebot)
@@ -870,8 +870,8 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs \$EDR_PRE_QUALIFICATION $no_auction -v VAT_INCLUDED:False $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
@@ -902,7 +902,7 @@ try {
     }
 
     ["negotiation", "negotiation.quick", "reporting"].each { String scenario ->
-        job("${config.environment}_sb_$scenario") {
+        job("${config.environment}_$scenario") {
             parameters defaultParameters(config)
             description("Сценарій: Переговорна процедура")
             keepDependencies(false)
@@ -1029,9 +1029,9 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction \$EDR_PRE_QUALIFICATION $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction_short $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
         }
@@ -3623,182 +3623,7 @@ try {
         }
     }
 
-    job("old_auction_belowThreshold") {
-        parameters defaultParameters(config)
-        description("Сценарій: Допорогова закупівля. Старий модуль аукціона.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/below_simple.txt"
-        String accelerate_belowThreshold = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"enquiry\":[1,5],\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $accelerate_belowThreshold $params")
-            shell("$robotWrapper $old_auction $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("old_auction_aboveThresholdEU") {
-        parameters defaultParameters(config)
-        description("Сценарій: Надпорогова закупівля з публікацією англійською мовою. Старий модуль аукціона.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/openeu_simple.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $accelerate_openeu \$EDR_PRE_QUALIFICATION $params")
-            shell("$robotWrapper $old_auction $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("old_auction_aboveThresholdUA") {
-        parameters defaultParameters(config)
-        description("Сценарій: Надпорогова закупівля. Старий модуль аукціона.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/openua_simple.txt"
-        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $accelerate_openua $params")
-            shell("$robotWrapper $old_auction $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("old_auction_competitiveDialogueUA") {
-        parameters defaultParameters(config)
-        description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою. Старий модуль аукціона.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple_UA.txt"
-        String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,15],\"accelerator\":2880}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $accelerate_open_competitive_dialogue $params")
-            shell("$robotWrapper $old_auction $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("old_auction_competitiveDialogueEU") {
-        parameters defaultParameters(config)
-        description("Сценарій: Конкурентний діалог з публікацією англійською мовою. Старий модуль аукціона.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
-        String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,15],\"accelerator\":2880}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $accelerate_open_competitive_dialogue $params")
-            shell("$robotWrapper $old_auction $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("old_auction_framework") {
-        parameters defaultParameters(config)
-        description("Сценарій: Рамкова угода. Старий модуль аукціона.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 18000)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/framework_agreement_simple.txt"
-        String accelerate_open_framework = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_framework\":{\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $accelerate_open_framework $params")
-            shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $agreement $defaultArgs $params")
-            shell("$robotWrapper $selection -A robot_tests_arguments/framework_selection_simple.txt $params")
-            shell("$robotWrapper -o auction_short_framework_output.xml -s auction -A robot_tests_arguments/framework_selection_full.txt $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("old_auction_simple_defense") {
-        parameters defaultParameters(config)
-        description("Сценарій: Спрощена процедура для потреб оборони.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_simple.txt"
-        String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,15],\"accelerator\":2880}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
-            shell("$robotWrapper $openProcedure $defaultArgs -i answer_question_to_tender $params")
-            shell("$robotWrapper $old_auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("old_auction_simple_defence") {
+    job("${config.environment}_simple_defence") {
         parameters defaultParameters(config)
         description("Сценарій: Спрощена процедура для потреб оборони.")
         keepDependencies(false)
@@ -3818,7 +3643,7 @@ try {
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
             shell("$robotWrapper $openProcedure $defaultArgs -i answer_question_to_tender $params")
             shell("$robotWrapper $old_auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
          }
@@ -3843,7 +3668,7 @@ try {
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
             shell("$robotWrapper $openProcedure $defaultArgs -i answer_question_to_tender $params")
-            shell("$robotWrapper $qualification $defaultArgs \$EDR_QUALIFICATION \$DFS_QUALIFICATION $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
          }
