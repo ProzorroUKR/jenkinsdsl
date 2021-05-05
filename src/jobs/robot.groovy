@@ -3872,9 +3872,9 @@ try {
                     "${config.environment}_competitiveDialogueUA_vat_true_false",
                     "${config.environment}_competitiveDialogueUA_vat_false_false",
                     "${config.environment}_competitiveDialogueUA_vat_false_true",
-                    "${config.environment}_sb_negotiation",
-                    "${config.environment}_sb_negotiation.quick",
-                    "${config.environment}_sb_reporting",
+                    "${config.environment}_negotiation",
+                    "${config.environment}_negotiation.quick",
+                    "${config.environment}_reporting",
                     "${config.environment}_feed_reading",
                     "${config.environment}_single_item_tender",
                     "${config.environment}_esco",
@@ -4122,62 +4122,6 @@ multiJob("cancellation") {
                             "cancellation_awarded_closeFrameworkAgreementSelectionUA_lot",
                             "cancellation_awarded_competitiveDialogueUA_stage2",
                             "cancellation_awarded_competitiveDialogueEU_stage2",
-                ]
-                innerJobs.each { String scenario -> phaseJob(scenario) {
-                    currentJobParameters(true)
-                    abortAllJobs(false)
-                }}
-            }
-        }
-    }
-
-    listView("old_auction") {
-        description('Old auction staging testing')
-        jobs {
-            names("old_auction",
-                "old_auction_belowThreshold",
-                "old_auction_aboveThresholdEU",
-                "old_auction_aboveThresholdUA",
-                "old_auction_competitiveDialogueUA",
-                "old_auction_competitiveDialogueEU",
-                "old_auction_simple_defence",
-                )
-        }
-        columns {
-            status()
-            weather()
-            name()
-            lastSuccess()
-            lastFailure()
-            lastDuration()
-            buildButton()
-        }
-    }
-
-multiJob("old_auction") {
-    description('my description')
-    triggers {cron("0 6 * * *")}
-    parameters {
-        stringParam('BRANCH', 'master', 'my description')
-        stringParam('API_HOST_URL', 'https://lb-api-staging.prozorro.gov.ua', 'my description')
-        stringParam('API_VERSION', '2.5', 'my description')
-        stringParam('EDR_HOST_URL', 'https://lb-edr-staging.prozorro.gov.ua', 'my description')
-        stringParam('EDR_VERSION', '1.0', 'my description')
-        stringParam('DS_HOST_URL', 'https://upload-docs-staging.prozorro.gov.ua', 'my description')
-        stringParam('DS_REGEXP', '^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})', 'my description')
-        stringParam('PAYMENT_API', 'https://integration-staging.prozorro.gov.ua/liqpay', 'my description')
-        stringParam('PAYMENT_API_VERSION', 'v1', 'my description')
-        stringParam('AUCTION_REGEXP', '^https?:\\/\\/auction(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})', 'my description')
-    }
-        steps {
-            phase("Test") {
-                def innerJobs = [
-                "old_auction_belowThreshold",
-                "old_auction_aboveThresholdEU",
-                "old_auction_aboveThresholdUA",
-                "old_auction_competitiveDialogueUA",
-                "old_auction_competitiveDialogueEU",
-                "old_auction_simple_defence",
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
