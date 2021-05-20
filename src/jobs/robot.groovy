@@ -1194,7 +1194,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt -e auction -e add_bid_doc_after_tendering_period_by_provider -e modify_bid_doc_after_tendering_period_by_provider"
+        String defaultArgs = "-A robot_tests_arguments/below.txt -e auction -e auction_url_viewer -e auction_url_provider -e auction_url_provider1"
 
         steps {
             shell(shellBuildout)
@@ -1220,7 +1220,7 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt -e auction -e add_bid_doc_after_tendering_period_by_provider -e modify_bid_doc_after_tendering_period_by_provider"
+        String defaultArgs = "-A robot_tests_arguments/below.txt -e auction -e auction_url_viewer -e auction_url_provider -e auction_url_provider1"
 
         steps {
             shell(shellBuildout)
