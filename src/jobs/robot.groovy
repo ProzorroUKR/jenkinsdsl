@@ -3842,6 +3842,84 @@ try {
          }
     }
 
+    job("${config.environment}_aboveThresholdEU_LLC") {
+        parameters defaultParameters(config)
+        description("Сценарій: Надпорогова закупівля з публікацією англійською мовою. Життєвий цикл")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables {defaultEnv() defaultEnv_dfs()}
+
+        String defaultArgs = "-A robot_tests_arguments/openeu_llc.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_aboveThresholdUA_LLC") {
+        parameters defaultParameters(config)
+        description("Сценарій: Надпорогова закупівля. Життєвий цикл")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/openua_llc.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_simple_defence_LLC") {
+        parameters defaultParameters(config)
+        description("Сценарій: Спрощена процедура для потреб оборони. Життєвий цикл")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/simple_defense_llc.txt"
+
+         steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell(shellRebot)
+         }
+    }
+
     multiJob(config.environment) {
         authenticationToken(remoteToken)
         parameters defaultParameters(config)
@@ -3923,6 +4001,10 @@ try {
                     "${config.environment}_complaint_simple_defence_third_award_cancel",
                     "${config.environment}_complaint_simple_defence_third_award_disqualification",
                     "${config.environment}_criteria_patch_evidence",
+                    "${config.environment}_aboveThresholdEU_LLC",
+                    "${config.environment}_aboveThresholdUA_LLC",
+                    "${config.environment}_simple_defence_LLC",
+
                 ]
                 if (config.environment != 'k8s') {
                     innerJobs.addAll([
@@ -3960,6 +4042,9 @@ try {
                         "${config.environment}_openeu_complaint_cancel_lot_invalid",
                         "${config.environment}_openeu_complaint_cancel_lot_declined",
                         "${config.environment}_openeu_complaint_cancel_lot_stopped",
+                        "${config.environment}_aboveThresholdEU_LLC",
+                        "${config.environment}_aboveThresholdUA_LLC",
+                        "${config.environment}_simple_defence_LLC",
                     ])
                 }
                 innerJobs.each { String scenario -> phaseJob(scenario) {
