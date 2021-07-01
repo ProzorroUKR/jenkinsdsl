@@ -878,7 +878,8 @@ try {
         }
     }
 
-    ["cancelled", "closed", "completed", "stopped"].each { String scenario ->
+    ["cancelled", "closed", "completed", "complete_proceed_num", "declined", "active_stopped", "adressed_stopped",
+    "declined_stopped"].each { String scenario ->
         job("${config.environment}_dasu_$scenario") {
             parameters defaultParameters(config)
             description("Сценарій: ДАСУ")
@@ -4011,7 +4012,11 @@ try {
                         "${config.environment}_dasu_cancelled",
                         "${config.environment}_dasu_closed",
                         "${config.environment}_dasu_completed",
-                        "${config.environment}_dasu_stopped",
+                        "${config.environment}_dasu_complete_proceed_num",
+                        "${config.environment}_dasu_declined",
+                        "${config.environment}_dasu_adressed_stopped",
+                        "${config.environment}_dasu_declined_stopped",
+                        "${config.environment}_dasu_active_stopped",
                         "${config.environment}_openeu_complaint_tender_resolved",
                         "${config.environment}_openeu_complaint_tender_mistaken",
                         "${config.environment}_openeu_complaint_tender_declined",
