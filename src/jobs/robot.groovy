@@ -121,6 +121,9 @@ String selection_qualification = "-o qualification_selection_output.xml -s quali
 String selection_contractsign = "-o contract_selection_output.xml -s contract_signing"
 String selection_contractmanagement = "-o contract_management_selection_output.xml -s contract_management"
 String openeu_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+String openua_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+String below_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"enquiry\":[1,2],\"tender\":[1,7],\"accelerator\":4320}}}}'"
+
 
 def remoteToken = null
 try {
@@ -373,7 +376,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $openua_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_false -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
@@ -399,7 +402,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $openua_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs --i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet -i contract_view_new_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
@@ -425,7 +428,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs -v VAT_INCLUDED:False $no_auction $params")
+            shell("$robotWrapper $openProcedure $defaultArgs -v VAT_INCLUDED:False $no_auction $openua_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
@@ -611,7 +614,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_false -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
@@ -637,7 +640,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $below_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet -i modify_contract_amount_and_amountNet -i contract_view_new_amount_and_amountNet $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amount_and_amountNet -i modify_contract_view_new_amount_amountNet -i change_amount_and_amountNet_paid $params")
@@ -663,7 +666,7 @@ try {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $below_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
