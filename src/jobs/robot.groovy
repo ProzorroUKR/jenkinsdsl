@@ -506,8 +506,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
@@ -532,8 +531,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
@@ -558,8 +556,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell("$robotWrapper $contractmanagement $defaultArgs $params")
@@ -1200,16 +1197,16 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt -e auction -e auction_url_viewer -e auction_url_provider -e auction_url_provider1"
+        String defaultArgs = "-A robot_tests_arguments/below_simple.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v ROAD_INDEX:True $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_amount_net -i modify_contract_value $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
     }
@@ -1226,16 +1223,16 @@ try {
         configure defaultConfigure
         environmentVariables defaultEnv()
 
-        String defaultArgs = "-A robot_tests_arguments/below.txt -e auction -e auction_url_viewer -e auction_url_provider -e auction_url_provider1"
+        String defaultArgs = "-A robot_tests_arguments/below_simple.txt"
 
         steps {
             shell(shellBuildout)
             shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v GMDN_INDEX:True $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_amount_net -i modify_contract_value $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
     }
