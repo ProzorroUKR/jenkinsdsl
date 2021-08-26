@@ -349,12 +349,12 @@ try {
             shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
-            //shell("$robotWrapper $agreement $defaultArgs $params")
-            //shell("$robotWrapper $selection $selectionArgs $fast_auction $params")
-            //shell("$robotWrapper $selection_auction_short $selectionArgs $params")
-            //shell("$robotWrapper $selection_qualification $selectionArgs $params")
-            //shell("$robotWrapper $selection_contractsign $selectionArgs $params")
-            //shell("$robotWrapper $selection_contractmanagement $selectionArgs $params")
+            shell("$robotWrapper $agreement $defaultArgs $params")
+            shell("$robotWrapper $selection $selectionArgs $fast_auction $params")
+            shell("$robotWrapper $selection_auction_short $selectionArgs $params")
+            shell("$robotWrapper $selection_qualification $selectionArgs $params")
+            shell("$robotWrapper $selection_contractsign $selectionArgs $params")
+            shell("$robotWrapper $selection_contractmanagement $selectionArgs $params")
             shell(shellRebot)
         }
     }
