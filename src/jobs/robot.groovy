@@ -4036,19 +4036,7 @@ try {
                         "${config.environment}_openeu_complaint_cancel_lot_mistaken",
                         "${config.environment}_openeu_complaint_cancel_lot_invalid",
                         "${config.environment}_openeu_complaint_cancel_lot_declined",
-                        "${config.environment}_openeu_complaint_cancel_lot_stopped",
-                        "${config.environment}_priceQuotation_full",
-                        "${config.environment}_priceQuotation_cancellation_tendering",
-                        "${config.environment}_priceQuotation_cancellation_qualification",
-                        "${config.environment}_priceQuotation_cancellation_awarded",
-                        "${config.environment}_priceQuotation_cancelled_without_bids",
-                        "${config.environment}_priceQuotation_unsuccessful",
-                        "${config.environment}_priceQuotation_shortlistedfirms_empty",
-                        "${config.environment}_priceQuotation_hidden_profile",
-                        "${config.environment}_priceQuotation_unknown_profile",
-                        "${config.environment}_priceQuotation_bot_unsuccessful",
-                        "${config.environment}_priceQuotation_negative",
-                        "${config.environment}_priceQuotation_negative_draft",
+                        "${config.environment}_openeu_complaint_cancel_lot_stopped"
                     ])
                 }
                 innerJobs.each { String scenario -> phaseJob(scenario) {
