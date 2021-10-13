@@ -3366,7 +3366,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3389,7 +3388,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3412,7 +3410,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3435,7 +3432,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3458,7 +3454,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3481,7 +3476,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3504,7 +3498,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3527,7 +3520,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3550,7 +3542,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3573,7 +3564,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3596,7 +3586,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3619,7 +3608,6 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v mode:priceQuotation $params")
             shell("$robotWrapper $priceQuotation $defaultArgs $params")
             shell(shellRebot)
@@ -3642,7 +3630,6 @@ try {
 
          steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction -i answer_question_to_tender $params")
             shell("$robotWrapper $auction $defaultArgs $params")
@@ -3668,7 +3655,6 @@ try {
 
          steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
             shell("$robotWrapper $openProcedure $defaultArgs -i answer_question_to_tender $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
@@ -3913,7 +3899,6 @@ try {
 
          steps {
             shell(shellBuildout)
-            shell(shellPhantom)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
             shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
