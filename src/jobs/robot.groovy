@@ -5312,11 +5312,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5335,11 +5337,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5358,11 +5362,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5381,11 +5387,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints  $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5404,11 +5412,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints  $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5428,11 +5438,13 @@ try {
         String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
         String esco_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs $esco_pre_qualification -v MODE:open_esco $no_auction $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $esco_pre_qualification $mode $funding_kind $no_auction $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5452,11 +5464,13 @@ try {
          String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
          String esco_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
          String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+         String mode = "-v MODE:open_esco"
+         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs $esco_pre_qualification -v MODE:open_esco $no_auction $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $esco_pre_qualification $mode $funding_kind $no_auction $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5476,11 +5490,13 @@ try {
         String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
         String esco_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs $esco_pre_qualification -v MODE:open_esco $no_auction $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $esco_pre_qualification $mode $funding_kind $no_auction $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5500,11 +5516,13 @@ try {
         String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
         String esco_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs $esco_pre_qualification -v MODE:open_esco $no_auction $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $esco_pre_qualification $mode $funding_kind $no_auction $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5524,11 +5542,13 @@ try {
         String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
         String esco_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs $esco_pre_qualification -v MODE:open_esco $no_auction $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $esco_pre_qualification $mode $funding_kind $no_auction $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5547,11 +5567,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_resolved.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5570,11 +5592,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_mistaken.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5593,11 +5617,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_invalid.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5616,11 +5642,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_declined.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5639,11 +5667,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_stopped.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5662,11 +5692,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_resolved.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5685,11 +5717,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_mistaken.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5708,11 +5742,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_invalid.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5731,11 +5767,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_declined.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5754,11 +5792,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_stopped.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5777,11 +5817,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_resolved.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5800,11 +5842,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_mistaken.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5823,11 +5867,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_invalid.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5846,11 +5892,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_declined.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5869,11 +5917,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_stopped.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5892,11 +5942,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_resolved.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5915,11 +5967,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_mistaken.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5938,11 +5992,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_invalid.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5961,11 +6017,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_declined.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -5984,11 +6042,13 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_stopped.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:open_esco"
+        String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:open_esco $accelerate_esco $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $funding_kind $accelerate_esco $params")
             shell(shellRebot)
         }
     }
