@@ -1040,6 +1040,31 @@ try {
         }
     }
 
+    job("${config.environment}_aboveThresholdUA_plans_aggregation") {
+        parameters defaultParameters(config)
+        description("Сценарій: Надпорогова закупівля.")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/plans_aggregation.txt"
+        String accelerate_aboveThresholdUA = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $accelerate_aboveThresholdUA $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
     job("${config.environment}_planning_aboveThresholdUA") {
         parameters defaultParameters(config)
         description("Сценарій: Планування Надпорогова закупівля")
@@ -6736,7 +6761,7 @@ try {
                     "${config.environment}_aboveThresholdEU_LLC",
                     "${config.environment}_aboveThresholdUA_LLC",
                     "${config.environment}_simple_defence_LLC",
-
+                    "${config.environment}_aboveThresholdUA_plans_aggregation",
                 ]
                 if (config.environment != 'k8s') {
                     innerJobs.addAll([
