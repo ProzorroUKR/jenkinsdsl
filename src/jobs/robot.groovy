@@ -197,6 +197,10 @@ try {
 ].each { Map config ->
     String params = config.params.collect { k,v -> " -v $k:\${$k}" }.join('')
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                  PROCEDURE FULL TESTING
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
     job("${config.environment}_aboveThresholdEU") {
         parameters defaultParameters(config)
         description("Сценарій: Надпорогова закупівля з публікацією англійською мовою.")
@@ -222,6 +226,246 @@ try {
             shell(shellRebot)
         }
     }
+
+    job("${config.environment}_aboveThresholdUA") {
+        parameters defaultParameters(config)
+        description("Сценарій: Надпорогова закупівля.")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/openua.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_frameworkagreement") {
+        parameters defaultParameters(config)
+        description("Сценарій: Рамкова угода.")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/framework_agreement_full.txt"
+        String selectionArgs = "-A robot_tests_arguments/framework_selection_full.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
+            shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $agreement $defaultArgs $params")
+            shell("$robotWrapper $selection $selectionArgs $fast_auction $params")
+            shell("$robotWrapper $selection_auction_short $selectionArgs $params")
+            shell("$robotWrapper $selection_qualification $selectionArgs $params")
+            shell("$robotWrapper $selection_contractsign $selectionArgs $params")
+            shell("$robotWrapper $selection_contractmanagement $selectionArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_below_funders_full") {
+        parameters defaultParameters(config)
+        description("Сценарій: Допорогова закупівля.")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/below_funders_full.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_belowThreshold") {
+        parameters defaultParameters(config)
+        description("Сценарій: Допорогова закупівля.")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/below.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_single_item_tender") {
+        parameters defaultParameters(config)
+        description("Сценарій: Допорогова закупівля з однією номенклатурою до аукціону")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/single_item_tender.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_esco") {
+        parameters defaultParameters(config)
+        description("Сценарій: Відкриті торги для закупівлі енергосервісу")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/esco.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
+            shell("$robotWrapper $auction_short $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_competitiveDialogueEU") {
+        parameters defaultParameters(config)
+        description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet_tender_vat_true -i modify_contract_amount_net -i modify_contract_value $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_competitiveDialogueUA") {
+        parameters defaultParameters(config)
+        description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_UA.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
+            shell("$robotWrapper $auction $defaultArgs $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    ["negotiation", "negotiation.quick", "reporting"].each { String scenario ->
+    job("${config.environment}_$scenario") {
+            parameters defaultParameters(config)
+            description("Сценарій: Переговорна процедура")
+            keepDependencies(false)
+            disabled(false)
+            concurrentBuild(config.concurrentBuild)
+            scm defaultScm
+            publishers defaultPublishers
+            wrappers defaultWrappers(scenario != 'negotiation.quick', 10800)
+            configure defaultConfigure
+            environmentVariables defaultEnv()
+
+            steps {
+                shell(shellBuildout)
+                shell(shellPhantom)
+                shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:$scenario $params")
+                shell("$robotWrapper -s $scenario $params")
+                shell(shellRebot)
+            }
+        }
+    }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                 VAT TRUE/FALSE TESTING
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
     job("${config.environment}_aboveThresholdEU_vat_true_false") {
         parameters defaultParameters(config)
@@ -297,64 +541,6 @@ try {
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_aboveThresholdUA") {
-        parameters defaultParameters(config)
-        description("Сценарій: Надпорогова закупівля.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/openua.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_frameworkagreement") {
-        parameters defaultParameters(config)
-        description("Сценарій: Рамкова угода.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/framework_agreement_full.txt"
-        String selectionArgs = "-A robot_tests_arguments/framework_selection_full.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction -v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"tender\":[0,31]}}}}' -v accelerator:2880 $params")
-            shell("$robotWrapper $auction_short $defaultArgs -i auction $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $agreement $defaultArgs $params")
-            shell("$robotWrapper $selection $selectionArgs $fast_auction $params")
-            shell("$robotWrapper $selection_auction_short $selectionArgs $params")
-            shell("$robotWrapper $selection_qualification $selectionArgs $params")
-            shell("$robotWrapper $selection_contractsign $selectionArgs $params")
-            shell("$robotWrapper $selection_contractmanagement $selectionArgs $params")
             shell(shellRebot)
         }
     }
@@ -437,163 +623,6 @@ try {
         }
     }
 
-    job("${config.environment}_below_funders_full") {
-        parameters defaultParameters(config)
-        description("Сценарій: Допорогова закупівля.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/below_funders_full.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_belowThreshold") {
-        parameters defaultParameters(config)
-        description("Сценарій: Допорогова закупівля.")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/below.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_belowThreshold_moz_1") {
-        parameters defaultParameters(config)
-        description("Сценарій: Допорогова закупівля фармацевтичної продукції")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/mnn_1.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_belowThreshold_moz_2") {
-        parameters defaultParameters(config)
-        description("Сценарій: Допорогова закупівля лікарських засобів")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/mnn_2.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_belowThreshold_moz_3") {
-        parameters defaultParameters(config)
-        description("Сценарій: Допорогова закупівля лікарських засобів без додаткового класифікатора")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/mnn_3.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_belowThreshold_moz_validation") {
-        parameters defaultParameters(config)
-        description("Сценарій: Допорогова закупівля - валідації МНН")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-
-        steps {
-            shell(shellBuildout)
-            shell(shellPhantom)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_2_INN -v MODE:belowThreshold $params")
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_add_class -v MODE:belowThreshold $params")
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_INN -v MODE:belowThreshold $params")
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc -v MODE:belowThreshold $params")
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
-            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc_2 -v MODE:belowThreshold $params")
-            shell(shellRebot)
-        }
-    }
-
     job("${config.environment}_belowThreshold_vat_true_false") {
         parameters defaultParameters(config)
         description("Допорогова закупівля (мінімальний набір тест кейсів) оголошена з ПДВ, контракт укладено без ПДВ")
@@ -667,32 +696,6 @@ try {
             shell("$robotWrapper $openProcedure $defaultArgs $no_auction -v VAT_INCLUDED:False $below_acceleration $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_vat_to_true -i modify_contract_amount_net -i modify_contract_value -i modify_contract_invalid_amountNet -i modify_contract_invalid_amount_tender_vat_false $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_competitiveDialogueEU") {
-        parameters defaultParameters(config)
-        description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs -i modify_contract_invalid_amount -i modify_contract_invalid_amountNet_tender_vat_true -i modify_contract_amount_net -i modify_contract_value $params")
             shell("$robotWrapper $contractmanagement $defaultArgs -i change_contract_amountNet -i change_contract_amount -i change_amount_paid $params")
             shell(shellRebot)
         }
@@ -776,32 +779,6 @@ try {
         }
     }
 
-    job("${config.environment}_competitiveDialogueUA") {
-        parameters defaultParameters(config)
-        description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_UA.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
     job("${config.environment}_competitiveDialogueUA_vat_true_false") {
         parameters defaultParameters(config)
         description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
@@ -880,6 +857,10 @@ try {
         }
     }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                 DASU TESTING
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
     ["cancelled", "closed", "completed", "complete_proceed_num", "declined", "active_stopped", "adressed_stopped",
     "declined_stopped"].each { String scenario ->
         job("${config.environment}_dasu_$scenario") {
@@ -904,68 +885,9 @@ try {
         }
     }
 
-    ["negotiation", "negotiation.quick", "reporting"].each { String scenario ->
-        job("${config.environment}_$scenario") {
-            parameters defaultParameters(config)
-            description("Сценарій: Переговорна процедура")
-            keepDependencies(false)
-            disabled(false)
-            concurrentBuild(config.concurrentBuild)
-            scm defaultScm
-            publishers defaultPublishers
-            wrappers defaultWrappers(scenario != 'negotiation.quick', 10800)
-            configure defaultConfigure
-            environmentVariables defaultEnv()
-
-            steps {
-                shell(shellBuildout)
-                shell(shellPhantom)
-                shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:$scenario $params")
-                shell("$robotWrapper -s $scenario $params")
-                shell(shellRebot)
-            }
-        }
-    }
-
-    job("${config.environment}_planning_belowThreshold") {
-        parameters defaultParameters(config)
-        description("Сценарій: Планування допорогова процедура")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        steps {
-            shell(shellBuildout)
-            shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_planning_framework_agreement") {
-        parameters defaultParameters(config)
-        description("Сценарій: Планування рамкової угоди")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(false)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        steps {
-            shell(shellBuildout)
-            shell(shellPhantom)
-            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -i closeframework_period -v MODE:closeFrameworkAgreementUA -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
-            shell(shellRebot)
-        }
-    }
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                 FEED READING
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
     job("${config.environment}_feed_reading") {
         parameters defaultParameters(config)
@@ -988,57 +910,9 @@ try {
         }
     }
 
-
-    job("${config.environment}_single_item_tender") {
-        parameters defaultParameters(config)
-        description("Сценарій: Допорогова закупівля з однією номенклатурою до аукціону")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/single_item_tender.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
-            shell("$robotWrapper $auction $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell("$robotWrapper $contractmanagement $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_esco") {
-        parameters defaultParameters(config)
-        description("Сценарій: Відкриті торги для закупівлі енергосервісу")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/esco.txt"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
-            shell("$robotWrapper $auction_short $defaultArgs $params")
-            shell("$robotWrapper $qualification $defaultArgs $params")
-            shell("$robotWrapper $contractsign $defaultArgs $params")
-            shell(shellRebot)
-        }
-    }
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                 CPB PLANS AGGREGATION TESTING
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
     job("${config.environment}_aboveThresholdUA_plans_aggregation") {
         parameters defaultParameters(config)
@@ -1064,6 +938,10 @@ try {
             shell(shellRebot)
         }
     }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                  PLANNING
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
     job("${config.environment}_planning_aboveThresholdUA") {
         parameters defaultParameters(config)
@@ -1185,6 +1063,46 @@ try {
         }
     }
 
+    job("${config.environment}_planning_belowThreshold") {
+        parameters defaultParameters(config)
+        description("Сценарій: Планування допорогова процедура")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_planning_framework_agreement") {
+        parameters defaultParameters(config)
+        description("Сценарій: Планування рамкової угоди")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(false)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper -o planning_output.xml -s planning -A robot_tests_arguments/planning.txt -i closeframework_period -v MODE:closeFrameworkAgreementUA -v NUMBER_OF_ITEMS:2 -v TENDER_MEAT:False -v ITEM_MEAT:False $params")
+            shell(shellRebot)
+        }
+    }
+
     job("${config.environment}_plan_tender_validations") {
         parameters defaultParameters(config)
         description("Сценарій: Валідації План-Тендер")
@@ -1209,6 +1127,10 @@ try {
             shell(shellRebot)
         }
     }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                  COST/GMDN TESTING
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
     job("${config.environment}_below_cost") {
         parameters defaultParameters(config)
@@ -1311,6 +1233,115 @@ try {
         }
     }
 
+    job("${config.environment}_belowThreshold_moz_1") {
+        parameters defaultParameters(config)
+        description("Сценарій: Допорогова закупівля фармацевтичної продукції")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/mnn_1.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_belowThreshold_moz_2") {
+        parameters defaultParameters(config)
+        description("Сценарій: Допорогова закупівля лікарських засобів")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/mnn_2.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_belowThreshold_moz_3") {
+        parameters defaultParameters(config)
+        description("Сценарій: Допорогова закупівля лікарських засобів без додаткового класифікатора")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/mnn_3.txt"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $no_auction $below_acceleration $params")
+            shell("$robotWrapper $qualification $defaultArgs $params")
+            shell("$robotWrapper $contractsign $defaultArgs $params")
+            shell("$robotWrapper $contractmanagement $defaultArgs $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("${config.environment}_belowThreshold_moz_validation") {
+        parameters defaultParameters(config)
+        description("Сценарій: Допорогова закупівля - валідації МНН")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+
+        steps {
+            shell(shellBuildout)
+            shell(shellPhantom)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_2_INN -v MODE:belowThreshold $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_add_class -v MODE:belowThreshold $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_INN -v MODE:belowThreshold $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc -v MODE:belowThreshold $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MOZ_INTEGRATION:True $params")
+            shell("$robotWrapper $openProcedure -i create_tender_invalid_no_atc_2 -v MODE:belowThreshold $params")
+            shell(shellRebot)
+        }
+    }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                  EDR/DFS TESTING
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
     job("${config.environment}_aboveThresholdEU_EDR_DFS") {
         parameters defaultParameters(config)
         description("Сценарій: Надпорогова закупівля з публікацією англійською мовою.")
@@ -1323,7 +1354,7 @@ try {
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/openeu_edr_dfs.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1347,7 +1378,7 @@ try {
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/openua_edr_dfs.txt"
-        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1371,7 +1402,7 @@ try {
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_edr_dfs.txt"
-        String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,15],\"accelerator\":2880}}}}'"
+        String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,15],\"accelerator\":2880}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1395,7 +1426,7 @@ try {
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/competitive_dialogue_UA_edr_dfs.txt"
-        String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,15],\"accelerator\":2880}}}}'"
+        String accelerate_open_competitive_dialogue = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueUA\":{\"tender\":[1,15],\"accelerator\":2880}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1419,7 +1450,7 @@ try {
         configure defaultConfigure
 
         String defaultArgs = "-A robot_tests_arguments/esco_edr_dfs.txt"
-        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"enquiry\":[0,1],\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
+        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"enquiry\":[0,1],\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1430,6 +1461,10 @@ try {
             shell(shellRebot)
         }
     }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                  EDR/DFS TESTING
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
     job("${config.environment}_openeu_complaint_tender_resolved") {
         parameters defaultParameters(config)
