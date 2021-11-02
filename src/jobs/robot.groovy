@@ -2702,7 +2702,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/cancellation.txt"
-        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"enquiry\":[0,1],\"tender\":[1,5],\"accelerator\":14400}}}}'"
+        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"enquiry\":[0,1],\"tender\":[1,5],\"accelerator\":14400}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2774,7 +2774,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/cancellation_qualification_esco.txt"
-        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"enquiry\":[0,1],\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
+        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"enquiry\":[0,1],\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2998,7 +2998,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/cancellation_awarded_esco.txt"
-        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"enquiry\":[0,1],\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
+        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"enquiry\":[0,1],\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -3142,7 +3142,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/cancellation_pre_qualification_esco.txt"
-        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"enquiry\":[0,1],\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
+        String accelerate_open_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"enquiry\":[0,1],\"tender\":[1,7.5],\"accelerator\":5760}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -5395,8 +5395,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5420,8 +5420,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5445,8 +5445,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5470,8 +5470,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5495,8 +5495,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5521,8 +5521,8 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
         String esco_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5547,8 +5547,8 @@ try {
 
          String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
          String esco_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
-         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-         String mode = "-v MODE:open_esco"
+         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+         String mode = "-v MODE:esco"
          String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5573,8 +5573,8 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
         String esco_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5599,8 +5599,8 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
         String esco_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5625,8 +5625,8 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
         String esco_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5650,8 +5650,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_resolved.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5675,8 +5675,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_mistaken.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5700,8 +5700,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_invalid.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5725,8 +5725,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_declined.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5750,8 +5750,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_stopped.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5775,8 +5775,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_resolved.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5800,8 +5800,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_mistaken.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5825,8 +5825,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_invalid.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5850,8 +5850,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_declined.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5875,8 +5875,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_stopped.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5900,8 +5900,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_resolved.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5925,8 +5925,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_mistaken.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5950,8 +5950,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_invalid.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -5975,8 +5975,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_declined.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -6000,8 +6000,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_stopped.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -6025,8 +6025,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_resolved.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -6050,8 +6050,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_mistaken.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -6075,8 +6075,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_invalid.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -6100,8 +6100,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_declined.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
@@ -6125,8 +6125,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_stopped.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_esco"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
         String funding_kind = "-v FUNDING_KIND:budget"
 
         steps {
