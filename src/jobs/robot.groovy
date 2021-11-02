@@ -6150,8 +6150,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6174,8 +6174,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6198,8 +6198,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6222,8 +6222,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6246,8 +6246,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6270,8 +6270,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_resolved.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
         String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1 -i make_bid_with_criteria_by_provider_first_stage -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
         String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid"
 
@@ -6296,8 +6296,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_mistaken.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
         String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1 -i make_bid_with_criteria_by_provider_first_stage -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
         String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid"
 
@@ -6322,8 +6322,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_invalid.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
         String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1 -i make_bid_with_criteria_by_provider_first_stage -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
         String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid"
 
@@ -6348,8 +6348,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_declined.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
         String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1 -i make_bid_with_criteria_by_provider_first_stage -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
         String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid"
 
@@ -6374,8 +6374,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_stopped.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
         String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1 -i make_bid_with_criteria_by_provider_first_stage -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
         String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid"
 
@@ -6400,8 +6400,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_resolved.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6424,8 +6424,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_mistaken.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6448,8 +6448,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_invalid.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6472,8 +6472,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_declined.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6496,8 +6496,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_stopped.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6520,8 +6520,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_resolved.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6544,8 +6544,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_mistaken.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6568,8 +6568,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_invalid.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6592,8 +6592,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_declined.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6616,8 +6616,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_stopped.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6640,8 +6640,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_resolved.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6664,8 +6664,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_mistaken.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6688,8 +6688,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_invalid.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6712,8 +6712,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_declined.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
@@ -6736,8 +6736,8 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_stopped.txt"
-        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_competitive_dialogue\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "-v MODE:open_competitive_dialogue"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
 
         steps {
             shell(shellBuildout)
