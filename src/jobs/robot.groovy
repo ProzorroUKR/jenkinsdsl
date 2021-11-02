@@ -125,6 +125,7 @@ String openua_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"a
 String below_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"default\":{\"enquiry\":[1,2],\"tender\":[1,7],\"accelerator\":4320}}}}'"
 String competitive_dialogue_EU_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,10],\"accelerator\":4320}}}}'"
 String competitive_dialogue_UA_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueUA\":{\"tender\":[1,10],\"accelerator\":4320}}}}'"
+String close_framework_agreement_ua_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"closeFrameworkAgreementUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
 def remoteToken = null
 try {
@@ -7373,6 +7374,705 @@ try {
         }
     }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                  FULL COMPLAINTS TESTING (CLOSE_FRAMEWORK_AGREEMENT_UA)
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+     job("close_framework_agreement_ua_complaint_tender_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_tender_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_tender_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_tender_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_tender_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_award_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
+        String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $mode $no_auction $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_award_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+         String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
+         String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
+         String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $mode $no_auction $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_award_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
+        String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $mode $no_auction $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_award_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
+        String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $mode $no_auction $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_award_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
+        String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $mode $no_auction $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_qualification_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на пре-кваліфікацію учасника задоволена Замовником")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_qualification_resolved.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_qualification_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на пре-кваліфікацію учасника створена помилково")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_qualification_mistaken.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_qualification_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на пре-кваліфікацію учасника залишена без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_qualification_invalid.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_qualification_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на пре-кваліфікацію учасника відхилена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_qualification_declined.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_qualification_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на пре-кваліфікацію учасника розгляд зупинено")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_qualification_stopped.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_lot_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота виконана Замовником")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_resolved.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_lot_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота створена помилково")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_mistaken.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_lot_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота залишена без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_invalid.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_lot_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота відхилена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_declined.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_lot_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота розгляд зупинено")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_stopped.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_cancel_tender_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_resolved.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_cancel_tender_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера створена помилково")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_mistaken.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_cancel_tender_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера залишена без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_invalid.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_cancel_tender_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера відхилена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_declined.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_cancel_tender_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера розгляд зупинено")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_stopped.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_cancel_lot_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_resolved.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_cancel_lot_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування лота створена помилково")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_mistaken.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_cancel_lot_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування лота залишена без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_invalid.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_cancel_lot_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування лота відхилена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_declined.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("close_framework_agreement_ua_complaint_cancel_lot_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування лота розгляд зупинено")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_stopped.txt"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell(shellRebot)
+        }
+    }
+
 
     multiJob(config.environment) {
         authenticationToken(remoteToken)
@@ -7799,7 +8499,37 @@ multiJob("cancellation") {
                 "competitive_dialogue_ua_complaint_cancel_lot_mistaken",
                 "competitive_dialogue_ua_complaint_cancel_lot_invalid",
                 "competitive_dialogue_ua_complaint_cancel_lot_declined",
-                "competitive_dialogue_ua_complaint_cancel_lot_stopped",)
+                "competitive_dialogue_ua_complaint_cancel_lot_stopped",
+                "close_framework_agreement_ua_complaint_tender_resolved",
+                "close_framework_agreement_ua_complaint_tender_mistaken",
+                "close_framework_agreement_ua_complaint_tender_declined",
+                "close_framework_agreement_ua_complaint_tender_stopped",
+                "close_framework_agreement_ua_complaint_tender_invalid",
+                "close_framework_agreement_ua_complaint_award_resolved",
+                "close_framework_agreement_ua_complaint_award_mistaken",
+                "close_framework_agreement_ua_complaint_award_declined",
+                "close_framework_agreement_ua_complaint_award_stopped",
+                "close_framework_agreement_ua_complaint_award_invalid",
+                "close_framework_agreement_ua_complaint_qualification_resolved",
+                "close_framework_agreement_ua_complaint_qualification_mistaken",
+                "close_framework_agreement_ua_complaint_qualification_invalid",
+                "close_framework_agreement_ua_complaint_qualification_declined",
+                "close_framework_agreement_ua_complaint_qualification_stopped",
+                "close_framework_agreement_ua_complaint_lot_resolved",
+                "close_framework_agreement_ua_complaint_lot_mistaken",
+                "close_framework_agreement_ua_complaint_lot_invalid",
+                "close_framework_agreement_ua_complaint_lot_declined",
+                "close_framework_agreement_ua_complaint_lot_stopped",
+                "close_framework_agreement_ua_complaint_cancel_tender_resolved",
+                "close_framework_agreement_ua_complaint_cancel_tender_mistaken",
+                "close_framework_agreement_ua_complaint_cancel_tender_invalid",
+                "close_framework_agreement_ua_complaint_cancel_tender_declined",
+                "close_framework_agreement_ua_complaint_cancel_tender_stopped",
+                "close_framework_agreement_ua_complaint_cancel_lot_resolved",
+                "close_framework_agreement_ua_complaint_cancel_lot_mistaken",
+                "close_framework_agreement_ua_complaint_cancel_lot_invalid",
+                "close_framework_agreement_ua_complaint_cancel_lot_declined",
+                "close_framework_agreement_ua_complaint_cancel_lot_stopped",)
         }
         columns {
             status()
@@ -7975,6 +8705,36 @@ multiJob("complaints") {
                 "competitive_dialogue_ua_complaint_cancel_lot_invalid",
                 "competitive_dialogue_ua_complaint_cancel_lot_declined",
                 "competitive_dialogue_ua_complaint_cancel_lot_stopped",
+                "close_framework_agreement_ua_complaint_tender_resolved",
+                "close_framework_agreement_ua_complaint_tender_mistaken",
+                "close_framework_agreement_ua_complaint_tender_declined",
+                "close_framework_agreement_ua_complaint_tender_stopped",
+                "close_framework_agreement_ua_complaint_tender_invalid",
+                "close_framework_agreement_ua_complaint_award_resolved",
+                "close_framework_agreement_ua_complaint_award_mistaken",
+                "close_framework_agreement_ua_complaint_award_declined",
+                "close_framework_agreement_ua_complaint_award_stopped",
+                "close_framework_agreement_ua_complaint_award_invalid",
+                "close_framework_agreement_ua_complaint_qualification_resolved",
+                "close_framework_agreement_ua_complaint_qualification_mistaken",
+                "close_framework_agreement_ua_complaint_qualification_invalid",
+                "close_framework_agreement_ua_complaint_qualification_declined",
+                "close_framework_agreement_ua_complaint_qualification_stopped",
+                "close_framework_agreement_ua_complaint_lot_resolved",
+                "close_framework_agreement_ua_complaint_lot_mistaken",
+                "close_framework_agreement_ua_complaint_lot_invalid",
+                "close_framework_agreement_ua_complaint_lot_declined",
+                "close_framework_agreement_ua_complaint_lot_stopped",
+                "close_framework_agreement_ua_complaint_cancel_tender_resolved",
+                "close_framework_agreement_ua_complaint_cancel_tender_mistaken",
+                "close_framework_agreement_ua_complaint_cancel_tender_invalid",
+                "close_framework_agreement_ua_complaint_cancel_tender_declined",
+                "close_framework_agreement_ua_complaint_cancel_tender_stopped",
+                "close_framework_agreement_ua_complaint_cancel_lot_resolved",
+                "close_framework_agreement_ua_complaint_cancel_lot_mistaken",
+                "close_framework_agreement_ua_complaint_cancel_lot_invalid",
+                "close_framework_agreement_ua_complaint_cancel_lot_declined",
+                "close_framework_agreement_ua_complaint_cancel_lot_stopped",
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
