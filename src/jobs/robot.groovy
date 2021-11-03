@@ -7518,7 +7518,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
-        String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
+        String openeu_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid  -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String mode = "-v MODE:closeFrameworkAgreementUA"
 
         steps {
@@ -7542,7 +7542,7 @@ try {
         environmentVariables defaultEnv()
 
          String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
-         String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
+         String openeu_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid  -i pre-qualification_approve_qualifications -i pre-qualification_view"
          String mode = "-v MODE:closeFrameworkAgreementUA"
 
         steps {
@@ -7566,7 +7566,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
-        String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
+        String openeu_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid  -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String mode = "-v MODE:closeFrameworkAgreementUA"
 
         steps {
@@ -7590,7 +7590,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
-        String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
+        String openeu_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid  -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String mode = "-v MODE:closeFrameworkAgreementUA"
 
         steps {
@@ -7614,7 +7614,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
-        String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
+        String openeu_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid  -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String mode = "-v MODE:closeFrameworkAgreementUA"
 
         steps {
@@ -7638,12 +7638,13 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_resolved.txt"
+        String bid_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_third_bid"
         String mode = "-v MODE:closeFrameworkAgreementUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $bid_pre_qualification $close_framework_agreement_ua_acceleration $params")
             shell(shellRebot)
         }
     }
@@ -7661,12 +7662,13 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_mistaken.txt"
+        String bid_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_third_bid"
         String mode = "-v MODE:closeFrameworkAgreementUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $bid_pre_qualification $close_framework_agreement_ua_acceleration $params")
             shell(shellRebot)
         }
     }
@@ -7684,12 +7686,13 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_invalid.txt"
+        String bid_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_third_bid"
         String mode = "-v MODE:closeFrameworkAgreementUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $bid_pre_qualification $close_framework_agreement_ua_acceleration $params")
             shell(shellRebot)
         }
     }
@@ -7707,12 +7710,13 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_declined.txt"
+        String bid_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_third_bid"
         String mode = "-v MODE:closeFrameworkAgreementUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $bid_pre_qualification $close_framework_agreement_ua_acceleration $params")
             shell(shellRebot)
         }
     }
@@ -7730,12 +7734,13 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_stopped.txt"
+        String bid_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_third_bid"
         String mode = "-v MODE:closeFrameworkAgreementUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $bid_pre_qualification $close_framework_agreement_ua_acceleration $params")
             shell(shellRebot)
         }
     }
