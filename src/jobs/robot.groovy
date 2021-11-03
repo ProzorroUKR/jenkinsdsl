@@ -8547,9 +8547,9 @@ multiJob("complaints") {
     parameters {
         choiceParam('BRANCH', ['master', 'dev_prozorro_2'], 'my description')
         stringParam('RELEASE_NAME', 'main', 'my description')
-        choiceParam('API_HOST_URL', ['http://api.${RELEASE_NAME}.k8s.prozorro.gov.ua',
-        'https://lb-api-staging.prozorro.gov.ua',
-        'https://lb-api-sandbox-2.prozorro.gov.ua'], 'my description')
+        choiceParam('API_HOST_URL', ['https://lb-api-staging.prozorro.gov.ua',
+        'https://lb-api-sandbox-2.prozorro.gov.ua',
+        'http://api.${RELEASE_NAME}.k8s.prozorro.gov.ua'], 'my description')
         choiceParam('API_VERSION', ['2.5'], 'my description')
         choiceParam('EDR_HOST_URL', ['https://lb-edr-staging.prozorro.gov.ua',
         'https://lb-edr-sandbox-2.prozorro.gov.ua'], 'my description')
@@ -8557,15 +8557,15 @@ multiJob("complaints") {
         choiceParam('DS_HOST_URL', ['https://upload-docs-staging.prozorro.gov.ua',
         'https://upload-docs-sandbox-2.prozorro.gov.ua',
         'http://ds.k8s.prozorro.gov.ua'], 'my description')
-        choiceParam('DS_REGEXP', ["^http?:\\/\\/ds\\.k8s\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
-        "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
-        "^https?:\\/\\/public-docs(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})"], 'my description')
+        choiceParam('DS_REGEXP', ["^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
+        "^https?:\\/\\/public-docs(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
+        "^http?:\\/\\/ds\\.k8s\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})"], 'my description')
         choiceParam('PAYMENT_API', ['https://integration-staging.prozorro.gov.ua/liqpay',
         'https://integration-sandbox-2.prozorro.gov.ua/liqpay'], 'my description')
         choiceParam('PAYMENT_API_VERSION', ['v1'], 'my description')
-        choiceParam('AUCTION_REGEXP', ["^http?:\\/\\/auctions\\.\${RELEASE_NAME}\\.k8s\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
-        "^https?:\\/\\/auction(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
-        "^https?:\\/\\/auction(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})"], 'my description')
+        choiceParam('AUCTION_REGEXP', ["^https?:\\/\\/auction(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
+        "^https?:\\/\\/auction(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
+        "^http?:\\/\\/auctions\\.\${RELEASE_NAME}\\.k8s\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})"], 'my description')
     }
         steps {
             phase("Test") {
