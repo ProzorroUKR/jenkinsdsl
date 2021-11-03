@@ -167,7 +167,7 @@ try {
                     "DS_REGEXP": "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
                 ],
                 cron: "0 4 * * *",
-                branch: "master",
+                branch: "dev_prozorro_2",
                 concurrentBuild: false,
                 edr: true,
                 dfs: true
@@ -4826,11 +4826,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -4849,11 +4850,12 @@ try {
 
          String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
          String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+         String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -4872,11 +4874,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -4895,11 +4898,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -4918,11 +4922,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5056,11 +5061,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_resolved.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:openeu $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5102,11 +5108,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_invalid.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:aboveThresholdUA $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5286,11 +5293,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5309,11 +5317,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5332,11 +5341,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5355,11 +5365,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5378,11 +5389,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -8547,9 +8559,9 @@ multiJob("complaints") {
     parameters {
         choiceParam('BRANCH', ['master', 'dev_prozorro_2'], 'my description')
         stringParam('RELEASE_NAME', 'main', 'my description')
-        choiceParam('API_HOST_URL', ['http://api.${RELEASE_NAME}.k8s.prozorro.gov.ua',
-        'https://lb-api-staging.prozorro.gov.ua',
-        'https://lb-api-sandbox-2.prozorro.gov.ua'], 'my description')
+        choiceParam('API_HOST_URL', ['https://lb-api-staging.prozorro.gov.ua',
+        'https://lb-api-sandbox-2.prozorro.gov.ua',
+        'http://api.${RELEASE_NAME}.k8s.prozorro.gov.ua'], 'my description')
         choiceParam('API_VERSION', ['2.5'], 'my description')
         choiceParam('EDR_HOST_URL', ['https://lb-edr-staging.prozorro.gov.ua',
         'https://lb-edr-sandbox-2.prozorro.gov.ua'], 'my description')
@@ -8557,15 +8569,15 @@ multiJob("complaints") {
         choiceParam('DS_HOST_URL', ['https://upload-docs-staging.prozorro.gov.ua',
         'https://upload-docs-sandbox-2.prozorro.gov.ua',
         'http://ds.k8s.prozorro.gov.ua'], 'my description')
-        choiceParam('DS_REGEXP', ["^http?:\\/\\/ds\\.k8s\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
-        "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
-        "^https?:\\/\\/public-docs(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})"], 'my description')
+        choiceParam('DS_REGEXP', ["^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
+        "^https?:\\/\\/public-docs(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
+        "^http?:\\/\\/ds\\.k8s\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})"], 'my description')
         choiceParam('PAYMENT_API', ['https://integration-staging.prozorro.gov.ua/liqpay',
         'https://integration-sandbox-2.prozorro.gov.ua/liqpay'], 'my description')
         choiceParam('PAYMENT_API_VERSION', ['v1'], 'my description')
-        choiceParam('AUCTION_REGEXP', ["^http?:\\/\\/auctions\\.\${RELEASE_NAME}\\.k8s\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
-        "^https?:\\/\\/auction(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
-        "^https?:\\/\\/auction(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})"], 'my description')
+        choiceParam('AUCTION_REGEXP', ["^https?:\\/\\/auction(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
+        "^https?:\\/\\/auction(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
+        "^http?:\\/\\/auctions\\.\${RELEASE_NAME}\\.k8s\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})"], 'my description')
     }
         steps {
             phase("Test") {
