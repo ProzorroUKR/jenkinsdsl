@@ -4826,11 +4826,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -4849,11 +4850,12 @@ try {
 
          String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
          String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+         String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -4872,11 +4874,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -4895,11 +4898,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -4918,11 +4922,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5056,11 +5061,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_resolved.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:openeu $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5102,11 +5108,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_invalid.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs -v MODE:aboveThresholdUA $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5286,11 +5293,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5309,11 +5317,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5332,11 +5341,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $accelerate_openua $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5355,11 +5365,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -5378,11 +5389,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $accelerate_openua $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
     }
