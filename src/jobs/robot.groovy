@@ -1513,7 +1513,7 @@ try {
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-//                  COMPLAINTS TESTING
+//                   FULL COMPLAINTS TESTING (ABOVETHRESHOLD_EU)
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
     job("${config.environment}_openeu_complaint_tender_resolved") {
@@ -1529,7 +1529,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1552,7 +1552,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1575,7 +1575,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1598,7 +1598,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1621,127 +1621,12 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
             shell("$robotWrapper $complaints  $defaultArgs $accelerate_openeu $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_openua_complaint_award_resolved") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
-        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_openua_complaint_award_mistaken") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-         String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
-         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_openua_complaint_award_declined") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
-        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_openua_complaint_award_stopped") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
-        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_openua_complaint_award_invalid") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
-        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -1760,12 +1645,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
         String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification -v MODE:openeu $no_auction $accelerate_openeu $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -1784,12 +1669,12 @@ try {
 
          String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
          String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
-         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+         String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification -v MODE:openeu $no_auction $accelerate_openeu $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -1808,12 +1693,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
         String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification -v MODE:openeu $no_auction $accelerate_openeu $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -1832,12 +1717,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
         String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification -v MODE:openeu $no_auction $accelerate_openeu $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -1856,12 +1741,12 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
         String openeu_pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_qualifications -i pre-qualification_view"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification -v MODE:openeu $no_auction $accelerate_openeu $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -1879,7 +1764,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_resolved.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1902,7 +1787,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_mistaken.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1925,7 +1810,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_invalid.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1948,7 +1833,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_declined.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1971,7 +1856,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_qualification_stopped.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -1994,7 +1879,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_resolved.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2017,7 +1902,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_mistaken.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2040,7 +1925,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_invalid.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2063,7 +1948,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_declined.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2086,7 +1971,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_lot_stopped.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2109,7 +1994,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_resolved.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2132,7 +2017,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_mistaken.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2155,7 +2040,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_invalid.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2178,7 +2063,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_declined.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2201,7 +2086,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_stopped.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2224,7 +2109,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_resolved.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2247,7 +2132,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_mistaken.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2270,7 +2155,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_invalid.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2293,7 +2178,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_declined.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -2316,7 +2201,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_stopped.txt"
-        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openeu\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
 
         steps {
             shell(shellBuildout)
@@ -8180,11 +8065,6 @@ try {
                         "${config.environment}_openeu_complaint_tender_declined",
                         "${config.environment}_openeu_complaint_tender_stopped",
                         "${config.environment}_openeu_complaint_tender_invalid",
-                        "${config.environment}_openua_complaint_award_resolved",
-                        "${config.environment}_openua_complaint_award_mistaken",
-                        "${config.environment}_openua_complaint_award_declined",
-                        "${config.environment}_openua_complaint_award_stopped",
-                        "${config.environment}_openua_complaint_award_invalid",
                         "${config.environment}_openeu_complaint_qualification_resolved",
                         "${config.environment}_openeu_complaint_qualification_mistaken",
                         "${config.environment}_openeu_complaint_qualification_invalid",
@@ -8204,7 +8084,12 @@ try {
                         "${config.environment}_openeu_complaint_cancel_lot_mistaken",
                         "${config.environment}_openeu_complaint_cancel_lot_invalid",
                         "${config.environment}_openeu_complaint_cancel_lot_declined",
-                        "${config.environment}_openeu_complaint_cancel_lot_stopped"
+                        "${config.environment}_openeu_complaint_cancel_lot_stopped",
+                        "${config.environment}_openeu_complaint_award_resolved",
+                        "${config.environment}_openeu_complaint_award_mistaken",
+                        "${config.environment}_openeu_complaint_award_declined",
+                        "${config.environment}_openeu_complaint_award_stopped",
+                        "${config.environment}_openeu_complaint_award_invalid",
                     ])
                 }
                 innerJobs.each { String scenario -> phaseJob(scenario) {
