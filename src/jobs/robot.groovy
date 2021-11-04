@@ -8084,7 +8084,12 @@ try {
                         "${config.environment}_openeu_complaint_cancel_lot_mistaken",
                         "${config.environment}_openeu_complaint_cancel_lot_invalid",
                         "${config.environment}_openeu_complaint_cancel_lot_declined",
-                        "${config.environment}_openeu_complaint_cancel_lot_stopped"
+                        "${config.environment}_openeu_complaint_cancel_lot_stopped",
+                        "${config.environment}_openeu_complaint_award_resolved",
+                        "${config.environment}_openeu_complaint_award_mistaken",
+                        "${config.environment}_openeu_complaint_award_declined",
+                        "${config.environment}_openeu_complaint_award_stopped",
+                        "${config.environment}_openeu_complaint_award_invalid",
                     ])
                 }
                 innerJobs.each { String scenario -> phaseJob(scenario) {
