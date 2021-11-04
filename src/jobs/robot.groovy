@@ -1631,121 +1631,6 @@ try {
         }
     }
 
-    job("${config.environment}_openua_complaint_award_resolved") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
-        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_openua_complaint_award_mistaken") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-         String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
-         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_openua_complaint_award_declined") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
-        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_openua_complaint_award_stopped") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
-        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints  $defaultArgs $no_auction $accelerate_openua $params")
-            shell(shellRebot)
-        }
-    }
-
-    job("${config.environment}_openua_complaint_award_invalid") {
-        parameters defaultParameters(config)
-        description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
-        keepDependencies(false)
-        disabled(false)
-        concurrentBuild(config.concurrentBuild)
-        scm defaultScm
-        publishers defaultPublishers
-        wrappers defaultWrappers(true, 10800)
-        configure defaultConfigure
-        environmentVariables defaultEnv()
-
-        String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
-        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-
-        steps {
-            shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $no_auction $accelerate_openua $params")
-            shell(shellRebot)
-        }
-    }
-
     job("${config.environment}_openeu_complaint_award_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
@@ -8180,11 +8065,6 @@ try {
                         "${config.environment}_openeu_complaint_tender_declined",
                         "${config.environment}_openeu_complaint_tender_stopped",
                         "${config.environment}_openeu_complaint_tender_invalid",
-                        "${config.environment}_openua_complaint_award_resolved",
-                        "${config.environment}_openua_complaint_award_mistaken",
-                        "${config.environment}_openua_complaint_award_declined",
-                        "${config.environment}_openua_complaint_award_stopped",
-                        "${config.environment}_openua_complaint_award_invalid",
                         "${config.environment}_openeu_complaint_qualification_resolved",
                         "${config.environment}_openeu_complaint_qualification_mistaken",
                         "${config.environment}_openeu_complaint_qualification_invalid",
