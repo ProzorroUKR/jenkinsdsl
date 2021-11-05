@@ -2211,7 +2211,11 @@ try {
         }
     }
 
-        job("${config.environment}_complaint_simple_defence_first_award_cancel") {
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                   FULL COMPLAINTS TESTING (SIMPLE DEFENSE)
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+    job("${config.environment}_complaint_simple_defence_first_award_cancel") {
         parameters defaultParameters(config)
         description("Сценарій: Неможливо подати скаргу після першого скасування рішення")
         keepDependencies(false)
@@ -2224,7 +2228,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_pending.txt"
-        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
 
          steps {
             shell(shellBuildout)
@@ -2248,7 +2252,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_unsuc_pending.txt"
-        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
 
          steps {
             shell(shellBuildout)
@@ -2272,7 +2276,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_unsuc_cancel_pending.txt"
-        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
 
          steps {
             shell(shellBuildout)
@@ -2296,7 +2300,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_unsuc_cancel_unsuc_pending.txt"
-        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
 
          steps {
             shell(shellBuildout)
@@ -2320,7 +2324,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_unsuc_cancel_unsuc_cancel_pending.txt"
-        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
 
          steps {
             shell(shellBuildout)
@@ -2344,7 +2348,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/defense_complaint_award_cancel_unsuc_cancel_unsuc_cancel_unsuc.txt"
-        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"open_simple_defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
 
          steps {
             shell(shellBuildout)
@@ -3902,7 +3906,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/criteria_patch_evidence.txt"
-        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"openua\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
 
          steps {
             shell(shellBuildout)
