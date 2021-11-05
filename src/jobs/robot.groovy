@@ -1649,7 +1649,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
             shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
@@ -1673,7 +1673,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
             shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
@@ -1697,7 +1697,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
             shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
@@ -1721,7 +1721,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
             shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
@@ -1745,7 +1745,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
             shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
