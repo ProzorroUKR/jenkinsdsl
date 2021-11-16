@@ -4950,7 +4950,7 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_resolved.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-        String mode = "v MODE:aboveThresholdUA"
+        String mode = "-v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
@@ -4997,7 +4997,7 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_invalid.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
-        String mode = "v MODE:aboveThresholdUA"
+        String mode = "-v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
@@ -5182,7 +5182,7 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "v MODE:aboveThresholdUA"
+        String mode = "-v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
@@ -5206,7 +5206,7 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "v MODE:aboveThresholdUA"
+        String mode = "-v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
@@ -5230,7 +5230,7 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "v MODE:aboveThresholdUA"
+        String mode = "-v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
@@ -5254,7 +5254,7 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "v MODE:aboveThresholdUA"
+        String mode = "-v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
@@ -5278,7 +5278,7 @@ try {
 
         String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
-        String mode = "v MODE:aboveThresholdUA"
+        String mode = "-v MODE:aboveThresholdUA"
 
         steps {
             shell(shellBuildout)
