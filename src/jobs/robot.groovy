@@ -7407,13 +7407,14 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
-        String openeu_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid  -i pre-qualification_approve_qualifications -i pre-qualification_view"
+        String pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid  -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String mode = "-v MODE:closeFrameworkAgreementUA"
+        String award = "-i qualification_approve_second_award -i qualification_approve_third_award -i qualification_approve_qualifications"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $mode $no_auction $close_framework_agreement_ua_acceleration $params")
+            shell("$robotWrapper $complaints $defaultArgs $pre_qualification $award $mode $no_auction $close_framework_agreement_ua_acceleration $params")
             shell(shellRebot)
         }
     }
@@ -7979,6 +7980,412 @@ try {
         }
     }
 
+ job("competitive_dialogue_eu_stage_2_complaint_tender_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_tender_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_tender_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_tender_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints  $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_tender_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints  $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_lot_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота виконана Замовником")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_resolved.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_lot_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота створена помилково")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_mistaken.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_lot_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота залишена без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_invalid.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_lot_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота відхилена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_declined.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_lot_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота розгляд зупинено")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_stopped.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_resolved.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера створена помилково")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_mistaken.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера залишена без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_invalid.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера відхилена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_declined.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера розгляд зупинено")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_stopped.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String bidding = "-e make_bid_with_criteria_by_provider -e make_bid_with_criteria_by_provider1  -i make_bid_with_criteria_by_provider_first_stage  -i make_bid_with_criteria_by_provider1_first_stage -i make_bid_with_criteria_by_provider2_first_stage"
+        String pre_qualification = "-i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid -i pre-qualification_approve_qualifications"
+        String stage_2 = "-i stage2_pending_status_view -i wait_bridge_for_work -i get_second_stage -i compare_stages -i save_tender_second_stage -i activate_second_stage"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+
 
     multiJob(config.environment) {
         authenticationToken(remoteToken)
@@ -8435,7 +8842,27 @@ multiJob("cancellation") {
                 "close_framework_agreement_ua_complaint_cancel_lot_mistaken",
                 "close_framework_agreement_ua_complaint_cancel_lot_invalid",
                 "close_framework_agreement_ua_complaint_cancel_lot_declined",
-                "close_framework_agreement_ua_complaint_cancel_lot_stopped",)
+                "close_framework_agreement_ua_complaint_cancel_lot_stopped",
+                "competitive_dialogue_eu_stage_2_complaint_tender_invalid",
+                "competitive_dialogue_eu_stage_2_complaint_tender_stopped",
+                "competitive_dialogue_eu_stage_2_complaint_tender_declined",
+                "competitive_dialogue_eu_stage_2_complaint_tender_mistaken",
+                "competitive_dialogue_eu_stage_2_complaint_tender_resolved",
+                "competitive_dialogue_eu_stage_2_complaint_lot_resolved",
+                "competitive_dialogue_eu_stage_2_complaint_lot_mistaken",
+                "competitive_dialogue_eu_stage_2_complaint_lot_invalid",
+                "competitive_dialogue_eu_stage_2_complaint_lot_declined",
+                "competitive_dialogue_eu_stage_2_complaint_lot_stopped",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_resolved",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_mistaken",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_invalid",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_declined",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_stopped",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_resolved",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_mistaken",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_invalid",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_declined",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_stopped",)
         }
         columns {
             status()
@@ -8641,6 +9068,26 @@ multiJob("complaints") {
                 "close_framework_agreement_ua_complaint_cancel_lot_invalid",
                 "close_framework_agreement_ua_complaint_cancel_lot_declined",
                 "close_framework_agreement_ua_complaint_cancel_lot_stopped",
+                "competitive_dialogue_eu_stage_2_complaint_tender_invalid",
+                "competitive_dialogue_eu_stage_2_complaint_tender_stopped",
+                "competitive_dialogue_eu_stage_2_complaint_tender_declined",
+                "competitive_dialogue_eu_stage_2_complaint_tender_mistaken",
+                "competitive_dialogue_eu_stage_2_complaint_tender_resolved",
+                "competitive_dialogue_eu_stage_2_complaint_lot_resolved",
+                "competitive_dialogue_eu_stage_2_complaint_lot_mistaken",
+                "competitive_dialogue_eu_stage_2_complaint_lot_invalid",
+                "competitive_dialogue_eu_stage_2_complaint_lot_declined",
+                "competitive_dialogue_eu_stage_2_complaint_lot_stopped",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_resolved",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_mistaken",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_invalid",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_declined",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_stopped",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_resolved",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_mistaken",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_invalid",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_declined",
+                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_stopped",
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
