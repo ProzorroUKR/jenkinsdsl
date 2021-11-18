@@ -2359,6 +2359,606 @@ try {
          }
     }
 
+    job("simple_defense_complaint_award_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_resolved.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_award_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+         String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
+         String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+         String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_award_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_award_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $no_auction $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_award_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $no_auction $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_cancel_lot_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_resolved.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_cancel_lot_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування лота створена помилково")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_mistaken.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_cancel_lot_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування лота залишена без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_invalid.txt"
+        String accelerate_simple_defense= "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_cancel_lot_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування лота відхилена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_declined.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_cancel_lot_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування лота розгляд зупинено")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_lot_stopped.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_cancel_tender_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_resolved.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_cancel_tender_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера створена помилково")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_mistaken.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_cancel_tender_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера залишена без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_invalid.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_cancel_tender_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера відхилена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_declined.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_cancel_tender_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на скасування тендера розгляд зупинено")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_cancel_tender_stopped.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_lot_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота виконана Замовником")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_resolved.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_lot_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота створена помилково")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_mistaken.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_lot_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота залишена без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_invalid.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_lot_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота відхилена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_declined.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_lot_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови лота розгляд зупинено")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_lot_stopped.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_tender_resolved") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_resolved.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_tender_mistaken") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_mistaken.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_tender_declined") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_declined.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_tender_stopped") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_stopped.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("simple_defense_complaint_tender_invalid") {
+        parameters defaultParameters(config)
+        description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/complaint_tender_invalid.txt"
+        String accelerate_simple_defense = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $complaints  $defaultArgs $mode $accelerate_simple_defense $params")
+            shell(shellRebot)
+        }
+    }
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //                  ALP/24 HOURS
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7551,7 +8151,7 @@ try {
         }
     }
 
-job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_resolved") {
+    job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
@@ -8696,7 +9296,32 @@ multiJob("cancellation") {
                 "competitive_dialogue_ua_stage_2_complaint_cancel_lot_mistaken",
                 "competitive_dialogue_ua_stage_2_complaint_cancel_lot_invalid",
                 "competitive_dialogue_ua_stage_2_complaint_cancel_lot_declined",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_stopped",)
+                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_stopped",
+                "simple_defense_complaint_cancel_lot_resolved",
+                "simple_defense_complaint_cancel_lot_mistaken",
+                "simple_defense_complaint_cancel_lot_invalid",
+                "simple_defense_complaint_cancel_lot_declined",
+                "simple_defense_complaint_cancel_lot_stopped",
+                "simple_defense_complaint_cancel_tender_resolved",
+                "simple_defense_complaint_cancel_tender_mistaken",
+                "simple_defense_complaint_cancel_tender_invalid",
+                "simple_defense_complaint_cancel_tender_declined",
+                "simple_defense_complaint_cancel_tender_stopped",
+                "simple_defense_complaint_lot_resolved",
+                "simple_defense_complaint_lot_mistaken",
+                "simple_defense_complaint_lot_invalid",
+                "simple_defense_complaint_lot_declined",
+                "simple_defense_complaint_lot_stopped",
+                "simple_defense_complaint_tender_resolved",
+                "simple_defense_complaint_tender_mistaken",
+                "simple_defense_complaint_tender_declined",
+                "simple_defense_complaint_tender_stopped",
+                "simple_defense_complaint_tender_invalid",
+                "simple_defense_complaint_award_resolved",
+                "simple_defense_complaint_award_mistaken",
+                "simple_defense_complaint_award_declined",
+                "simple_defense_complaint_award_stopped",
+                "simple_defense_complaint_award_invalid",)
         }
         columns {
             status()
@@ -8912,6 +9537,31 @@ multiJob("complaints") {
                 "competitive_dialogue_ua_stage_2_complaint_cancel_lot_invalid",
                 "competitive_dialogue_ua_stage_2_complaint_cancel_lot_declined",
                 "competitive_dialogue_ua_stage_2_complaint_cancel_lot_stopped",
+                "simple_defense_complaint_cancel_lot_resolved",
+                "simple_defense_complaint_cancel_lot_mistaken",
+                "simple_defense_complaint_cancel_lot_invalid",
+                "simple_defense_complaint_cancel_lot_declined",
+                "simple_defense_complaint_cancel_lot_stopped",
+                "simple_defense_complaint_cancel_tender_resolved",
+                "simple_defense_complaint_cancel_tender_mistaken",
+                "simple_defense_complaint_cancel_tender_invalid",
+                "simple_defense_complaint_cancel_tender_declined",
+                "simple_defense_complaint_cancel_tender_stopped",
+                "simple_defense_complaint_lot_resolved",
+                "simple_defense_complaint_lot_mistaken",
+                "simple_defense_complaint_lot_invalid",
+                "simple_defense_complaint_lot_declined",
+                "simple_defense_complaint_lot_stopped",
+                "simple_defense_complaint_tender_resolved",
+                "simple_defense_complaint_tender_mistaken",
+                "simple_defense_complaint_tender_declined",
+                "simple_defense_complaint_tender_stopped",
+                "simple_defense_complaint_tender_invalid",
+                "simple_defense_complaint_award_resolved",
+                "simple_defense_complaint_award_mistaken",
+                "simple_defense_complaint_award_declined",
+                "simple_defense_complaint_award_stopped",
+                "simple_defense_complaint_award_invalid",
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
