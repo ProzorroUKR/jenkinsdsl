@@ -2617,7 +2617,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
             shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
             shell(shellRebot)
         }
@@ -4855,7 +4855,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
             shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
@@ -7335,11 +7335,12 @@ try {
          String defaultArgs = "-A robot_tests_arguments/complaint_award_mistaken.txt"
          String openeu_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid  -i pre-qualification_approve_qualifications -i pre-qualification_view"
          String mode = "-v MODE:closeFrameworkAgreementUA"
+         String award = "-i qualification_approve_second_award -i qualification_approve_third_award -i qualification_approve_qualifications"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $mode $no_auction $close_framework_agreement_ua_acceleration $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $award $mode $no_auction $close_framework_agreement_ua_acceleration $params")
             shell(shellRebot)
         }
     }
@@ -7359,11 +7360,12 @@ try {
         String defaultArgs = "-A robot_tests_arguments/complaint_award_declined.txt"
         String openeu_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid  -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String mode = "-v MODE:closeFrameworkAgreementUA"
+        String award = "-i qualification_approve_second_award -i qualification_approve_third_award -i qualification_approve_qualifications"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $mode $no_auction $close_framework_agreement_ua_acceleration $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $award $mode $no_auction $close_framework_agreement_ua_acceleration $params")
             shell(shellRebot)
         }
     }
@@ -7383,11 +7385,12 @@ try {
         String defaultArgs = "-A robot_tests_arguments/complaint_award_stopped.txt"
         String openeu_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid  -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String mode = "-v MODE:closeFrameworkAgreementUA"
+        String award = "-i qualification_approve_second_award -i qualification_approve_third_award -i qualification_approve_qualifications"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $mode $no_auction $close_framework_agreement_ua_acceleration $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $award $mode $no_auction $close_framework_agreement_ua_acceleration $params")
             shell(shellRebot)
         }
     }
@@ -7407,11 +7410,12 @@ try {
         String defaultArgs = "-A robot_tests_arguments/complaint_award_invalid.txt"
         String openeu_pre_qualification = "-i make_bid_with_criteria_by_provider2 -i pre-qualification_approve_first_bid -i pre-qualification_approve_second_bid -i pre-qualification_approve_third_bid  -i pre-qualification_approve_qualifications -i pre-qualification_view"
         String mode = "-v MODE:closeFrameworkAgreementUA"
+        String award = "-i qualification_approve_second_award -i qualification_approve_third_award -i qualification_approve_qualifications"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $mode $no_auction $close_framework_agreement_ua_acceleration $params")
+            shell("$robotWrapper $complaints $defaultArgs $openeu_pre_qualification $award $mode $no_auction $close_framework_agreement_ua_acceleration $params")
             shell(shellRebot)
         }
     }
@@ -7784,7 +7788,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $complaints $defaultArgs $mode $close_framework_agreement_ua_acceleration $params")
+            shell("$robotWrapper $complaints $defaultArgs $mode -v NUMBER_OF_LOTS:1 $close_framework_agreement_ua_acceleration $params")
             shell(shellRebot)
         }
     }
