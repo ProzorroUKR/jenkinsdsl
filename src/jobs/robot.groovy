@@ -2617,7 +2617,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
             shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_simple_defense $params")
             shell(shellRebot)
         }
@@ -4855,7 +4855,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
             shell("$robotWrapper $complaints $defaultArgs $mode $accelerate_openua $params")
             shell(shellRebot)
         }
