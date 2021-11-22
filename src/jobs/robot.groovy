@@ -126,6 +126,7 @@ String below_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"de
 String competitive_dialogue_EU_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,10],\"accelerator\":4320}}}}'"
 String competitive_dialogue_UA_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueUA\":{\"tender\":[1,10],\"accelerator\":4320}}}}'"
 String close_framework_agreement_ua_acceleration = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"closeFrameworkAgreementUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+String claims = "-o claims_output.xml -s claims"
 
 def remoteToken = null
 try {
@@ -8834,6 +8835,98 @@ try {
         }
     }
 
+    job("claims_aboveThresholdEU_draft_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $claims $defaultArgs $accelerate_openeu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_aboveThresholdEU_draft_claim_answer_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $claims $defaultArgs $accelerate_openeu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_aboveThresholdEU_claim_draft_claim_answer_resolve") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $claims $defaultArgs $accelerate_openeu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_aboveThresholdEU_claim_draft_claim_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
+        String accelerate_openeu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
+            shell("$robotWrapper $claims $defaultArgs $accelerate_openeu $params")
+            shell(shellRebot)
+        }
+    }
+
 
     multiJob(config.environment) {
         authenticationToken(remoteToken)
@@ -9574,3 +9667,67 @@ multiJob("complaints") {
             }
         }
     }
+
+    listView("claims") {
+        description('description')
+        jobs {
+            names("claims",
+                    "claims_aboveThresholdEU_draft_cancel",
+                    "claims_aboveThresholdEU_draft_claim_answer_cancel",
+                    "claims_aboveThresholdEU_claim_draft_claim_answer_resolve",
+                    "claims_aboveThresholdEU_claim_draft_claim_cancel",
+            )
+        }
+        columns {
+            status()
+            weather()
+            name()
+            lastSuccess()
+            lastFailure()
+            lastDuration()
+            buildButton()
+        }
+    }
+
+    multiJob("claims") {
+    description('my description')
+    parameters {
+        choiceParam('BRANCH', ['dev_prozorro_2', 'master'], 'my description')
+        stringParam('RELEASE_NAME', 'main', 'my description')
+        choiceParam('API_HOST_URL', [
+        'https://lb-api-staging.prozorro.gov.ua',
+        'https://lb-api-sandbox-2.prozorro.gov.ua',
+        'http://api.${RELEASE_NAME}.k8s.prozorro.gov.ua'], 'my description')
+        choiceParam('API_VERSION', ['2.5'], 'my description')
+        choiceParam('EDR_HOST_URL', ['https://lb-edr-staging.prozorro.gov.ua',
+        'https://lb-edr-sandbox-2.prozorro.gov.ua'], 'my description')
+        choiceParam('EDR_VERSION', ['1.0'], 'my description')
+        choiceParam('DS_HOST_URL', ['https://upload-docs-staging.prozorro.gov.ua', 'https://upload-docs-sandbox-2.prozorro.gov.ua', 'http://ds.k8s.prozorro.gov.ua'], 'my description')
+        choiceParam('DS_REGEXP', [
+        "^https?:\\/\\/public-docs(?:-staging)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
+        "^https?:\\/\\/public-docs(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})",
+        "^http?:\\/\\/ds\\.k8s\\.prozorro\\.gov\\.ua\\/get\\/([0-9A-Fa-f]{32})"], 'my description')
+        choiceParam('PAYMENT_API', ['https://integration-staging.prozorro.gov.ua/liqpay',
+        'https://integration-sandbox-2.prozorro.gov.ua/liqpay'], 'my description')
+        choiceParam('PAYMENT_API_VERSION', ['v1'], 'my description')
+        choiceParam('AUCTION_REGEXP', [
+        "^https?:\\/\\/auction(?:-staging)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
+        "^https?:\\/\\/auction(?:-sandbox-2)?\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})",
+        "^http?:\\/\\/auctions\\.\${RELEASE_NAME}\\.k8s\\.prozorro\\.gov\\.ua\\/(esco-)?tenders\\/([0-9A-Fa-f]{32})"], 'my description')
+    }
+        steps {
+            phase("Test") {
+                def innerJobs = [
+                    "claims_aboveThresholdEU_draft_cancel",
+                    "claims_aboveThresholdEU_draft_claim_answer_cancel",
+                    "claims_aboveThresholdEU_claim_draft_claim_answer_resolve",
+                    "claims_aboveThresholdEU_claim_draft_claim_cancel",
+                ]
+                innerJobs.each { String scenario -> phaseJob(scenario) {
+                    currentJobParameters(true)
+                    abortAllJobs(false)
+                }}
+            }
+        }
+    }
+
