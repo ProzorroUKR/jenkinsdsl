@@ -9046,13 +9046,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
         String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:competitiveDialogueEU"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
         String exclude_award_claim = "-e award_claim_draft -e cancel_award_claim"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell("$robotWrapper $claims $defaultArgs $bid $pre_qualification $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
             shell(shellRebot)
         }
     }
@@ -9072,14 +9074,16 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
         String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:competitiveDialogueEU"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
-        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim -e -i cancel_award_claim"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim -e cancel_award_claim"
 
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell("$robotWrapper $claims $defaultArgs $bid $pre_qualification $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
             shell(shellRebot)
         }
     }
@@ -9099,13 +9103,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
         String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:competitiveDialogueEU"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
         String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell("$robotWrapper $claims $defaultArgs $bid $pre_qualification $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
             shell(shellRebot)
         }
     }
@@ -9125,13 +9131,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
         String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:competitiveDialogueEU"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
-        String exclude_award_claim = "-e award_claim_draft -e cancel_award_claim"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e cancel_award_claim"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell("$robotWrapper $claims $defaultArgs $bid $pre_qualification $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
             shell(shellRebot)
         }
     }
@@ -9151,13 +9159,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
         String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:competitiveDialogueUA"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
         String exclude_award_claim = "-e award_claim_draft -e cancel_award_claim"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell("$robotWrapper $claims $defaultArgs $bid $pre_qualification $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
             shell(shellRebot)
         }
     }
@@ -9177,13 +9187,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
         String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:competitiveDialogueUA"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
-        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim -e -i cancel_award_claim"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim -e cancel_award_claim"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction accelerate_competitive_dialogue_eu $params")
+            shell("$robotWrapper $claims $defaultArgs $bid $pre_qualification $exclude_award $exclude_award_claim $mode $no_auction accelerate_competitive_dialogue_eu $params")
             shell(shellRebot)
         }
     }
@@ -9203,13 +9215,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
         String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:competitiveDialogueUA"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
         String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell("$robotWrapper $claims $defaultArgs $bid $pre_qualification $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
             shell(shellRebot)
         }
     }
@@ -9229,13 +9243,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
         String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:competitiveDialogueUA"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
         String exclude_award_claim = "-e award_claim_draft -e submit_award_claim"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell("$robotWrapper $claims $bid $pre_qualification $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
             shell(shellRebot)
         }
     }
