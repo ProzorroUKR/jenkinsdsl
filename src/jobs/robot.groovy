@@ -9355,13 +9355,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
         String accelerate_close_framework_agreement_ua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"closeFrameworkAgreementUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:closeFrameworkAgreementUA"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
         String exclude_award_claim = "-e award_claim_draft -e cancel_award_claim"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_close_framework_agreement_ua $params")
+            shell("$robotWrapper $claims $defaultArgs $bid $pre_qualification $exclude_award $exclude_award_claim $mode $no_auction $accelerate_close_framework_agreement_ua $params")
             shell(shellRebot)
         }
     }
@@ -9381,13 +9383,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
         String accelerate_close_framework_agreement_ua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"closeFrameworkAgreementUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:closeFrameworkAgreementUA"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
-        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim -e -i cancel_award_claim"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim -e cancel_award_claim"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction accelerate_close_framework_agreement_ua $params")
+            shell("$robotWrapper $claims $defaultArgs $bid $pre_qualification $exclude_award $exclude_award_claim $mode $no_auction accelerate_close_framework_agreement_ua $params")
             shell(shellRebot)
         }
     }
@@ -9407,13 +9411,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
         String accelerate_close_framework_agreement_ua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"closeFrameworkAgreementUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:closeFrameworkAgreementUA"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
         String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_close_framework_agreement_ua $params")
+            shell("$robotWrapper $claims $defaultArgs $bid $pre_qualification $exclude_award $exclude_award_claim $mode $no_auction $accelerate_close_framework_agreement_ua $params")
             shell(shellRebot)
         }
     }
@@ -9433,13 +9439,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
         String accelerate_close_framework_agreement_ua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"closeFrameworkAgreementUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:closeFrameworkAgreementUA"
+        String bid = "-i make_bid_with_criteria_by_provider2"
+        String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
         String exclude_award_claim = "-e award_claim_draft -e submit_award_claim"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_close_framework_agreement_ua $params")
+            shell("$robotWrapper $claims $defaultArgs $bid $pre_qualification $exclude_award $exclude_award_claim $mode $no_auction $accelerate_close_framework_agreement_ua $params")
             shell(shellRebot)
         }
     }
