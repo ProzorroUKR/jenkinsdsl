@@ -8853,7 +8853,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $claims $defaultArgs $accelerate_openeu $params")
+            shell("$robotWrapper $claims $defaultArgs $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
@@ -8876,12 +8876,12 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $claims $defaultArgs $accelerate_openeu $params")
+            shell("$robotWrapper $claims $defaultArgs $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
 
-    job("claims_aboveThresholdEU_claim_draft_claim_answer_resolve") {
+    job("claims_aboveThresholdEU_draft_claim_answer_resolve") {
         parameters defaultParameters(config)
         description("Сценарій: ")
         keepDependencies(false)
@@ -8899,12 +8899,12 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $claims $defaultArgs $accelerate_openeu $params")
+            shell("$robotWrapper $claims $defaultArgs $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
 
-    job("claims_aboveThresholdEU_claim_draft_claim_cancel") {
+    job("claims_aboveThresholdEU_draft_claim_cancel") {
         parameters defaultParameters(config)
         description("Сценарій: ")
         keepDependencies(false)
@@ -8922,11 +8922,627 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdEU $params")
-            shell("$robotWrapper $claims $defaultArgs $accelerate_openeu $params")
+            shell("$robotWrapper $claims $defaultArgs $no_auction $accelerate_openeu $params")
             shell(shellRebot)
         }
     }
 
+    job("claims_aboveThresholdUA_draft_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
+        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e cancel_qualification_claim"
+        String mode = "-v MODE:aboveThresholdUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_aboveThresholdUA_draft_claim_answer_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
+        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e cancel_qualification_claim"
+        String mode = "-v MODE:aboveThresholdUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_aboveThresholdUA_draft_claim_answer_resolve") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
+        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e answer_qualification_claim -e cancel_qualification_claim"
+        String mode = "-v MODE:aboveThresholdUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_aboveThresholdUA_draft_claim_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
+        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e answer_qualification_claim -e resolved_qualification_claim"
+        String mode = "-v MODE:aboveThresholdUA"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:aboveThresholdUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_competitiveDialogueEU_draft_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e cancel_award_claim"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_competitiveDialogueEU_draft_claim_answer_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim -e -i cancel_award_claim"
+
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_competitiveDialogueEU_draft_claim_answer_resolve") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_competitiveDialogueEU_draft_claim_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueEU\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueEU"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e cancel_award_claim"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_competitiveDialogueUA_draft_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueUA"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e cancel_award_claim"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_competitiveDialogueUA_draft_claim_answer_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueUA"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim -e -i cancel_award_claim"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_competitiveDialogueUA_draft_claim_answer_resolve") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueUA"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_competitiveDialogueUA_draft_claim_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
+        String accelerate_competitive_dialogue_eu = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"competitiveDialogueUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:competitiveDialogueUA"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_competitive_dialogue_eu $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_esco_draft_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
+            shell("$robotWrapper $claims $defaultArgs $mode $no_auction $accelerate_esco $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_esco_draft_claim_answer_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
+            shell("$robotWrapper $claims $defaultArgs $mode $no_auction $accelerate_esco $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_esco_draft_claim_answer_resolve") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
+            shell("$robotWrapper $claims $defaultArgs $mode $no_auction $accelerate_esco $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_esco_draft_claim_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:esco"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
+            shell("$robotWrapper $claims $defaultArgs $mode $no_auction $accelerate_esco $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_closeFrameworkAgreementUA_draft_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
+        String accelerate_close_framework_agreement_ua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"closeFrameworkAgreementUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e cancel_award_claim"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_close_framework_agreement_ua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_closeFrameworkAgreementUA_draft_claim_answer_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
+        String accelerate_close_framework_agreement_ua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"closeFrameworkAgreementUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim -e -i cancel_award_claim"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction accelerate_close_framework_agreement_ua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_closeFrameworkAgreementUA_draft_claim_answer_resolve") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
+        String accelerate_close_framework_agreement_ua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"closeFrameworkAgreementUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_close_framework_agreement_ua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_closeFrameworkAgreementUA_draft_claim_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
+        String accelerate_close_framework_agreement_ua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"closeFrameworkAgreementUA\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String mode = "-v MODE:closeFrameworkAgreementUA"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:closeFrameworkAgreementUA $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_award $exclude_award_claim $mode $no_auction $accelerate_close_framework_agreement_ua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_simple_defense_draft_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
+        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e cancel_qualification_claim"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_simple_defense_draft_claim_answer_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
+        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e cancel_qualification_claim"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_simple_defense_draft_claim_answer_resolve") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
+        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e answer_qualification_claim -e cancel_qualification_claim"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell(shellRebot)
+        }
+    }
+
+    job("claims_simple_defense_draft_claim_cancel") {
+        parameters defaultParameters(config)
+        description("Сценарій: ")
+        keepDependencies(false)
+        disabled(false)
+        concurrentBuild(config.concurrentBuild)
+        scm defaultScm
+        publishers defaultPublishers
+        wrappers defaultWrappers(true, 10800)
+        configure defaultConfigure
+        environmentVariables defaultEnv()
+
+        String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
+        String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
+        String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
+        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e answer_qualification_claim -e resolved_qualification_claim"
+        String mode = "-v MODE:simple.defense"
+
+        steps {
+            shell(shellBuildout)
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell(shellRebot)
+        }
+    }
 
     multiJob(config.environment) {
         authenticationToken(remoteToken)
@@ -9674,8 +10290,32 @@ multiJob("complaints") {
             names("claims",
                     "claims_aboveThresholdEU_draft_cancel",
                     "claims_aboveThresholdEU_draft_claim_answer_cancel",
-                    "claims_aboveThresholdEU_claim_draft_claim_answer_resolve",
-                    "claims_aboveThresholdEU_claim_draft_claim_cancel",
+                    "claims_aboveThresholdEU_draft_claim_answer_resolve",
+                    "claims_aboveThresholdEU_draft_claim_cancel",
+                    "claims_aboveThresholdUA_draft_cancel",
+                    "claims_aboveThresholdUA_draft_claim_answer_cancel",
+                    "claims_aboveThresholdUA_draft_claim_answer_resolve",
+                    "claims_aboveThresholdUA_draft_claim_cancel",
+                    "claims_competitiveDialogueEU_draft_cancel",
+                    "claims_competitiveDialogueEU_draft_claim_answer_cancel",
+                    "claims_competitiveDialogueEU_draft_claim_answer_resolve",
+                    "claims_competitiveDialogueEU_draft_claim_cancel",
+                    "claims_competitiveDialogueUA_draft_cancel",
+                    "claims_competitiveDialogueUA_draft_claim_answer_cancel",
+                    "claims_competitiveDialogueUA_draft_claim_answer_resolve",
+                    "claims_competitiveDialogueUA_draft_claim_cancel",
+                    "claims_esco_draft_cancel",
+                    "claims_esco_draft_claim_answer_cancel",
+                    "claims_esco_draft_claim_answer_resolve",
+                    "claims_esco_draft_claim_cancel",
+                    "claims_closeFrameworkAgreementUA_draft_cancel",
+                    "claims_closeFrameworkAgreementUA_draft_claim_answer_cancel",
+                    "claims_closeFrameworkAgreementUA_draft_claim_answer_resolve",
+                    "claims_closeFrameworkAgreementUA_draft_claim_cancel",
+                    "claims_simple_defense_draft_cancel",
+                    "claims_simple_defense_draft_claim_answer_cancel",
+                    "claims_simple_defense_draft_claim_answer_resolve",
+                    "claims_simple_defense_draft_claim_cancel",
             )
         }
         columns {
@@ -9720,8 +10360,32 @@ multiJob("complaints") {
                 def innerJobs = [
                     "claims_aboveThresholdEU_draft_cancel",
                     "claims_aboveThresholdEU_draft_claim_answer_cancel",
-                    "claims_aboveThresholdEU_claim_draft_claim_answer_resolve",
-                    "claims_aboveThresholdEU_claim_draft_claim_cancel",
+                    "claims_aboveThresholdEU_draft_claim_answer_resolve",
+                    "claims_aboveThresholdEU_draft_claim_cancel",
+                    "claims_aboveThresholdUA_draft_cancel",
+                    "claims_aboveThresholdUA_draft_claim_answer_cancel",
+                    "claims_aboveThresholdUA_draft_claim_answer_resolve",
+                    "claims_aboveThresholdUA_draft_claim_cancel",
+                    "claims_competitiveDialogueEU_draft_cancel",
+                    "claims_competitiveDialogueEU_draft_claim_answer_cancel",
+                    "claims_competitiveDialogueEU_draft_claim_answer_resolve",
+                    "claims_competitiveDialogueEU_draft_claim_cancel",
+                    "claims_competitiveDialogueUA_draft_cancel",
+                    "claims_competitiveDialogueUA_draft_claim_answer_cancel",
+                    "claims_competitiveDialogueUA_draft_claim_answer_resolve",
+                    "claims_competitiveDialogueUA_draft_claim_cancel",
+                    "claims_esco_draft_cancel",
+                    "claims_esco_draft_claim_answer_cancel",
+                    "claims_esco_draft_claim_answer_resolve",
+                    "claims_esco_draft_claim_cancel",
+                    "claims_closeFrameworkAgreementUA_draft_cancel",
+                    "claims_closeFrameworkAgreementUA_draft_claim_answer_cancel",
+                    "claims_closeFrameworkAgreementUA_draft_claim_answer_resolve",
+                    "claims_closeFrameworkAgreementUA_draft_claim_cancel",
+                    "claims_simple_defense_draft_cancel",
+                    "claims_simple_defense_draft_claim_answer_cancel",
+                    "claims_simple_defense_draft_claim_answer_resolve",
+                    "claims_simple_defense_draft_claim_cancel",
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
