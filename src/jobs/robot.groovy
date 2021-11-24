@@ -9280,6 +9280,7 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:esco"
+        String fundingKind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
@@ -9304,6 +9305,7 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:esco"
+        String fundingKind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
@@ -9328,6 +9330,7 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:esco"
+        String fundingKind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
