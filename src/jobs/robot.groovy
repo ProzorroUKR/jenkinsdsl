@@ -9255,11 +9255,12 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
         String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
         String mode = "-v MODE:esco"
+        String fundingKind = "-v FUNDING_KIND:budget"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $claims $defaultArgs $mode $no_auction $accelerate_esco $params")
+            shell("$robotWrapper $claims $defaultArgs $mode $fundingKind $no_auction $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -9283,7 +9284,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $claims $defaultArgs $mode $no_auction $accelerate_esco $params")
+            shell("$robotWrapper $claims $defaultArgs $mode $fundingKind $no_auction $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -9307,7 +9308,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $claims $defaultArgs $mode $no_auction $accelerate_esco $params")
+            shell("$robotWrapper $claims $defaultArgs $mode $fundingKind $no_auction $accelerate_esco $params")
             shell(shellRebot)
         }
     }
@@ -9331,7 +9332,7 @@ try {
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:esco $params")
-            shell("$robotWrapper $claims $defaultArgs $mode $no_auction $accelerate_esco $params")
+            shell("$robotWrapper $claims $defaultArgs $mode $fundingKind $no_auction $accelerate_esco $params")
             shell(shellRebot)
         }
     }
