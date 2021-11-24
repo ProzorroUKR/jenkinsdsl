@@ -8968,7 +8968,7 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
         String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
-        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e cancel_qualification_claim"
+        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e answer_qualification_claim -e cancel_qualification_claim"
         String mode = "-v MODE:aboveThresholdUA"
 
         steps {
@@ -9020,7 +9020,7 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"aboveThresholdUA\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
         String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
-        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e answer_qualification_claim -e resolved_qualification_claim"
+        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e cancel_qualification_claim"
         String mode = "-v MODE:aboveThresholdUA"
 
         steps {
