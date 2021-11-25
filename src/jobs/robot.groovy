@@ -9246,7 +9246,7 @@ try {
         String bid = "-i make_bid_with_criteria_by_provider2"
         String pre_qualification = "-i pre-qualification_approve_third_bid"
         String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
-        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e cancel_award_claim"
 
         steps {
             shell(shellBuildout)
@@ -9269,7 +9269,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_cancel.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,10],\"accelerator\":4320}}}}'"
         String mode = "-v MODE:esco"
         String fundingKind = "-v FUNDING_KIND:budget"
 
@@ -9294,7 +9294,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,10],\"accelerator\":4320}}}}'"
         String mode = "-v MODE:esco"
         String fundingKind = "-v FUNDING_KIND:budget"
 
@@ -9319,7 +9319,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_resolve.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,10],\"accelerator\":4320}}}}'"
         String mode = "-v MODE:esco"
         String fundingKind = "-v FUNDING_KIND:budget"
 
@@ -9344,7 +9344,7 @@ try {
         environmentVariables defaultEnv()
 
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_cancel.txt"
-        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,5],\"accelerator\":8640}}}}'"
+        String accelerate_esco = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"esco\":{\"tender\":[1,10],\"accelerator\":4320}}}}'"
         String mode = "-v MODE:esco"
         String fundingKind = "-v FUNDING_KIND:budget"
 
@@ -9484,12 +9484,14 @@ try {
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
         String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
         String exclude_pre_qualification_claim = "-e qualification_claim_draft -e cancel_qualification_claim"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e cancel_award_claim"
         String mode = "-v MODE:simple.defense"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $exclude_award $exclude_award_claim $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -9509,13 +9511,15 @@ try {
         String defaultArgs = "-A robot_tests_arguments/claims/claim_draft_claim_answer_cancel.txt"
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
         String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
-        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e answer_award_claim -e cancel_qualification_claim"
+        String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e answer_qualification_claim -e cancel_qualification_claim"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e answer_award_claim -e cancel_award_claim"
         String mode = "-v MODE:simple.defense"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $exclude_award $exclude_award_claim $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -9536,12 +9540,14 @@ try {
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
         String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
         String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e answer_qualification_claim -e cancel_qualification_claim"
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e cancel_award_claim"
         String mode = "-v MODE:simple.defense"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $exclude_award $exclude_award_claim $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
@@ -9562,13 +9568,14 @@ try {
         String accelerate_openua = "-v 'BROKERS_PARAMS:{\"Quinta\":{\"intervals\":{\"simple.defense\":{\"tender\":[1,5],\"accelerator\":4320}}}}'"
         String exclude_pre_qualification = "-e pre-qualification_approve_first_bid -e pre-qualification_approve_second_bid -e pre-qualification_approve_qualifications -e pre-qualification_view"
         String exclude_pre_qualification_claim = "-e qualification_claim_draft -e submit_qualification_claim -e cancel_qualification_claim"
-
+        String exclude_award = "-e awardPeriod_startDate -e qualification_approve_first_award"
+        String exclude_award_claim = "-e award_claim_draft -e submit_award_claim -e cancel_award_claim"
         String mode = "-v MODE:simple.defense"
 
         steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
-            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $mode $no_auction $accelerate_openua $params")
+            shell("$robotWrapper $claims $defaultArgs $exclude_pre_qualification $exclude_pre_qualification_claim $exclude_award $exclude_award_claim $mode $no_auction $accelerate_openua $params")
             shell(shellRebot)
         }
     }
