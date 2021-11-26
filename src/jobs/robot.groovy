@@ -8313,7 +8313,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8340,7 +8340,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8367,7 +8367,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8394,7 +8394,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints  $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8421,7 +8421,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints  $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8448,7 +8448,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8475,7 +8475,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8502,7 +8502,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8529,7 +8529,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8556,7 +8556,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8584,7 +8584,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8612,7 +8612,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8639,7 +8639,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8666,7 +8666,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8693,7 +8693,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8721,7 +8721,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8748,7 +8748,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8775,7 +8775,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
@@ -8829,7 +8829,7 @@ try {
 
         steps {
             shell(shellBuildout)
-            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueEU $params")
+            shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:competitiveDialogueUA $params")
             shell("$robotWrapper $complaints $defaultArgs $bidding $pre_qualification $stage_2 $mode $accelerate_competitive_dialogue_ua $params")
             shell(shellRebot)
         }
