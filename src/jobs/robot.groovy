@@ -2360,7 +2360,7 @@ try {
          }
     }
 
-    job("simple_defense_complaint_award_resolved") {
+    job("complaint_simple_defense_award_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
@@ -2384,7 +2384,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_award_mistaken") {
+    job("complaint_simple_defense_award_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
         keepDependencies(false)
@@ -2408,7 +2408,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_award_declined") {
+    job("complaint_simple_defense_award_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
@@ -2432,7 +2432,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_award_stopped") {
+    job("complaint_simple_defense_award_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
@@ -2456,7 +2456,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_award_invalid") {
+    job("complaint_simple_defense_award_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
@@ -2480,7 +2480,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_cancel_lot_resolved") {
+    job("complaint_simple_defense_cancel_lot_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
@@ -2504,7 +2504,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_cancel_lot_mistaken") {
+    job("complaint_simple_defense_cancel_lot_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
@@ -2528,7 +2528,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_cancel_lot_invalid") {
+    job("complaint_simple_defense_cancel_lot_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
@@ -2552,7 +2552,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_cancel_lot_declined") {
+    job("complaint_simple_defense_cancel_lot_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
@@ -2576,7 +2576,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_cancel_lot_stopped") {
+    job("complaint_simple_defense_cancel_lot_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
@@ -2600,7 +2600,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_cancel_tender_resolved") {
+    job("complaint_simple_defense_cancel_tender_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
@@ -2624,7 +2624,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_cancel_tender_mistaken") {
+    job("complaint_simple_defense_cancel_tender_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
@@ -2648,7 +2648,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_cancel_tender_invalid") {
+    job("complaint_simple_defense_cancel_tender_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
@@ -2672,7 +2672,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_cancel_tender_declined") {
+    job("complaint_simple_defense_cancel_tender_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
@@ -2696,7 +2696,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_cancel_tender_stopped") {
+    job("complaint_simple_defense_cancel_tender_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
@@ -2720,7 +2720,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_lot_resolved") {
+    job("complaint_simple_defense_lot_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
@@ -2744,7 +2744,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_lot_mistaken") {
+    job("complaint_simple_defense_lot_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
@@ -2768,7 +2768,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_lot_invalid") {
+    job("complaint_simple_defense_lot_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
@@ -2792,7 +2792,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_lot_declined") {
+    job("complaint_simple_defense_lot_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
@@ -2816,7 +2816,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_lot_stopped") {
+    job("complaint_simple_defense_lot_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
@@ -2840,7 +2840,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_tender_resolved") {
+    job("complaint_simple_defense_tender_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
@@ -2864,7 +2864,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_tender_mistaken") {
+    job("complaint_simple_defense_tender_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
@@ -2888,7 +2888,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_tender_declined") {
+    job("complaint_simple_defense_tender_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
@@ -2912,7 +2912,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_tender_stopped") {
+    job("complaint_simple_defense_tender_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
@@ -2936,7 +2936,7 @@ try {
         }
     }
 
-    job("simple_defense_complaint_tender_invalid") {
+    job("complaint_simple_defense_tender_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
@@ -6937,7 +6937,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_complaint_cancel_tender_resolved") {
+    job("complaint_competitive_dialogue_ua_cancel_tender_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
@@ -6961,7 +6961,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_complaint_cancel_tender_mistaken") {
+    job("complaint_competitive_dialogue_ua_cancel_tender_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
@@ -6985,7 +6985,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_complaint_cancel_tender_invalid") {
+    job("complaint_competitive_dialogue_ua_cancel_tender_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
@@ -7009,7 +7009,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_complaint_cancel_tender_declined") {
+    job("complaint_competitive_dialogue_ua_cancel_tender_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
@@ -7033,7 +7033,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_complaint_cancel_tender_stopped") {
+    job("complaint_competitive_dialogue_ua_cancel_tender_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
@@ -7057,7 +7057,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_complaint_cancel_lot_resolved") {
+    job("complaint_competitive_dialogue_ua_cancel_lot_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
@@ -7081,7 +7081,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_complaint_cancel_lot_mistaken") {
+    job("complaint_competitive_dialogue_ua_cancel_lot_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
@@ -7105,7 +7105,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_complaint_cancel_lot_invalid") {
+    job("complaint_competitive_dialogue_ua_cancel_lot_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
@@ -7129,7 +7129,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_complaint_cancel_lot_declined") {
+    job("complaint_competitive_dialogue_ua_cancel_lot_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
@@ -7153,7 +7153,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_complaint_cancel_lot_stopped") {
+    job("complaint_competitive_dialogue_ua_cancel_lot_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
@@ -7181,7 +7181,7 @@ try {
 //                  FULL COMPLAINTS TESTING (CLOSE_FRAMEWORK_AGREEMENT_UA)
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-     job("close_framework_agreement_ua_complaint_tender_resolved") {
+     job("complaint_close_framework_agreement_ua_tender_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
@@ -7204,7 +7204,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_tender_mistaken") {
+    job("complaint_close_framework_agreement_ua_tender_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
@@ -7227,7 +7227,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_tender_declined") {
+    job("complaint_close_framework_agreement_ua_tender_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
@@ -7250,7 +7250,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_tender_stopped") {
+    job("complaint_close_framework_agreement_ua_tender_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
@@ -7273,7 +7273,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_tender_invalid") {
+    job("complaint_close_framework_agreement_ua_tender_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
@@ -7296,7 +7296,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_award_resolved") {
+    job("complaint_close_framework_agreement_ua_award_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
@@ -7321,7 +7321,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_award_mistaken") {
+    job("complaint_close_framework_agreement_ua_award_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
         keepDependencies(false)
@@ -7346,7 +7346,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_award_declined") {
+    job("complaint_close_framework_agreement_ua_award_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
@@ -7371,7 +7371,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_award_stopped") {
+    job("complaint_close_framework_agreement_ua_award_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
@@ -7396,7 +7396,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_award_invalid") {
+    job("complaint_close_framework_agreement_ua_award_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
@@ -7421,7 +7421,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_qualification_resolved") {
+    job("complaint_close_framework_agreement_ua_qualification_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на пре-кваліфікацію учасника задоволена Замовником")
         keepDependencies(false)
@@ -7445,7 +7445,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_qualification_mistaken") {
+    job("complaint_close_framework_agreement_ua_qualification_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на пре-кваліфікацію учасника створена помилково")
         keepDependencies(false)
@@ -7469,7 +7469,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_qualification_invalid") {
+    job("complaint_close_framework_agreement_ua_qualification_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на пре-кваліфікацію учасника залишена без розгляду")
         keepDependencies(false)
@@ -7493,7 +7493,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_qualification_declined") {
+    job("complaint_close_framework_agreement_ua_qualification_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на пре-кваліфікацію учасника відхилена")
         keepDependencies(false)
@@ -7517,7 +7517,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_qualification_stopped") {
+    job("complaint_close_framework_agreement_ua_qualification_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на пре-кваліфікацію учасника розгляд зупинено")
         keepDependencies(false)
@@ -7541,7 +7541,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_lot_resolved") {
+    job("complaint_close_framework_agreement_ua_lot_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
@@ -7564,7 +7564,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_lot_mistaken") {
+    job("complaint_close_framework_agreement_ua_lot_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
@@ -7587,7 +7587,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_lot_invalid") {
+    job("complaint_close_framework_agreement_ua_lot_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
@@ -7610,7 +7610,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_lot_declined") {
+    job("complaint_close_framework_agreement_ua_lot_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
@@ -7633,7 +7633,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_lot_stopped") {
+    job("complaint_close_framework_agreement_ua_lot_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
@@ -7656,7 +7656,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_cancel_tender_resolved") {
+    job("complaint_close_framework_agreement_ua_cancel_tender_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
@@ -7679,7 +7679,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_cancel_tender_mistaken") {
+    job("complaint_close_framework_agreement_ua_cancel_tender_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
@@ -7702,7 +7702,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_cancel_tender_invalid") {
+    job("complaint_close_framework_agreement_ua_cancel_tender_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
@@ -7725,7 +7725,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_cancel_tender_declined") {
+    job("complaint_close_framework_agreement_ua_cancel_tender_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
@@ -7748,7 +7748,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_cancel_tender_stopped") {
+    job("complaint_close_framework_agreement_ua_cancel_tender_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
@@ -7771,7 +7771,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_cancel_lot_resolved") {
+    job("complaint_close_framework_agreement_ua_cancel_lot_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
@@ -7794,7 +7794,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_cancel_lot_mistaken") {
+    job("complaint_close_framework_agreement_ua_cancel_lot_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
@@ -7817,7 +7817,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_cancel_lot_invalid") {
+    job("complaint_close_framework_agreement_ua_cancel_lot_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
@@ -7840,7 +7840,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_cancel_lot_declined") {
+    job("complaint_close_framework_agreement_ua_cancel_lot_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
@@ -7863,7 +7863,7 @@ try {
         }
     }
 
-    job("close_framework_agreement_ua_complaint_cancel_lot_stopped") {
+    job("complaint_close_framework_agreement_ua_cancel_lot_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
@@ -7886,7 +7886,7 @@ try {
         }
     }
 
- job("competitive_dialogue_eu_stage_2_complaint_tender_resolved") {
+ job("complaint_competitive_dialogue_eu_stage_2_tender_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
@@ -7913,7 +7913,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_tender_mistaken") {
+    job("complaint_competitive_dialogue_eu_stage_2_tender_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
@@ -7940,7 +7940,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_tender_declined") {
+    job("complaint_competitive_dialogue_eu_stage_2_tender_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
@@ -7967,7 +7967,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_tender_stopped") {
+    job("complaint_competitive_dialogue_eu_stage_2_tender_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
@@ -7994,7 +7994,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_tender_invalid") {
+    job("complaint_competitive_dialogue_eu_stage_2_tender_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
@@ -8021,7 +8021,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_lot_resolved") {
+    job("complaint_competitive_dialogue_eu_stage_2_lot_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
@@ -8048,7 +8048,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_lot_mistaken") {
+    job("complaint_competitive_dialogue_eu_stage_2_lot_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
@@ -8075,7 +8075,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_lot_invalid") {
+    job("complaint_competitive_dialogue_eu_stage_2_lot_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
@@ -8102,7 +8102,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_lot_declined") {
+    job("complaint_competitive_dialogue_eu_stage_2_lot_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
@@ -8129,7 +8129,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_lot_stopped") {
+    job("complaint_competitive_dialogue_eu_stage_2_lot_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
@@ -8156,7 +8156,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_resolved") {
+    job("complaint_competitive_dialogue_eu_stage_2_cancel_tender_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
@@ -8183,7 +8183,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_mistaken") {
+    job("complaint_competitive_dialogue_eu_stage_2_cancel_tender_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
@@ -8210,7 +8210,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_invalid") {
+    job("complaint_competitive_dialogue_eu_stage_2_cancel_tender_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
@@ -8237,7 +8237,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_declined") {
+    job("complaint_competitive_dialogue_eu_stage_2_cancel_tender_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
@@ -8264,7 +8264,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_eu_stage_2_complaint_cancel_tender_stopped") {
+    job("complaint_competitive_dialogue_eu_stage_2_cancel_tender_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
@@ -8291,7 +8291,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_tender_resolved") {
+    job("complaint_competitive_dialogue_ua_stage_2_tender_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
@@ -8319,7 +8319,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_tender_mistaken") {
+    job("complaint_competitive_dialogue_ua_stage_2_tender_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
@@ -8346,7 +8346,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_tender_declined") {
+    job("complaint_competitive_dialogue_ua_stage_2_tender_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
@@ -8373,7 +8373,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_tender_stopped") {
+    job("complaint_competitive_dialogue_ua_stage_2_tender_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
@@ -8400,7 +8400,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_tender_invalid") {
+    job("complaint_competitive_dialogue_ua_stage_2_tender_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
@@ -8427,7 +8427,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_lot_resolved") {
+    job("complaint_competitive_dialogue_ua_stage_2_lot_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
@@ -8454,7 +8454,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_lot_mistaken") {
+    job("complaint_competitive_dialogue_ua_stage_2_lot_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
@@ -8481,7 +8481,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_lot_invalid") {
+    job("complaint_competitive_dialogue_ua_stage_2_lot_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
@@ -8508,7 +8508,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_lot_declined") {
+    job("complaint_competitive_dialogue_ua_stage_2_lot_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
@@ -8535,7 +8535,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_lot_stopped") {
+    job("complaint_competitive_dialogue_ua_stage_2_lot_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
@@ -8562,7 +8562,7 @@ try {
         }
     }
 
-     job("competitive_dialogue_ua_stage_2_complaint_cancel_tender_resolved") {
+     job("complaint_competitive_dialogue_ua_stage_2_cancel_tender_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
@@ -8590,7 +8590,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_cancel_tender_mistaken") {
+    job("complaint_competitive_dialogue_ua_stage_2_cancel_tender_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
@@ -8618,7 +8618,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_cancel_tender_invalid") {
+    job("complaint_competitive_dialogue_ua_stage_2_cancel_tender_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
@@ -8645,7 +8645,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_cancel_tender_declined") {
+    job("complaint_competitive_dialogue_ua_stage_2_cancel_tender_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
@@ -8672,7 +8672,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_cancel_tender_stopped") {
+    job("complaint_competitive_dialogue_ua_stage_2_cancel_tender_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
@@ -8699,7 +8699,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_cancel_lot_resolved") {
+    job("complaint_competitive_dialogue_ua_stage_2_cancel_lot_resolved") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
@@ -8727,7 +8727,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_cancel_lot_mistaken") {
+    job("complaint_competitive_dialogue_ua_stage_2_cancel_lot_mistaken") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
@@ -8754,7 +8754,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_cancel_lot_invalid") {
+    job("complaint_competitive_dialogue_ua_stage_2_cancel_lot_invalid") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
@@ -8781,7 +8781,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_cancel_lot_declined") {
+    job("complaint_competitive_dialogue_ua_stage_2_cancel_lot_declined") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
@@ -8808,7 +8808,7 @@ try {
         }
     }
 
-    job("competitive_dialogue_ua_stage_2_complaint_cancel_lot_stopped") {
+    job("complaint_competitive_dialogue_ua_stage_2_cancel_lot_stopped") {
         parameters defaultParameters(config)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
@@ -9966,111 +9966,111 @@ multiJob("cancellation") {
                 "complaint_competitive_dialogue_ua_lot_invalid",
                 "complaint_competitive_dialogue_ua_lot_declined",
                 "complaint_competitive_dialogue_ua_lot_stopped",
-                "competitive_dialogue_ua_complaint_cancel_tender_resolved",
-                "competitive_dialogue_ua_complaint_cancel_tender_mistaken",
-                "competitive_dialogue_ua_complaint_cancel_tender_invalid",
-                "competitive_dialogue_ua_complaint_cancel_tender_declined",
-                "competitive_dialogue_ua_complaint_cancel_tender_stopped",
-                "competitive_dialogue_ua_complaint_cancel_lot_resolved",
-                "competitive_dialogue_ua_complaint_cancel_lot_mistaken",
-                "competitive_dialogue_ua_complaint_cancel_lot_invalid",
-                "competitive_dialogue_ua_complaint_cancel_lot_declined",
-                "competitive_dialogue_ua_complaint_cancel_lot_stopped",
-                "close_framework_agreement_ua_complaint_tender_resolved",
-                "close_framework_agreement_ua_complaint_tender_mistaken",
-                "close_framework_agreement_ua_complaint_tender_declined",
-                "close_framework_agreement_ua_complaint_tender_stopped",
-                "close_framework_agreement_ua_complaint_tender_invalid",
-                "close_framework_agreement_ua_complaint_award_resolved",
-                "close_framework_agreement_ua_complaint_award_mistaken",
-                "close_framework_agreement_ua_complaint_award_declined",
-                "close_framework_agreement_ua_complaint_award_stopped",
-                "close_framework_agreement_ua_complaint_award_invalid",
-                "close_framework_agreement_ua_complaint_qualification_resolved",
-                "close_framework_agreement_ua_complaint_qualification_mistaken",
-                "close_framework_agreement_ua_complaint_qualification_invalid",
-                "close_framework_agreement_ua_complaint_qualification_declined",
-                "close_framework_agreement_ua_complaint_qualification_stopped",
-                "close_framework_agreement_ua_complaint_lot_resolved",
-                "close_framework_agreement_ua_complaint_lot_mistaken",
-                "close_framework_agreement_ua_complaint_lot_invalid",
-                "close_framework_agreement_ua_complaint_lot_declined",
-                "close_framework_agreement_ua_complaint_lot_stopped",
-                "close_framework_agreement_ua_complaint_cancel_tender_resolved",
-                "close_framework_agreement_ua_complaint_cancel_tender_mistaken",
-                "close_framework_agreement_ua_complaint_cancel_tender_invalid",
-                "close_framework_agreement_ua_complaint_cancel_tender_declined",
-                "close_framework_agreement_ua_complaint_cancel_tender_stopped",
-                "close_framework_agreement_ua_complaint_cancel_lot_resolved",
-                "close_framework_agreement_ua_complaint_cancel_lot_mistaken",
-                "close_framework_agreement_ua_complaint_cancel_lot_invalid",
-                "close_framework_agreement_ua_complaint_cancel_lot_declined",
-                "close_framework_agreement_ua_complaint_cancel_lot_stopped",
-                "competitive_dialogue_eu_stage_2_complaint_tender_invalid",
-                "competitive_dialogue_eu_stage_2_complaint_tender_stopped",
-                "competitive_dialogue_eu_stage_2_complaint_tender_declined",
-                "competitive_dialogue_eu_stage_2_complaint_tender_mistaken",
-                "competitive_dialogue_eu_stage_2_complaint_tender_resolved",
-                "competitive_dialogue_eu_stage_2_complaint_lot_resolved",
-                "competitive_dialogue_eu_stage_2_complaint_lot_mistaken",
-                "competitive_dialogue_eu_stage_2_complaint_lot_invalid",
-                "competitive_dialogue_eu_stage_2_complaint_lot_declined",
-                "competitive_dialogue_eu_stage_2_complaint_lot_stopped",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_resolved",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_mistaken",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_invalid",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_declined",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_stopped",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_resolved",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_mistaken",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_invalid",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_declined",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_stopped",
-                "competitive_dialogue_ua_stage_2_complaint_tender_resolved",
-                "competitive_dialogue_ua_stage_2_complaint_tender_mistaken",
-                "competitive_dialogue_ua_stage_2_complaint_tender_declined",
-                "competitive_dialogue_ua_stage_2_complaint_tender_stopped",
-                "competitive_dialogue_ua_stage_2_complaint_tender_invalid",
-                "competitive_dialogue_ua_stage_2_complaint_lot_resolved",
-                "competitive_dialogue_ua_stage_2_complaint_lot_mistaken",
-                "competitive_dialogue_ua_stage_2_complaint_lot_invalid",
-                "competitive_dialogue_ua_stage_2_complaint_lot_declined",
-                "competitive_dialogue_ua_stage_2_complaint_lot_stopped",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_tender_resolved",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_tender_mistaken",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_tender_invalid",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_tender_declined",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_tender_stopped",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_resolved",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_mistaken",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_invalid",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_declined",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_stopped",
-                "simple_defense_complaint_cancel_lot_resolved",
-                "simple_defense_complaint_cancel_lot_mistaken",
-                "simple_defense_complaint_cancel_lot_invalid",
-                "simple_defense_complaint_cancel_lot_declined",
-                "simple_defense_complaint_cancel_lot_stopped",
-                "simple_defense_complaint_cancel_tender_resolved",
-                "simple_defense_complaint_cancel_tender_mistaken",
-                "simple_defense_complaint_cancel_tender_invalid",
-                "simple_defense_complaint_cancel_tender_declined",
-                "simple_defense_complaint_cancel_tender_stopped",
-                "simple_defense_complaint_lot_resolved",
-                "simple_defense_complaint_lot_mistaken",
-                "simple_defense_complaint_lot_invalid",
-                "simple_defense_complaint_lot_declined",
-                "simple_defense_complaint_lot_stopped",
-                "simple_defense_complaint_tender_resolved",
-                "simple_defense_complaint_tender_mistaken",
-                "simple_defense_complaint_tender_declined",
-                "simple_defense_complaint_tender_stopped",
-                "simple_defense_complaint_tender_invalid",
-                "simple_defense_complaint_award_resolved",
-                "simple_defense_complaint_award_mistaken",
-                "simple_defense_complaint_award_declined",
-                "simple_defense_complaint_award_stopped",
-                "simple_defense_complaint_award_invalid",)
+                "complaint_competitive_dialogue_ua_cancel_tender_resolved",
+                "complaint_competitive_dialogue_ua_cancel_tender_mistaken",
+                "complaint_competitive_dialogue_ua_cancel_tender_invalid",
+                "complaint_competitive_dialogue_ua_cancel_tender_declined",
+                "complaint_competitive_dialogue_ua_cancel_tender_stopped",
+                "complaint_competitive_dialogue_ua_cancel_lot_resolved",
+                "complaint_competitive_dialogue_ua_cancel_lot_mistaken",
+                "complaint_competitive_dialogue_ua_cancel_lot_invalid",
+                "complaint_competitive_dialogue_ua_cancel_lot_declined",
+                "complaint_competitive_dialogue_ua_cancel_lot_stopped",
+                "complaint_close_framework_agreement_ua_tender_resolved",
+                "complaint_close_framework_agreement_ua_tender_mistaken",
+                "complaint_close_framework_agreement_ua_tender_declined",
+                "complaint_close_framework_agreement_ua_tender_stopped",
+                "complaint_close_framework_agreement_ua_tender_invalid",
+                "complaint_close_framework_agreement_ua_award_resolved",
+                "complaint_close_framework_agreement_ua_award_mistaken",
+                "complaint_close_framework_agreement_ua_award_declined",
+                "complaint_close_framework_agreement_ua_award_stopped",
+                "complaint_close_framework_agreement_ua_award_invalid",
+                "complaint_close_framework_agreement_ua_qualification_resolved",
+                "complaint_close_framework_agreement_ua_qualification_mistaken",
+                "complaint_close_framework_agreement_ua_qualification_invalid",
+                "complaint_close_framework_agreement_ua_qualification_declined",
+                "complaint_close_framework_agreement_ua_qualification_stopped",
+                "complaint_close_framework_agreement_ua_lot_resolved",
+                "complaint_close_framework_agreement_ua_lot_mistaken",
+                "complaint_close_framework_agreement_ua_lot_invalid",
+                "complaint_close_framework_agreement_ua_lot_declined",
+                "complaint_close_framework_agreement_ua_lot_stopped",
+                "complaint_close_framework_agreement_ua_cancel_tender_resolved",
+                "complaint_close_framework_agreement_ua_cancel_tender_mistaken",
+                "complaint_close_framework_agreement_ua_cancel_tender_invalid",
+                "complaint_close_framework_agreement_ua_cancel_tender_declined",
+                "complaint_close_framework_agreement_ua_cancel_tender_stopped",
+                "complaint_close_framework_agreement_ua_cancel_lot_resolved",
+                "complaint_close_framework_agreement_ua_cancel_lot_mistaken",
+                "complaint_close_framework_agreement_ua_cancel_lot_invalid",
+                "complaint_close_framework_agreement_ua_cancel_lot_declined",
+                "complaint_close_framework_agreement_ua_cancel_lot_stopped",
+                "complaint_competitive_dialogue_eu_stage_2_tender_invalid",
+                "complaint_competitive_dialogue_eu_stage_2_tender_stopped",
+                "complaint_competitive_dialogue_eu_stage_2_tender_declined",
+                "complaint_competitive_dialogue_eu_stage_2_tender_mistaken",
+                "complaint_competitive_dialogue_eu_stage_2_tender_resolved",
+                "complaint_competitive_dialogue_eu_stage_2_lot_resolved",
+                "complaint_competitive_dialogue_eu_stage_2_lot_mistaken",
+                "complaint_competitive_dialogue_eu_stage_2_lot_invalid",
+                "complaint_competitive_dialogue_eu_stage_2_lot_declined",
+                "complaint_competitive_dialogue_eu_stage_2_lot_stopped",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_tender_resolved",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_tender_mistaken",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_tender_invalid",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_tender_declined",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_tender_stopped",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_lot_resolved",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_lot_mistaken",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_lot_invalid",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_lot_declined",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_lot_stopped",
+                "complaint_competitive_dialogue_ua_stage_2_tender_resolved",
+                "complaint_competitive_dialogue_ua_stage_2_tender_mistaken",
+                "complaint_competitive_dialogue_ua_stage_2_tender_declined",
+                "complaint_competitive_dialogue_ua_stage_2_tender_stopped",
+                "complaint_competitive_dialogue_ua_stage_2_tender_invalid",
+                "complaint_competitive_dialogue_ua_stage_2_lot_resolved",
+                "complaint_competitive_dialogue_ua_stage_2_lot_mistaken",
+                "complaint_competitive_dialogue_ua_stage_2_lot_invalid",
+                "complaint_competitive_dialogue_ua_stage_2_lot_declined",
+                "complaint_competitive_dialogue_ua_stage_2_lot_stopped",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_tender_resolved",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_tender_mistaken",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_tender_invalid",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_tender_declined",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_tender_stopped",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_lot_resolved",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_lot_mistaken",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_lot_invalid",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_lot_declined",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_lot_stopped",
+                "complaint_simple_defense_cancel_lot_resolved",
+                "complaint_simple_defense_cancel_lot_mistaken",
+                "complaint_simple_defense_cancel_lot_invalid",
+                "complaint_simple_defense_cancel_lot_declined",
+                "complaint_simple_defense_cancel_lot_stopped",
+                "complaint_simple_defense_cancel_tender_resolved",
+                "complaint_simple_defense_cancel_tender_mistaken",
+                "complaint_simple_defense_cancel_tender_invalid",
+                "complaint_simple_defense_cancel_tender_declined",
+                "complaint_simple_defense_cancel_tender_stopped",
+                "complaint_simple_defense_lot_resolved",
+                "complaint_simple_defense_lot_mistaken",
+                "complaint_simple_defense_lot_invalid",
+                "complaint_simple_defense_lot_declined",
+                "complaint_simple_defense_lot_stopped",
+                "complaint_simple_defense_tender_resolved",
+                "complaint_simple_defense_tender_mistaken",
+                "complaint_simple_defense_tender_declined",
+                "complaint_simple_defense_tender_stopped",
+                "complaint_simple_defense_tender_invalid",
+                "complaint_simple_defense_award_resolved",
+                "complaint_simple_defense_award_mistaken",
+                "complaint_simple_defense_award_declined",
+                "complaint_simple_defense_award_stopped",
+                "complaint_simple_defense_award_invalid",)
         }
         columns {
             status()
@@ -10083,7 +10083,7 @@ multiJob("cancellation") {
         }
     }
 
-multiJob("complaints") {
+multiJob("complaint") {
     description('my description')
     parameters {
         choiceParam('BRANCH', ['master', 'dev_prozorro_2'], 'my description')
@@ -10206,111 +10206,111 @@ multiJob("complaints") {
                 "complaint_competitive_dialogue_ua_lot_invalid",
                 "complaint_competitive_dialogue_ua_lot_declined",
                 "complaint_competitive_dialogue_ua_lot_stopped",
-                "competitive_dialogue_ua_complaint_cancel_tender_resolved",
-                "competitive_dialogue_ua_complaint_cancel_tender_mistaken",
-                "competitive_dialogue_ua_complaint_cancel_tender_invalid",
-                "competitive_dialogue_ua_complaint_cancel_tender_declined",
-                "competitive_dialogue_ua_complaint_cancel_tender_stopped",
-                "competitive_dialogue_ua_complaint_cancel_lot_resolved",
-                "competitive_dialogue_ua_complaint_cancel_lot_mistaken",
-                "competitive_dialogue_ua_complaint_cancel_lot_invalid",
-                "competitive_dialogue_ua_complaint_cancel_lot_declined",
-                "competitive_dialogue_ua_complaint_cancel_lot_stopped",
-                "close_framework_agreement_ua_complaint_tender_resolved",
-                "close_framework_agreement_ua_complaint_tender_mistaken",
-                "close_framework_agreement_ua_complaint_tender_declined",
-                "close_framework_agreement_ua_complaint_tender_stopped",
-                "close_framework_agreement_ua_complaint_tender_invalid",
-                "close_framework_agreement_ua_complaint_award_resolved",
-                "close_framework_agreement_ua_complaint_award_mistaken",
-                "close_framework_agreement_ua_complaint_award_declined",
-                "close_framework_agreement_ua_complaint_award_stopped",
-                "close_framework_agreement_ua_complaint_award_invalid",
-                "close_framework_agreement_ua_complaint_qualification_resolved",
-                "close_framework_agreement_ua_complaint_qualification_mistaken",
-                "close_framework_agreement_ua_complaint_qualification_invalid",
-                "close_framework_agreement_ua_complaint_qualification_declined",
-                "close_framework_agreement_ua_complaint_qualification_stopped",
-                "close_framework_agreement_ua_complaint_lot_resolved",
-                "close_framework_agreement_ua_complaint_lot_mistaken",
-                "close_framework_agreement_ua_complaint_lot_invalid",
-                "close_framework_agreement_ua_complaint_lot_declined",
-                "close_framework_agreement_ua_complaint_lot_stopped",
-                "close_framework_agreement_ua_complaint_cancel_tender_resolved",
-                "close_framework_agreement_ua_complaint_cancel_tender_mistaken",
-                "close_framework_agreement_ua_complaint_cancel_tender_invalid",
-                "close_framework_agreement_ua_complaint_cancel_tender_declined",
-                "close_framework_agreement_ua_complaint_cancel_tender_stopped",
-                "close_framework_agreement_ua_complaint_cancel_lot_resolved",
-                "close_framework_agreement_ua_complaint_cancel_lot_mistaken",
-                "close_framework_agreement_ua_complaint_cancel_lot_invalid",
-                "close_framework_agreement_ua_complaint_cancel_lot_declined",
-                "close_framework_agreement_ua_complaint_cancel_lot_stopped",
-                "competitive_dialogue_eu_stage_2_complaint_tender_invalid",
-                "competitive_dialogue_eu_stage_2_complaint_tender_stopped",
-                "competitive_dialogue_eu_stage_2_complaint_tender_declined",
-                "competitive_dialogue_eu_stage_2_complaint_tender_mistaken",
-                "competitive_dialogue_eu_stage_2_complaint_tender_resolved",
-                "competitive_dialogue_eu_stage_2_complaint_lot_resolved",
-                "competitive_dialogue_eu_stage_2_complaint_lot_mistaken",
-                "competitive_dialogue_eu_stage_2_complaint_lot_invalid",
-                "competitive_dialogue_eu_stage_2_complaint_lot_declined",
-                "competitive_dialogue_eu_stage_2_complaint_lot_stopped",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_resolved",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_mistaken",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_invalid",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_declined",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_tender_stopped",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_resolved",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_mistaken",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_invalid",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_declined",
-                "competitive_dialogue_eu_stage_2_complaint_cancel_lot_stopped",
-                "competitive_dialogue_ua_stage_2_complaint_tender_resolved",
-                "competitive_dialogue_ua_stage_2_complaint_tender_mistaken",
-                "competitive_dialogue_ua_stage_2_complaint_tender_declined",
-                "competitive_dialogue_ua_stage_2_complaint_tender_stopped",
-                "competitive_dialogue_ua_stage_2_complaint_tender_invalid",
-                "competitive_dialogue_ua_stage_2_complaint_lot_resolved",
-                "competitive_dialogue_ua_stage_2_complaint_lot_mistaken",
-                "competitive_dialogue_ua_stage_2_complaint_lot_invalid",
-                "competitive_dialogue_ua_stage_2_complaint_lot_declined",
-                "competitive_dialogue_ua_stage_2_complaint_lot_stopped",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_tender_resolved",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_tender_mistaken",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_tender_invalid",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_tender_declined",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_tender_stopped",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_resolved",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_mistaken",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_invalid",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_declined",
-                "competitive_dialogue_ua_stage_2_complaint_cancel_lot_stopped",
-                "simple_defense_complaint_cancel_lot_resolved",
-                "simple_defense_complaint_cancel_lot_mistaken",
-                "simple_defense_complaint_cancel_lot_invalid",
-                "simple_defense_complaint_cancel_lot_declined",
-                "simple_defense_complaint_cancel_lot_stopped",
-                "simple_defense_complaint_cancel_tender_resolved",
-                "simple_defense_complaint_cancel_tender_mistaken",
-                "simple_defense_complaint_cancel_tender_invalid",
-                "simple_defense_complaint_cancel_tender_declined",
-                "simple_defense_complaint_cancel_tender_stopped",
-                "simple_defense_complaint_lot_resolved",
-                "simple_defense_complaint_lot_mistaken",
-                "simple_defense_complaint_lot_invalid",
-                "simple_defense_complaint_lot_declined",
-                "simple_defense_complaint_lot_stopped",
-                "simple_defense_complaint_tender_resolved",
-                "simple_defense_complaint_tender_mistaken",
-                "simple_defense_complaint_tender_declined",
-                "simple_defense_complaint_tender_stopped",
-                "simple_defense_complaint_tender_invalid",
-                "simple_defense_complaint_award_resolved",
-                "simple_defense_complaint_award_mistaken",
-                "simple_defense_complaint_award_declined",
-                "simple_defense_complaint_award_stopped",
-                "simple_defense_complaint_award_invalid",
+                "complaint_competitive_dialogue_ua_cancel_tender_resolved",
+                "complaint_competitive_dialogue_ua_cancel_tender_mistaken",
+                "complaint_competitive_dialogue_ua_cancel_tender_invalid",
+                "complaint_competitive_dialogue_ua_cancel_tender_declined",
+                "complaint_competitive_dialogue_ua_cancel_tender_stopped",
+                "complaint_competitive_dialogue_ua_cancel_lot_resolved",
+                "complaint_competitive_dialogue_ua_cancel_lot_mistaken",
+                "complaint_competitive_dialogue_ua_cancel_lot_invalid",
+                "complaint_competitive_dialogue_ua_cancel_lot_declined",
+                "complaint_competitive_dialogue_ua_cancel_lot_stopped",
+                "complaint_close_framework_agreement_ua_tender_resolved",
+                "complaint_close_framework_agreement_ua_tender_mistaken",
+                "complaint_close_framework_agreement_ua_tender_declined",
+                "complaint_close_framework_agreement_ua_tender_stopped",
+                "complaint_close_framework_agreement_ua_tender_invalid",
+                "complaint_close_framework_agreement_ua_award_resolved",
+                "complaint_close_framework_agreement_ua_award_mistaken",
+                "complaint_close_framework_agreement_ua_award_declined",
+                "complaint_close_framework_agreement_ua_award_stopped",
+                "complaint_close_framework_agreement_ua_award_invalid",
+                "complaint_close_framework_agreement_ua_qualification_resolved",
+                "complaint_close_framework_agreement_ua_qualification_mistaken",
+                "complaint_close_framework_agreement_ua_qualification_invalid",
+                "complaint_close_framework_agreement_ua_qualification_declined",
+                "complaint_close_framework_agreement_ua_qualification_stopped",
+                "complaint_close_framework_agreement_ua_lot_resolved",
+                "complaint_close_framework_agreement_ua_lot_mistaken",
+                "complaint_close_framework_agreement_ua_lot_invalid",
+                "complaint_close_framework_agreement_ua_lot_declined",
+                "complaint_close_framework_agreement_ua_lot_stopped",
+                "complaint_close_framework_agreement_ua_cancel_tender_resolved",
+                "complaint_close_framework_agreement_ua_cancel_tender_mistaken",
+                "complaint_close_framework_agreement_ua_cancel_tender_invalid",
+                "complaint_close_framework_agreement_ua_cancel_tender_declined",
+                "complaint_close_framework_agreement_ua_cancel_tender_stopped",
+                "complaint_close_framework_agreement_ua_cancel_lot_resolved",
+                "complaint_close_framework_agreement_ua_cancel_lot_mistaken",
+                "complaint_close_framework_agreement_ua_cancel_lot_invalid",
+                "complaint_close_framework_agreement_ua_cancel_lot_declined",
+                "complaint_close_framework_agreement_ua_cancel_lot_stopped",
+                "complaint_competitive_dialogue_eu_stage_2_tender_invalid",
+                "complaint_competitive_dialogue_eu_stage_2_tender_stopped",
+                "complaint_competitive_dialogue_eu_stage_2_tender_declined",
+                "complaint_competitive_dialogue_eu_stage_2_tender_mistaken",
+                "complaint_competitive_dialogue_eu_stage_2_tender_resolved",
+                "complaint_competitive_dialogue_eu_stage_2_lot_resolved",
+                "complaint_competitive_dialogue_eu_stage_2_lot_mistaken",
+                "complaint_competitive_dialogue_eu_stage_2_lot_invalid",
+                "complaint_competitive_dialogue_eu_stage_2_lot_declined",
+                "complaint_competitive_dialogue_eu_stage_2_lot_stopped",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_tender_resolved",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_tender_mistaken",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_tender_invalid",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_tender_declined",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_tender_stopped",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_lot_resolved",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_lot_mistaken",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_lot_invalid",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_lot_declined",
+                "complaint_competitive_dialogue_eu_stage_2_cancel_lot_stopped",
+                "complaint_competitive_dialogue_ua_stage_2_tender_resolved",
+                "complaint_competitive_dialogue_ua_stage_2_tender_mistaken",
+                "complaint_competitive_dialogue_ua_stage_2_tender_declined",
+                "complaint_competitive_dialogue_ua_stage_2_tender_stopped",
+                "complaint_competitive_dialogue_ua_stage_2_tender_invalid",
+                "complaint_competitive_dialogue_ua_stage_2_lot_resolved",
+                "complaint_competitive_dialogue_ua_stage_2_lot_mistaken",
+                "complaint_competitive_dialogue_ua_stage_2_lot_invalid",
+                "complaint_competitive_dialogue_ua_stage_2_lot_declined",
+                "complaint_competitive_dialogue_ua_stage_2_lot_stopped",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_tender_resolved",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_tender_mistaken",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_tender_invalid",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_tender_declined",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_tender_stopped",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_lot_resolved",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_lot_mistaken",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_lot_invalid",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_lot_declined",
+                "complaint_competitive_dialogue_ua_stage_2_cancel_lot_stopped",
+                "complaint_simple_defense_cancel_lot_resolved",
+                "complaint_simple_defense_cancel_lot_mistaken",
+                "complaint_simple_defense_cancel_lot_invalid",
+                "complaint_simple_defense_cancel_lot_declined",
+                "complaint_simple_defense_cancel_lot_stopped",
+                "complaint_simple_defense_cancel_tender_resolved",
+                "complaint_simple_defense_cancel_tender_mistaken",
+                "complaint_simple_defense_cancel_tender_invalid",
+                "complaint_simple_defense_cancel_tender_declined",
+                "complaint_simple_defense_cancel_tender_stopped",
+                "complaint_simple_defense_lot_resolved",
+                "complaint_simple_defense_lot_mistaken",
+                "complaint_simple_defense_lot_invalid",
+                "complaint_simple_defense_lot_declined",
+                "complaint_simple_defense_lot_stopped",
+                "complaint_simple_defense_tender_resolved",
+                "complaint_simple_defense_tender_mistaken",
+                "complaint_simple_defense_tender_declined",
+                "complaint_simple_defense_tender_stopped",
+                "complaint_simple_defense_tender_invalid",
+                "complaint_simple_defense_award_resolved",
+                "complaint_simple_defense_award_mistaken",
+                "complaint_simple_defense_award_declined",
+                "complaint_simple_defense_award_stopped",
+                "complaint_simple_defense_award_invalid",
                 ]
                 innerJobs.each { String scenario -> phaseJob(scenario) {
                     currentJobParameters(true)
