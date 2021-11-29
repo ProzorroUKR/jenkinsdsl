@@ -9613,7 +9613,6 @@ try {
                     "${config.environment}_negotiation",
                     "${config.environment}_negotiation.quick",
                     "${config.environment}_reporting",
-                    "${config.environment}_feed_reading",
                     "${config.environment}_single_item_tender",
                     "${config.environment}_esco",
                     "${config.environment}_belowThreshold_moz_1",
