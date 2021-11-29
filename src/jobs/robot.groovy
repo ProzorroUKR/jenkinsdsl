@@ -9870,7 +9870,7 @@ multiJob("cancellation") {
      listView("complaints") {
         description('complaints for all procedure types')
         jobs {
-            names("complaints",
+            names("complaint",
                 "complaint_aboveThresholdUA_award_invalid",
                 "complaint_aboveThresholdUA_award_stopped",
                 "complaint_aboveThresholdUA_award_declined",
