@@ -482,7 +482,7 @@ try {
          steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
-            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction -i answer_question_to_tender $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $fast_auction $params")
             shell("$robotWrapper $auction $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
@@ -507,7 +507,7 @@ try {
          steps {
             shell(shellBuildout)
             shell("$robotWrapper $planning -i create_plan -i find_plan -v MODE:simple.defense $params")
-            shell("$robotWrapper $openProcedure $defaultArgs -i answer_question_to_tender $params")
+            shell("$robotWrapper $openProcedure $defaultArgs $params")
             shell("$robotWrapper $qualification $defaultArgs $params")
             shell("$robotWrapper $contractsign $defaultArgs $params")
             shell(shellRebot)
