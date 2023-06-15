@@ -97,7 +97,7 @@ def defaultEnv_dfs() {
     }
 }
 
-String shellBuildout = "sleep \$((RANDOM % 600))\npython3 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\npython3 fix_python3_conflicts.py\nbin/develop update -f"
+String shellBuildout = "sleep \$((RANDOM % 600))\npython3 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f\npython3 fix_python3_conflicts.py"
 String shellPhantom  = "sed -r -i 's/browser: *(chrome|firefox)/browser:  PhantomJS/gi' op_robot_tests/tests_files/data/users.yaml"
 String shellRebot    = "robot_wrapper bin/rebot -o test_output/output.xml -l test_output/log.html -r test_output/report.html -R test_output/*.xml"
 String robotWrapper  = "robot_wrapper bin/op_tests --consolecolors on "
