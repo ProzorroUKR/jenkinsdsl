@@ -97,7 +97,7 @@ def defaultEnv_dfs() {
     }
 }
 
-String shellBuildout = "sleep \$((RANDOM % 600))\npython3 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f\npython3 fix_python3_conflicts.py"
+String shellBuildout = "python3 bootstrap.py\nbin/buildout -N buildout:always-checkout=force\nbin/develop update -f\npython3 fix_python3_conflicts.py"
 String shellPhantom  = "sed -r -i 's/browser: *(chrome|firefox)/browser:  PhantomJS/gi' op_robot_tests/tests_files/data/users.yaml"
 String shellRebot    = "robot_wrapper bin/rebot -o test_output/output.xml -l test_output/log.html -r test_output/report.html -R test_output/*.xml"
 String robotWrapper  = "robot_wrapper bin/op_tests --consolecolors on "
@@ -205,6 +205,7 @@ try {
 
     job("${config.environment}_aboveThresholdEU") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Надпорогова закупівля з публікацією англійською мовою.")
         keepDependencies(false)
         disabled(false)
@@ -231,6 +232,7 @@ try {
 
     job("${config.environment}_aboveThresholdUA") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Надпорогова закупівля.")
         keepDependencies(false)
         disabled(false)
@@ -257,6 +259,7 @@ try {
 
     job("${config.environment}_frameworkagreement") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Рамкова угода.")
         keepDependencies(false)
         disabled(false)
@@ -289,6 +292,7 @@ try {
 
     job("${config.environment}_below_funders_full") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Допорогова закупівля.")
         keepDependencies(false)
         disabled(false)
@@ -315,6 +319,7 @@ try {
 
     job("${config.environment}_belowThreshold") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Допорогова закупівля.")
         keepDependencies(false)
         disabled(false)
@@ -341,6 +346,7 @@ try {
 
     job("${config.environment}_single_item_tender") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Допорогова закупівля з однією номенклатурою до аукціону")
         keepDependencies(false)
         disabled(false)
@@ -367,6 +373,7 @@ try {
 
     job("${config.environment}_esco") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Відкриті торги для закупівлі енергосервісу")
         keepDependencies(false)
         disabled(false)
@@ -392,6 +399,7 @@ try {
 
     job("${config.environment}_competitiveDialogueEU") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
         keepDependencies(false)
         disabled(false)
@@ -418,6 +426,7 @@ try {
 
     job("${config.environment}_competitiveDialogueUA") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
         keepDependencies(false)
         disabled(false)
@@ -445,6 +454,7 @@ try {
     ["negotiation", "negotiation.quick", "reporting"].each { String scenario ->
     job("${config.environment}_$scenario") {
             parameters defaultParameters(config)
+        assignedNode(rocky)
             description("Сценарій: Переговорна процедура")
             keepDependencies(false)
             disabled(false)
@@ -467,6 +477,7 @@ try {
 
     job("${config.environment}_simple_defence") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Спрощена процедура для потреб оборони.")
         keepDependencies(false)
         disabled(false)
@@ -492,6 +503,7 @@ try {
 
     job("${config.environment}_simple_defence_one_bid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Спрощена процедура для потреб оборони (з одним учасником).")
         keepDependencies(false)
         disabled(false)
@@ -520,6 +532,7 @@ try {
 
     job("${config.environment}_aboveThresholdEU_vat_true_false") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Відкрита процедура (короткий сценарій) оголошена з ПДВ, контракт укладено без ПДВ")
         keepDependencies(false)
         disabled(false)
@@ -546,6 +559,7 @@ try {
 
     job("${config.environment}_aboveThresholdEU_vat_false_false") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Відкрита процедура (короткий сценарій) оголошена без ПДВ, контракт укладено без ПДВ")
         keepDependencies(false)
         disabled(false)
@@ -572,6 +586,7 @@ try {
 
     job("${config.environment}_aboveThresholdEU_vat_false_true") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Відкрита процедура (короткий сценарій) оголошена без ПДВ, контракт укладено з ПДВ")
         keepDependencies(false)
         disabled(false)
@@ -598,6 +613,7 @@ try {
 
     job("${config.environment}_aboveThresholdUA_vat_true_false") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Відкрита процедура (короткий сценарій) оголошена з ПДВ, контракт укладено без ПДВ ")
         keepDependencies(false)
         disabled(false)
@@ -624,6 +640,7 @@ try {
 
     job("${config.environment}_aboveThresholdUA_vat_false_false") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Відкрита процедура (короткий сценарій) оголошена без ПДВ, контракт укладено без ПДВ")
         keepDependencies(false)
         disabled(false)
@@ -650,6 +667,7 @@ try {
 
     job("${config.environment}_aboveThresholdUA_vat_false_true") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Відкрита процедура (короткий сценарій) оголошена без ПДВ, контракт укладено з ПДВ")
         keepDependencies(false)
         disabled(false)
@@ -676,6 +694,7 @@ try {
 
     job("${config.environment}_belowThreshold_vat_true_false") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Допорогова закупівля (мінімальний набір тест кейсів) оголошена з ПДВ, контракт укладено без ПДВ")
         keepDependencies(false)
         disabled(false)
@@ -702,6 +721,7 @@ try {
 
     job("${config.environment}_belowThreshold_vat_false_false") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Допорогова закупівля (мінімальний набір тест кейсів) оголошена без ПДВ, контракт укладено без ПДВ")
         keepDependencies(false)
         disabled(false)
@@ -728,6 +748,7 @@ try {
 
     job("${config.environment}_belowThreshold_vat_false_true") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Допорогова закупівля (мінімальний набір тест кейсів) оголошено без ПДВ, контракт укладено з ПДВ")
         keepDependencies(false)
         disabled(false)
@@ -754,6 +775,7 @@ try {
 
     job("${config.environment}_competitiveDialogueEU_vat_true_false") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
         keepDependencies(false)
         disabled(false)
@@ -780,6 +802,7 @@ try {
 
     job("${config.environment}_competitiveDialogueEU_vat_false_false") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
         keepDependencies(false)
         disabled(false)
@@ -806,6 +829,7 @@ try {
 
     job("${config.environment}_competitiveDialogueEU_vat_false_true") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
         keepDependencies(false)
         disabled(false)
@@ -832,6 +856,7 @@ try {
 
     job("${config.environment}_competitiveDialogueUA_vat_true_false") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
         keepDependencies(false)
         disabled(false)
@@ -858,6 +883,7 @@ try {
 
     job("${config.environment}_competitiveDialogueUA_vat_false_false") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
         keepDependencies(false)
         disabled(false)
@@ -884,6 +910,7 @@ try {
 
     job("${config.environment}_competitiveDialogueUA_vat_false_true") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
         keepDependencies(false)
         disabled(false)
@@ -916,6 +943,7 @@ try {
     "declined_stopped"].each { String scenario ->
         job("${config.environment}_dasu_$scenario") {
             parameters defaultParameters(config)
+        assignedNode(rocky)
             description("Сценарій: ДАСУ")
             keepDependencies(false)
             disabled(false)
@@ -942,6 +970,7 @@ try {
 
     job("${config.environment}_feed_reading") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Вичітування довільного набіру даних с ЦБД")
         keepDependencies(false)
         disabled(false)
@@ -967,6 +996,7 @@ try {
 
     job("${config.environment}_aboveThresholdUA_plans_aggregation") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Надпорогова закупівля.")
         keepDependencies(false)
         disabled(false)
@@ -996,6 +1026,7 @@ try {
 
     job("${config.environment}_planning_aboveThresholdUA") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Планування Надпорогова закупівля")
         keepDependencies(false)
         disabled(false)
@@ -1016,6 +1047,7 @@ try {
 
     job("${config.environment}_planning_aboveThresholdEU") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Планування Надпорогова закупівля з публікацією англійською мовою")
         keepDependencies(false)
         disabled(false)
@@ -1036,6 +1068,7 @@ try {
 
     job("${config.environment}_planning_esco") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Планування Відкриті торги для закупівлі енергосервісу")
         keepDependencies(false)
         disabled(false)
@@ -1056,6 +1089,7 @@ try {
 
     job("${config.environment}_planning_reporting") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Планування Переговорна процедура")
         keepDependencies(false)
         disabled(false)
@@ -1076,6 +1110,7 @@ try {
 
     job("${config.environment}_planning_negotiation") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Планування Переговорна процедура")
         keepDependencies(false)
         disabled(false)
@@ -1096,6 +1131,7 @@ try {
 
     job("${config.environment}_planning_negotiation.quick") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Планування Переговорна процедура. Скорочена")
         keepDependencies(false)
         disabled(false)
@@ -1116,6 +1152,7 @@ try {
 
     job("${config.environment}_planning_belowThreshold") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Планування допорогова процедура")
         keepDependencies(false)
         disabled(false)
@@ -1136,6 +1173,7 @@ try {
 
     job("${config.environment}_planning_framework_agreement") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Планування рамкової угоди")
         keepDependencies(false)
         disabled(false)
@@ -1156,6 +1194,7 @@ try {
 
     job("${config.environment}_plan_tender_validations") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Валідації План-Тендер")
         keepDependencies(false)
         disabled(false)
@@ -1185,6 +1224,7 @@ try {
 
     job("${config.environment}_below_cost") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Допорогова закупівля з індексом UA-ROAD")
         keepDependencies(false)
         disabled(false)
@@ -1211,6 +1251,7 @@ try {
 
     job("${config.environment}_below_gmdn") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Допорогова закупівля з індексом GMDN")
         keepDependencies(false)
         disabled(false)
@@ -1237,6 +1278,7 @@ try {
 
     job("${config.environment}_cost_gmdn_validations") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Валідації cost/gmdn")
         keepDependencies(false)
         disabled(false)
@@ -1286,6 +1328,7 @@ try {
 
     job("${config.environment}_belowThreshold_moz_1") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Допорогова закупівля фармацевтичної продукції")
         keepDependencies(false)
         disabled(false)
@@ -1311,6 +1354,7 @@ try {
 
     job("${config.environment}_belowThreshold_moz_2") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Допорогова закупівля лікарських засобів")
         keepDependencies(false)
         disabled(false)
@@ -1336,6 +1380,7 @@ try {
 
     job("${config.environment}_belowThreshold_moz_3") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Допорогова закупівля лікарських засобів без додаткового класифікатора")
         keepDependencies(false)
         disabled(false)
@@ -1361,6 +1406,7 @@ try {
 
     job("${config.environment}_belowThreshold_moz_validation") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Допорогова закупівля - валідації МНН")
         keepDependencies(false)
         disabled(false)
@@ -1395,6 +1441,7 @@ try {
 
     job("${config.environment}_aboveThresholdEU_EDR_DFS") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Надпорогова закупівля з публікацією англійською мовою.")
         keepDependencies(false)
         disabled(false)
@@ -1419,6 +1466,7 @@ try {
 
     job("${config.environment}_aboveThresholdUA_EDR_DFS") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Надпорогова закупівля.")
         keepDependencies(false)
         disabled(false)
@@ -1443,6 +1491,7 @@ try {
 
     job("${config.environment}_competitiveDialogueEU_EDR_DFS") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Конкурентний діалог з публікацією англійською мовою")
         keepDependencies(false)
         disabled(false)
@@ -1467,6 +1516,7 @@ try {
 
     job("${config.environment}_competitiveDialogueUA_EDR_DFS") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Конкурентний діалог для надпорогових закупівель українською мовою")
         keepDependencies(false)
         disabled(false)
@@ -1491,6 +1541,7 @@ try {
 
     job("${config.environment}_esco_EDR_DFS") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Відкриті торги для закупівлі енергосервісу")
         keepDependencies(false)
         disabled(false)
@@ -1519,6 +1570,7 @@ try {
 
     job("${config.environment}_openeu_complaint_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -1542,6 +1594,7 @@ try {
 
     job("${config.environment}_openeu_complaint_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -1565,6 +1618,7 @@ try {
 
     job("${config.environment}_openeu_complaint_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -1588,6 +1642,7 @@ try {
 
     job("${config.environment}_openeu_complaint_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -1611,6 +1666,7 @@ try {
 
     job("${config.environment}_openeu_complaint_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -1634,6 +1690,7 @@ try {
 
     job("${config.environment}_openeu_complaint_award_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -1658,6 +1715,7 @@ try {
 
     job("${config.environment}_openeu_complaint_award_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -1682,6 +1740,7 @@ try {
 
     job("${config.environment}_openeu_complaint_award_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -1706,6 +1765,7 @@ try {
 
     job("${config.environment}_openeu_complaint_award_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -1730,6 +1790,7 @@ try {
 
     job("${config.environment}_openeu_complaint_award_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -1754,6 +1815,7 @@ try {
 
     job("${config.environment}_openeu_complaint_qualification_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника задоволена Замовником")
         keepDependencies(false)
         disabled(false)
@@ -1777,6 +1839,7 @@ try {
 
     job("${config.environment}_openeu_complaint_qualification_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -1800,6 +1863,7 @@ try {
 
     job("${config.environment}_openeu_complaint_qualification_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -1823,6 +1887,7 @@ try {
 
     job("${config.environment}_openeu_complaint_qualification_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника відхилена")
         keepDependencies(false)
         disabled(false)
@@ -1846,6 +1911,7 @@ try {
 
     job("${config.environment}_openeu_complaint_qualification_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -1869,6 +1935,7 @@ try {
 
     job("${config.environment}_openeu_complaint_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -1892,6 +1959,7 @@ try {
 
     job("${config.environment}_openeu_complaint_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -1915,6 +1983,7 @@ try {
 
     job("${config.environment}_openeu_complaint_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -1938,6 +2007,7 @@ try {
 
     job("${config.environment}_openeu_complaint_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -1961,6 +2031,7 @@ try {
 
     job("${config.environment}_openeu_complaint_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -1984,6 +2055,7 @@ try {
 
     job("${config.environment}_openeu_complaint_cancel_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -2007,6 +2079,7 @@ try {
 
     job("${config.environment}_openeu_complaint_cancel_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -2030,6 +2103,7 @@ try {
 
     job("${config.environment}_openeu_complaint_cancel_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -2053,6 +2127,7 @@ try {
 
     job("${config.environment}_openeu_complaint_cancel_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
         disabled(false)
@@ -2076,6 +2151,7 @@ try {
 
     job("${config.environment}_openeu_complaint_cancel_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -2099,6 +2175,7 @@ try {
 
     job("${config.environment}_openeu_complaint_cancel_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -2122,6 +2199,7 @@ try {
 
     job("${config.environment}_openeu_complaint_cancel_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -2145,6 +2223,7 @@ try {
 
     job("${config.environment}_openeu_complaint_cancel_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -2168,6 +2247,7 @@ try {
 
     job("${config.environment}_openeu_complaint_cancel_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -2191,6 +2271,7 @@ try {
 
     job("${config.environment}_openeu_complaint_cancel_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -2218,6 +2299,7 @@ try {
 
     job("${config.environment}_complaint_simple_defence_first_award_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Неможливо подати скаргу після першого скасування рішення")
         keepDependencies(false)
         disabled(false)
@@ -2242,6 +2324,7 @@ try {
 
     job("${config.environment}_complaint_simple_defence_first_award_disqualification") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Неможливо подати скаргу після дискваліфікації першого учасника")
         keepDependencies(false)
         disabled(false)
@@ -2266,6 +2349,7 @@ try {
 
     job("${config.environment}_complaint_simple_defence_second_award_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Неможливо подати скаргу після другого скасування рішення")
         keepDependencies(false)
         disabled(false)
@@ -2290,6 +2374,7 @@ try {
 
     job("${config.environment}_complaint_simple_defence_second_award_disqualification") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Неможливо подати скаргу після дискваліфікації другого учасника")
         keepDependencies(false)
         disabled(false)
@@ -2314,6 +2399,7 @@ try {
 
     job("${config.environment}_complaint_simple_defence_third_award_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Неможливо подати скаргу після третього скасування рішення")
         keepDependencies(false)
         disabled(false)
@@ -2338,6 +2424,7 @@ try {
 
     job("${config.environment}_complaint_simple_defence_third_award_disqualification") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Неможливо подати скаргу після дискваліфікації третього учасника")
         keepDependencies(false)
         disabled(false)
@@ -2362,6 +2449,7 @@ try {
 
     job("complaint_simple_defense_award_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -2386,6 +2474,7 @@ try {
 
     job("complaint_simple_defense_award_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -2410,6 +2499,7 @@ try {
 
     job("complaint_simple_defense_award_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -2434,6 +2524,7 @@ try {
 
     job("complaint_simple_defense_award_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -2458,6 +2549,7 @@ try {
 
     job("complaint_simple_defense_award_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -2482,6 +2574,7 @@ try {
 
     job("complaint_simple_defense_cancel_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -2506,6 +2599,7 @@ try {
 
     job("complaint_simple_defense_cancel_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -2530,6 +2624,7 @@ try {
 
     job("complaint_simple_defense_cancel_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -2554,6 +2649,7 @@ try {
 
     job("complaint_simple_defense_cancel_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -2578,6 +2674,7 @@ try {
 
     job("complaint_simple_defense_cancel_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -2602,6 +2699,7 @@ try {
 
     job("complaint_simple_defense_cancel_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -2626,6 +2724,7 @@ try {
 
     job("complaint_simple_defense_cancel_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -2650,6 +2749,7 @@ try {
 
     job("complaint_simple_defense_cancel_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -2674,6 +2774,7 @@ try {
 
     job("complaint_simple_defense_cancel_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
         disabled(false)
@@ -2698,6 +2799,7 @@ try {
 
     job("complaint_simple_defense_cancel_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -2722,6 +2824,7 @@ try {
 
     job("complaint_simple_defense_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -2746,6 +2849,7 @@ try {
 
     job("complaint_simple_defense_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -2770,6 +2874,7 @@ try {
 
     job("complaint_simple_defense_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -2794,6 +2899,7 @@ try {
 
     job("complaint_simple_defense_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -2818,6 +2924,7 @@ try {
 
     job("complaint_simple_defense_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -2842,6 +2949,7 @@ try {
 
     job("complaint_simple_defense_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -2866,6 +2974,7 @@ try {
 
     job("complaint_simple_defense_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -2890,6 +2999,7 @@ try {
 
     job("complaint_simple_defense_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -2914,6 +3024,7 @@ try {
 
     job("complaint_simple_defense_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -2938,6 +3049,7 @@ try {
 
     job("complaint_simple_defense_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -2966,6 +3078,7 @@ try {
 
     job("${config.environment}_aboveThresholdUA_24_hours_award") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Повідомлення про невідповідність пропозиції на єтапі кваліфікації")
         keepDependencies(false)
         disabled(false)
@@ -2990,6 +3103,7 @@ try {
 
     job("${config.environment}_aboveThresholdEU_24_hours_qualification") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Повідомлення про невідповідність пропозиції на єтапі пре-кваліфікації")
         keepDependencies(false)
         disabled(false)
@@ -3013,6 +3127,7 @@ try {
 
     job("${config.environment}_aboveThresholdUA_alp") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Обгрунтування аномально низької ціни")
         keepDependencies(false)
         disabled(false)
@@ -3041,6 +3156,7 @@ try {
 
     job("cancellation_tendering_aboveThresholdEU") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування надпорогової закупівлі з публікацією англійською мовою. Етап active.tendering")
         keepDependencies(false)
         disabled(false)
@@ -3065,6 +3181,7 @@ try {
 
     job("cancellation_tendering_competitiveDialogueEU") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі конкурентний діалог з публікацією англійською мовою. Етап active.tendering")
         keepDependencies(false)
         disabled(false)
@@ -3089,6 +3206,7 @@ try {
 
     job("cancellation_tendering_aboveThresholdUA") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування надпорогової закупівлі. Етап active.tendering")
         keepDependencies(false)
         disabled(false)
@@ -3113,6 +3231,7 @@ try {
 
     job("cancellation_reporting") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі reporting")
         keepDependencies(false)
         disabled(false)
@@ -3136,6 +3255,7 @@ try {
 
     job("cancellation_negotiation") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі negotiation")
         keepDependencies(false)
         disabled(false)
@@ -3159,6 +3279,7 @@ try {
 
     job("cancellation_negotiation.quick") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі negotiation.quick")
         keepDependencies(false)
         disabled(false)
@@ -3182,6 +3303,7 @@ try {
 
      job("cancellation_tendering_esco") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування ESCO закупівлі. Етап active.tendering")
         keepDependencies(false)
         disabled(false)
@@ -3206,6 +3328,7 @@ try {
 
     job("cancellation_tendering_belowThreshold") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування допорогової закупівлі. Етап active.tendering")
         keepDependencies(false)
         disabled(false)
@@ -3230,6 +3353,7 @@ try {
 
     job("cancellation_qualification_belowThreshold") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування допорогової закупівлі. Етап active.qualification")
         keepDependencies(false)
         disabled(false)
@@ -3254,6 +3378,7 @@ try {
 
     job("cancellation_qualification_esco") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування ESCO закупівлі. Етап active.qualification")
         keepDependencies(false)
         disabled(false)
@@ -3278,6 +3403,7 @@ try {
 
     job("cancellation_qualification_aboveThresholdUA_defence") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування процедури для потреб оборони. Етап active.qualification")
         keepDependencies(false)
         disabled(false)
@@ -3302,6 +3428,7 @@ try {
 
     job("cancellation_qualification_aboveThresholdUA") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування надпорогової закупівлі. Етап active.qualification")
         keepDependencies(false)
         disabled(false)
@@ -3326,6 +3453,7 @@ try {
 
     job("cancellation_qualification_aboveThresholdEU") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування надпорогової закупівлі з публікацією англійською мовою. Етап active.qualification")
         keepDependencies(false)
         disabled(false)
@@ -3350,6 +3478,7 @@ try {
 
     job("cancellation_qualification_closeFrameworkAgreementUA_tender") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування тендера Рамкова угода 1-й етап. Етап active.qualification")
         keepDependencies(false)
         disabled(false)
@@ -3374,6 +3503,7 @@ try {
 
     job("cancellation_qualification_closeFrameworkAgreementUA_lot") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування лота Рамкова угода 1-й етап. Етап active.qualification")
         keepDependencies(false)
         disabled(false)
@@ -3398,6 +3528,7 @@ try {
 
     job("cancellation_qualification_closeFrameworkAgreementSelectionUA_tender") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування тендера Рамкова угода 2-й етап. Етап active.qualification")
         keepDependencies(false)
         disabled(false)
@@ -3426,6 +3557,7 @@ try {
 
     job("cancellation_qualification_closeFrameworkAgreementSelectionUA_lot") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування лота Рамкова угода 2-й етап. Етап active.qualification")
         keepDependencies(false)
         disabled(false)
@@ -3454,6 +3586,7 @@ try {
 
     job("cancellation_awarded_belowThreshold") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування допорогової закупівлі. Етап active.awarded")
         keepDependencies(false)
         disabled(false)
@@ -3478,6 +3611,7 @@ try {
 
     job("cancellation_awarded_esco") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування ESCO закупівлі. Етап active.awarded")
         keepDependencies(false)
         disabled(false)
@@ -3502,6 +3636,7 @@ try {
 
     job("cancellation_awarded_aboveThresholdUA") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування надпорогової закупівлі. Етап active.awarded")
         keepDependencies(false)
         disabled(false)
@@ -3526,6 +3661,7 @@ try {
 
     job("cancellation_awarded_aboveThresholdEU") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування надпорогової закупівлі з публікацією англійською мовою. Етап active.awarded")
         keepDependencies(false)
         disabled(false)
@@ -3550,6 +3686,7 @@ try {
 
     job("cancellation_awarded_aboveThresholdUA_defence") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування процедури для потреб оборони. Етап active.awarded")
         keepDependencies(false)
         disabled(false)
@@ -3574,6 +3711,7 @@ try {
 
     job("cancellation_awarded_closeFrameworkAgreementUA_tender") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування тендера Рамкова угода 1-й етап. Етап active.awarded")
         keepDependencies(false)
         disabled(false)
@@ -3598,6 +3736,7 @@ try {
 
     job("cancellation_awarded_closeFrameworkAgreementUA_lot") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування лота Рамкова угода 1-й етап. Етап active.awarded")
         keepDependencies(false)
         disabled(false)
@@ -3622,6 +3761,7 @@ try {
 
     job("cancellation_pre_qualification_esco") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування ESCO закупівлі. Етап active.pre-qualification")
         keepDependencies(false)
         disabled(false)
@@ -3646,6 +3786,7 @@ try {
 
     job("cancellation_pre_qualification_aboveThresholdEU") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування надпорогової закупівлі з публікацією англійською мовою. Етап active.pre-qualification")
         keepDependencies(false)
         disabled(false)
@@ -3670,6 +3811,7 @@ try {
 
     job("cancellation_pre_qualification_competitiveDialogueUA") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі конкурентний діалог. Етап active.pre-qualification")
         keepDependencies(false)
         disabled(false)
@@ -3694,6 +3836,7 @@ try {
 
     job("cancellation_pre_qualification_competitiveDialogueEU") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі конкурентний діалог з публікацією англійською мовою. Етап active.pre-qualification")
         keepDependencies(false)
         disabled(false)
@@ -3718,6 +3861,7 @@ try {
 
     job("cancellation_pre_qualification_closeFrameworkAgreementUA_tender") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування тендера Рамкова угода 1-й етап. Етап active.pre-qualification")
         keepDependencies(false)
         disabled(false)
@@ -3742,6 +3886,7 @@ try {
 
     job("cancellation_pre_qualification_closeFrameworkAgreementUA_lot") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування лота Рамкова угода 1-й етап. Етап active.pre-qualification")
         keepDependencies(false)
         disabled(false)
@@ -3766,6 +3911,7 @@ try {
 
     job("cancellation_tendering_closeFrameworkAgreementSelectionUA_tender") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування тендера Рамкова угода 2-й етап. Етап active.tendering")
         keepDependencies(false)
         disabled(false)
@@ -3794,6 +3940,7 @@ try {
 
     job("cancellation_tendering_closeFrameworkAgreementSelectionUA_lot") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування лота Рамкова угода 2-й етап. Етап active.tendering")
         keepDependencies(false)
         disabled(false)
@@ -3822,6 +3969,7 @@ try {
 
     job("cancellation_tendering_aboveThresholdUA_defence") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування процедури для потреб оборони. Етап active.tendering")
         keepDependencies(false)
         disabled(false)
@@ -3846,6 +3994,7 @@ try {
 
     job("cancellation_tendering_competitiveDialogueEU_stage2") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі конкурентний діалог з публікацією англійською мовою. Етап active.tendering_stage2")
         keepDependencies(false)
         disabled(false)
@@ -3870,6 +4019,7 @@ try {
 
     job("cancellation_tendering_competitiveDialogueUA_stage2") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі конкурентний діалог. Етап active.tendering_stage2")
         keepDependencies(false)
         disabled(false)
@@ -3894,6 +4044,7 @@ try {
 
     job("cancellation_enquiry_belowThreshold") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування допорогової закупівлі. Етап active.enquiry")
         keepDependencies(false)
         disabled(false)
@@ -3918,6 +4069,7 @@ try {
 
     job("cancellation_enquiry_closeFrameworkAgreementSelectionUA_tender") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування тендера Рамкова угода 2-й етап. Етап active.enquiry")
         keepDependencies(false)
         disabled(false)
@@ -3946,6 +4098,7 @@ try {
 
     job("cancellation_enquiry_closeFrameworkAgreementSelectionUA_lot") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування лота Рамкова угода 2-й етап. Етап active.enquiry")
         keepDependencies(false)
         disabled(false)
@@ -3974,6 +4127,7 @@ try {
 
      job("cancellation_tendering_closeFrameworkAgreementUA_lot") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування лоту Рамкова угода 1-й етап")
         keepDependencies(false)
         disabled(false)
@@ -3998,6 +4152,7 @@ try {
 
     job("cancellation_tendering_closeFrameworkAgreementUA_tender") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування тендера Рамкова угода 1-й етап. Етап active.tendering")
         keepDependencies(false)
         disabled(false)
@@ -4022,6 +4177,7 @@ try {
 
     job("cancellation_tendering_competitiveDialogueUA") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі (competitive dialogue UA) 1 етап. Етап active.tendering")
         keepDependencies(false)
         disabled(false)
@@ -4046,6 +4202,7 @@ try {
 
     job("cancellation_pre_qualification_competitiveDialogueEU_stage2") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі конкурентний діалог з публікацією англійською мовою. Етап active.pre_qualification_stage2")
         keepDependencies(false)
         disabled(false)
@@ -4070,6 +4227,7 @@ try {
 
     job("cancellation_qualification_competitiveDialogueEU_stage2") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі конкурентний діалог з публікацією англійською мовою. Етап active.qualification_stage2")
         keepDependencies(false)
         disabled(false)
@@ -4094,6 +4252,7 @@ try {
 
     job("cancellation_qualification_competitiveDialogueUA_stage2") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі конкурентний діалог. Етап active.qualification_stage2")
         keepDependencies(false)
         disabled(false)
@@ -4118,6 +4277,7 @@ try {
 
     job("cancellation_awarded_closeFrameworkAgreementSelectionUA_tender") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування тендера Рамкова угода 2-й етап. Етап active.awarded")
         keepDependencies(false)
         disabled(false)
@@ -4147,6 +4307,7 @@ try {
 
     job("cancellation_awarded_closeFrameworkAgreementSelectionUA_lot") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування лота Рамкова угода 2-й етап. Етап active.awarded")
         keepDependencies(false)
         disabled(false)
@@ -4176,6 +4337,7 @@ try {
 
     job("cancellation_awarded_competitiveDialogueUA_stage2") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі конкурентний діалог. Етап active.awarded_stage2")
         keepDependencies(false)
         disabled(false)
@@ -4200,6 +4362,7 @@ try {
 
     job("cancellation_awarded_competitiveDialogueEU_stage2") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скасування закупівлі конкурентний діалог з публікацією англійською мовою. Етап active.awarded_stage2")
         keepDependencies(false)
         disabled(false)
@@ -4228,6 +4391,7 @@ try {
 
     job("${config.environment}_priceQuotation_full") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Процедура PQ від початку до кінця")
         keepDependencies(false)
         disabled(false)
@@ -4250,6 +4414,7 @@ try {
 
     job("${config.environment}_priceQuotation_cancellation_tendering") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Процедура PQ скасування під час етапу подачі пропозицій")
         keepDependencies(false)
         disabled(false)
@@ -4272,6 +4437,7 @@ try {
 
     job("${config.environment}_priceQuotation_cancellation_qualification") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Процедура PQ скасування під час етапу визначення переможця")
         keepDependencies(false)
         disabled(false)
@@ -4294,6 +4460,7 @@ try {
 
     job("${config.environment}_priceQuotation_cancellation_awarded") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Процедура PQ скасування під час етапу укладання контракту")
         keepDependencies(false)
         disabled(false)
@@ -4316,6 +4483,7 @@ try {
 
     job("${config.environment}_priceQuotation_cancelled_without_bids") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Процедура PQ скасування через відсутність пропозицій")
         keepDependencies(false)
         disabled(false)
@@ -4338,6 +4506,7 @@ try {
 
     job("${config.environment}_priceQuotation_unsuccessful") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Процедура PQ скасовано.дискваліфіковано всіх учасників")
         keepDependencies(false)
         disabled(false)
@@ -4360,6 +4529,7 @@ try {
 
     job("${config.environment}_priceQuotation_shortlistedfirms_empty") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Створити роцедуру PQ - shortlistedfirms порожній")
         keepDependencies(false)
         disabled(false)
@@ -4382,6 +4552,7 @@ try {
 
     job("${config.environment}_priceQuotation_hidden_profile") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Створити роцедуру PQ - статус профіля hidden")
         keepDependencies(false)
         disabled(false)
@@ -4404,6 +4575,7 @@ try {
 
     job("${config.environment}_priceQuotation_unknown_profile") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Створити роцедуру PQ - неіснуючий профіль")
         keepDependencies(false)
         disabled(false)
@@ -4426,6 +4598,7 @@ try {
 
     job("${config.environment}_priceQuotation_bot_unsuccessful") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Створити роцедуру PQ - невірний профіль")
         keepDependencies(false)
         disabled(false)
@@ -4448,6 +4621,7 @@ try {
 
     job("${config.environment}_priceQuotation_negative") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Створити роцедуру PQ - негативні тести")
         keepDependencies(false)
         disabled(false)
@@ -4470,6 +4644,7 @@ try {
 
     job("${config.environment}_priceQuotation_negative_draft") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Змінити роцедуру PQ - негативні тести")
         keepDependencies(false)
         disabled(false)
@@ -4496,6 +4671,7 @@ try {
 
     job("${config.environment}_criteria_patch_evidence") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Зміна evidence критерія")
         keepDependencies(false)
         disabled(false)
@@ -4524,6 +4700,7 @@ try {
 
     job("${config.environment}_aboveThresholdEU_LLC") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Надпорогова закупівля з публікацією англійською мовою. Життєвий цикл")
         keepDependencies(false)
         disabled(false)
@@ -4550,6 +4727,7 @@ try {
 
     job("${config.environment}_aboveThresholdUA_LLC") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Надпорогова закупівля. Життєвий цикл")
         keepDependencies(false)
         disabled(false)
@@ -4576,6 +4754,7 @@ try {
 
     job("${config.environment}_simple_defence_LLC") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Спрощена процедура для потреб оборони. Життєвий цикл")
         keepDependencies(false)
         disabled(false)
@@ -4605,6 +4784,7 @@ try {
 
     job("complaint_aboveThresholdUA_award_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -4629,6 +4809,7 @@ try {
 
     job("complaint_aboveThresholdUA_award_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -4653,6 +4834,7 @@ try {
 
     job("complaint_aboveThresholdUA_award_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -4677,6 +4859,7 @@ try {
 
     job("complaint_aboveThresholdUA_award_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -4701,6 +4884,7 @@ try {
 
     job("complaint_aboveThresholdUA_award_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -4725,6 +4909,7 @@ try {
 
     job("complaint_aboveThresholdUA_cancel_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -4748,6 +4933,7 @@ try {
 
     job("complaint_aboveThresholdUA_cancel_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -4771,6 +4957,7 @@ try {
 
     job("complaint_aboveThresholdUA_cancel_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -4794,6 +4981,7 @@ try {
 
     job("complaint_aboveThresholdUA_cancel_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -4817,6 +5005,7 @@ try {
 
     job("complaint_aboveThresholdUA_cancel_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -4840,6 +5029,7 @@ try {
 
     job("complaint_aboveThresholdUA_cancel_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -4864,6 +5054,7 @@ try {
 
     job("complaint_aboveThresholdUA_cancel_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -4887,6 +5078,7 @@ try {
 
     job("complaint_aboveThresholdUA_cancel_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -4911,6 +5103,7 @@ try {
 
     job("complaint_aboveThresholdUA_cancel_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
         disabled(false)
@@ -4934,6 +5127,7 @@ try {
 
     job("complaint_aboveThresholdUA_cancel_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -4957,6 +5151,7 @@ try {
 
     job("complaint_aboveThresholdUA_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -4980,6 +5175,7 @@ try {
 
     job("complaint_aboveThresholdUA_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -5003,6 +5199,7 @@ try {
 
     job("complaint_aboveThresholdUA_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -5026,6 +5223,7 @@ try {
 
     job("complaint_aboveThresholdUA_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -5049,6 +5247,7 @@ try {
 
     job("complaint_aboveThresholdUA_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -5072,6 +5271,7 @@ try {
 
     job("complaint_aboveThresholdUA_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -5096,6 +5296,7 @@ try {
 
     job("complaint_aboveThresholdUA_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -5120,6 +5321,7 @@ try {
 
     job("complaint_aboveThresholdUA_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -5144,6 +5346,7 @@ try {
 
     job("complaint_aboveThresholdUA_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -5168,6 +5371,7 @@ try {
 
     job("complaint_aboveThresholdUA_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -5196,6 +5400,7 @@ try {
 
     job("complaint_esco_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -5221,6 +5426,7 @@ try {
 
     job("complaint_esco_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -5246,6 +5452,7 @@ try {
 
     job("complaint_esco_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -5271,6 +5478,7 @@ try {
 
     job("complaint_esco_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -5296,6 +5504,7 @@ try {
 
     job("complaint_esco_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -5321,6 +5530,7 @@ try {
 
     job("complaint_esco_award_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -5347,6 +5557,7 @@ try {
 
     job("complaint_esco_award_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -5373,6 +5584,7 @@ try {
 
     job("complaint_esco_award_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -5399,6 +5611,7 @@ try {
 
     job("complaint_esco_award_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -5425,6 +5638,7 @@ try {
 
     job("complaint_esco_award_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -5451,6 +5665,7 @@ try {
 
     job("complaint_esco_qualification_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника задоволена Замовником")
         keepDependencies(false)
         disabled(false)
@@ -5476,6 +5691,7 @@ try {
 
     job("complaint_esco_qualification_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -5501,6 +5717,7 @@ try {
 
     job("complaint_esco_qualification_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -5526,6 +5743,7 @@ try {
 
     job("complaint_esco_qualification_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника відхилена")
         keepDependencies(false)
         disabled(false)
@@ -5551,6 +5769,7 @@ try {
 
     job("complaint_esco_qualification_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -5576,6 +5795,7 @@ try {
 
     job("complaint_esco_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -5601,6 +5821,7 @@ try {
 
     job("complaint_esco_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -5626,6 +5847,7 @@ try {
 
     job("complaint_esco_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -5651,6 +5873,7 @@ try {
 
     job("complaint_esco_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -5676,6 +5899,7 @@ try {
 
     job("complaint_esco_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -5701,6 +5925,7 @@ try {
 
     job("complaint_esco_cancel_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -5726,6 +5951,7 @@ try {
 
     job("complaint_esco_cancel_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -5751,6 +5977,7 @@ try {
 
     job("complaint_esco_cancel_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -5776,6 +6003,7 @@ try {
 
     job("complaint_esco_cancel_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
         disabled(false)
@@ -5801,6 +6029,7 @@ try {
 
     job("complaint_esco_cancel_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -5826,6 +6055,7 @@ try {
 
     job("complaint_esco_cancel_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -5851,6 +6081,7 @@ try {
 
     job("complaint_esco_cancel_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -5876,6 +6107,7 @@ try {
 
     job("complaint_esco_cancel_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -5901,6 +6133,7 @@ try {
 
     job("complaint_esco_cancel_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -5926,6 +6159,7 @@ try {
 
     job("complaint_esco_cancel_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -5955,6 +6189,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -5979,6 +6214,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -6003,6 +6239,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -6027,6 +6264,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -6051,6 +6289,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -6075,6 +6314,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_qualification_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника задоволена Замовником")
         keepDependencies(false)
         disabled(false)
@@ -6101,6 +6341,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_qualification_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -6127,6 +6368,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_qualification_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -6153,6 +6395,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_qualification_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника відхилена")
         keepDependencies(false)
         disabled(false)
@@ -6179,6 +6422,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_qualification_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -6205,6 +6449,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -6229,6 +6474,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -6253,6 +6499,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -6277,6 +6524,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -6301,6 +6549,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -6325,6 +6574,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_cancel_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -6349,6 +6599,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_cancel_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -6373,6 +6624,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_cancel_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -6397,6 +6649,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_cancel_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
         disabled(false)
@@ -6421,6 +6674,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_cancel_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -6445,6 +6699,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_cancel_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -6469,6 +6724,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_cancel_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -6493,6 +6749,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_cancel_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -6517,6 +6774,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_cancel_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -6541,6 +6799,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_cancel_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -6569,6 +6828,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -6593,6 +6853,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -6617,6 +6878,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -6641,6 +6903,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -6665,6 +6928,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -6689,6 +6953,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_qualification_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника задоволена Замовником")
         keepDependencies(false)
         disabled(false)
@@ -6715,6 +6980,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_qualification_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -6741,6 +7007,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_qualification_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -6767,6 +7034,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_qualification_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника відхилена")
         keepDependencies(false)
         disabled(false)
@@ -6793,6 +7061,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_qualification_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -6819,6 +7088,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -6843,6 +7113,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -6867,6 +7138,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -6891,6 +7163,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -6915,6 +7188,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -6939,6 +7213,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_cancel_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -6963,6 +7238,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_cancel_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -6987,6 +7263,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_cancel_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -7011,6 +7288,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_cancel_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
         disabled(false)
@@ -7035,6 +7313,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_cancel_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -7059,6 +7338,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_cancel_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -7083,6 +7363,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_cancel_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -7107,6 +7388,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_cancel_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -7131,6 +7413,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_cancel_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -7155,6 +7438,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_cancel_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -7183,6 +7467,7 @@ try {
 
      job("complaint_close_framework_agreement_ua_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -7206,6 +7491,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -7229,6 +7515,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -7252,6 +7539,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -7275,6 +7563,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -7298,6 +7587,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_award_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -7323,6 +7613,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_award_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -7348,6 +7639,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_award_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -7373,6 +7665,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_award_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -7398,6 +7691,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_award_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на визначення переможця, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -7423,6 +7717,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_qualification_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника задоволена Замовником")
         keepDependencies(false)
         disabled(false)
@@ -7447,6 +7742,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_qualification_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -7471,6 +7767,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_qualification_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -7495,6 +7792,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_qualification_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника відхилена")
         keepDependencies(false)
         disabled(false)
@@ -7519,6 +7817,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_qualification_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на пре-кваліфікацію учасника розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -7543,6 +7842,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -7566,6 +7866,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -7589,6 +7890,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -7612,6 +7914,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -7635,6 +7938,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -7658,6 +7962,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_cancel_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -7681,6 +7986,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_cancel_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -7704,6 +8010,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_cancel_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -7727,6 +8034,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_cancel_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
         disabled(false)
@@ -7750,6 +8058,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_cancel_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -7773,6 +8082,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_cancel_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -7796,6 +8106,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_cancel_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -7819,6 +8130,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_cancel_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -7842,6 +8154,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_cancel_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -7865,6 +8178,7 @@ try {
 
     job("complaint_close_framework_agreement_ua_cancel_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -7888,6 +8202,7 @@ try {
 
  job("complaint_competitive_dialogue_eu_stage_2_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -7915,6 +8230,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -7942,6 +8258,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -7969,6 +8286,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -7996,6 +8314,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -8023,6 +8342,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -8050,6 +8370,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -8077,6 +8398,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -8104,6 +8426,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -8131,6 +8454,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -8158,6 +8482,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_cancel_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -8185,6 +8510,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_cancel_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -8212,6 +8538,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_cancel_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -8239,6 +8566,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_cancel_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
         disabled(false)
@@ -8266,6 +8594,7 @@ try {
 
     job("complaint_competitive_dialogue_eu_stage_2_cancel_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -8293,6 +8622,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята та задоволена АМКУ та Учасником виконано рішення АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -8321,6 +8651,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, позначена Учасником як помилково створена")
         keepDependencies(false)
         disabled(false)
@@ -8348,6 +8679,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята до розгляду та відхилена АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -8375,6 +8707,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, прийнята, розгляду зупинено АМКУ")
         keepDependencies(false)
         disabled(false)
@@ -8402,6 +8735,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови тендера, АМКУ залишив скаргу без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -8429,6 +8763,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -8456,6 +8791,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -8483,6 +8819,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -8510,6 +8847,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -8537,6 +8875,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на умови лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -8564,6 +8903,7 @@ try {
 
      job("complaint_competitive_dialogue_ua_stage_2_cancel_tender_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -8592,6 +8932,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_cancel_tender_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -8620,6 +8961,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_cancel_tender_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -8647,6 +8989,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_cancel_tender_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера відхилена")
         keepDependencies(false)
         disabled(false)
@@ -8674,6 +9017,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_cancel_tender_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування тендера розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -8701,6 +9045,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_cancel_lot_resolved") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота задоволена та виконана Замовником")
         keepDependencies(false)
         disabled(false)
@@ -8729,6 +9074,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_cancel_lot_mistaken") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота створена помилково")
         keepDependencies(false)
         disabled(false)
@@ -8756,6 +9102,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_cancel_lot_invalid") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота залишена без розгляду")
         keepDependencies(false)
         disabled(false)
@@ -8783,6 +9130,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_cancel_lot_declined") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота відхилена")
         keepDependencies(false)
         disabled(false)
@@ -8810,6 +9158,7 @@ try {
 
     job("complaint_competitive_dialogue_ua_stage_2_cancel_lot_stopped") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: Скарга на скасування лота розгляд зупинено")
         keepDependencies(false)
         disabled(false)
@@ -8837,6 +9186,7 @@ try {
 
     job("claims_aboveThresholdEU_draft_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -8860,6 +9210,7 @@ try {
 
     job("claims_aboveThresholdEU_draft_claim_answer_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -8883,6 +9234,7 @@ try {
 
     job("claims_aboveThresholdEU_draft_claim_answer_resolve") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -8906,6 +9258,7 @@ try {
 
     job("claims_aboveThresholdEU_draft_claim_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -8929,6 +9282,7 @@ try {
 
     job("claims_aboveThresholdUA_draft_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -8955,6 +9309,7 @@ try {
 
     job("claims_aboveThresholdUA_draft_claim_answer_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -8981,6 +9336,7 @@ try {
 
     job("claims_aboveThresholdUA_draft_claim_answer_resolve") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9007,6 +9363,7 @@ try {
 
     job("claims_aboveThresholdUA_draft_claim_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9033,6 +9390,7 @@ try {
 
     job("claims_competitiveDialogueEU_draft_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9061,6 +9419,7 @@ try {
 
     job("claims_competitiveDialogueEU_draft_claim_answer_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9090,6 +9449,7 @@ try {
 
     job("claims_competitiveDialogueEU_draft_claim_answer_resolve") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9118,6 +9478,7 @@ try {
 
     job("claims_competitiveDialogueEU_draft_claim_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9146,6 +9507,7 @@ try {
 
     job("claims_competitiveDialogueUA_draft_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9174,6 +9536,7 @@ try {
 
     job("claims_competitiveDialogueUA_draft_claim_answer_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9202,6 +9565,7 @@ try {
 
     job("claims_competitiveDialogueUA_draft_claim_answer_resolve") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9230,6 +9594,7 @@ try {
 
     job("claims_competitiveDialogueUA_draft_claim_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9258,6 +9623,7 @@ try {
 
     job("claims_esco_draft_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9283,6 +9649,7 @@ try {
 
     job("claims_esco_draft_claim_answer_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9308,6 +9675,7 @@ try {
 
     job("claims_esco_draft_claim_answer_resolve") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9333,6 +9701,7 @@ try {
 
     job("claims_esco_draft_claim_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9358,6 +9727,7 @@ try {
 
     job("claims_closeFrameworkAgreementUA_draft_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9386,6 +9756,7 @@ try {
 
     job("claims_closeFrameworkAgreementUA_draft_claim_answer_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9414,6 +9785,7 @@ try {
 
     job("claims_closeFrameworkAgreementUA_draft_claim_answer_resolve") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9442,6 +9814,7 @@ try {
 
     job("claims_closeFrameworkAgreementUA_draft_claim_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9470,6 +9843,7 @@ try {
 
     job("claims_simple_defense_draft_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9498,6 +9872,7 @@ try {
 
     job("claims_simple_defense_draft_claim_answer_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9526,6 +9901,7 @@ try {
 
     job("claims_simple_defense_draft_claim_answer_resolve") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9554,6 +9930,7 @@ try {
 
     job("claims_simple_defense_draft_claim_cancel") {
         parameters defaultParameters(config)
+        assignedNode(rocky)
         description("Сценарій: ")
         keepDependencies(false)
         disabled(false)
@@ -9583,6 +9960,7 @@ try {
     multiJob(config.environment) {
         authenticationToken(remoteToken)
         parameters defaultParameters(config)
+        assignedNode(rocky)
         concurrentBuild(config.concurrentBuild)
         triggers defaultTriggers(config.cron)
         steps {
